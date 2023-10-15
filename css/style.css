@@ -195,11 +195,11 @@ body {
   background: #f5f7f9;
 }
 body.with-bg {
-  background-image: url("../imgs/main_vsl01_pressed.jpg");
+  background-image: url("../imgs/background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  background-position: 0px -110px;
+  background-position: 0px 0px;
 }
 nav {
   display: flex;
