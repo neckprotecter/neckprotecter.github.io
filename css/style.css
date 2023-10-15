@@ -207,7 +207,7 @@ nav {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
-  color: #000;
+  color: rgba(219,219,219,0.886);
   padding: 30px 180px 0;
 }
 a {
@@ -307,7 +307,7 @@ main::before {
 }
 .wrapper {
   flex: 1;
-  padding: 50px 150px;
+  padding: 50px 120px;
 }
 .footer {
   text-align: center;
@@ -326,6 +326,7 @@ main::before {
 article {
   margin-top: 50px;
   line-height: 24px;
+  background-color: rgba(255,255,255,0.695);
 }
 article img {
   max-width: 100%;
@@ -393,7 +394,7 @@ article .read-more a:hover {
 .driver {
   height: 2px;
   width: 50%;
-  background: #f7f7f7;
+  background: #221a1a;
   margin: 50px auto;
 }
 nav.pagination {
@@ -439,7 +440,9 @@ nav.pagination .active {
 }
 .timeline-title {
   text-align: center;
-  color: #999;
+  color: #fff;
+  font-weight: bold; /* 设置为粗体 */
+  font-size: 45px;
 }
 .timeline-box {
   padding-left: calc(50% - 79px);
@@ -452,6 +455,7 @@ nav.pagination .active {
   font-weight: 500;
   min-width: 70px;
   flex-basis: 70px;
+  color: #fff8ed;
 }
 .line-dot {
   width: 18px;
@@ -474,6 +478,7 @@ nav.pagination .active {
 }
 .line-title {
   padding-left: 40px;
+  color: #fff8ed;
   transition: color 0.24s ease;
   font-size: 16px;
 }
@@ -483,7 +488,7 @@ nav.pagination .active {
 .line-h {
   height: 50px;
   width: 100%;
-  border-left: 4px solid #000;
+  border-left: 4px solid rgba(252,252,252,0.548);
   position: relative;
   transform: translate3d(77px, 0, 0);
 }
