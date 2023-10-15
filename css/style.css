@@ -197,7 +197,7 @@ body {
 body.with-bg {
   background-image: url("../imgs/background.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% 100%;
   background-attachment: fixed;
   background-position: 0px 0px;
 }
