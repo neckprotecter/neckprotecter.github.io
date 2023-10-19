@@ -249,7 +249,7 @@
 
 
             <div class="toc amber-link-context hide-on-med-and-down">
-    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E9%97%AE%E9%A2%98%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="section table-of-contents-text">问题发现：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="section table-of-contents-text">实现过程：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E9%A6%96%E5%85%88%E7%A0%94%E7%A9%B6%E4%B8%8E-Apriltag-%E5%8A%9F%E8%83%BD%E5%8C%85%E6%9C%89%E5%85%B3%E7%9A%84%E8%AF%9D%E9%A2%98"><span class="section table-of-contents-text">首先研究与 Apriltag 功能包有关的话题</span></a></li></ol></li></ol>
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E9%97%AE%E9%A2%98%E5%8F%91%E7%8E%B0%EF%BC%9A"><span class="section table-of-contents-text">问题发现：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B%EF%BC%9A"><span class="section table-of-contents-text">实现过程：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E9%A6%96%E5%85%88%E7%A0%94%E7%A9%B6%E4%B8%8E-Apriltag-%E5%8A%9F%E8%83%BD%E5%8C%85%E6%9C%89%E5%85%B3%E7%9A%84%E8%AF%9D%E9%A2%98"><span class="section table-of-contents-text">首先研究与 Apriltag 功能包有关的话题</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-apriltag"><span class="section table-of-contents-text">正常使用 apriltag</span></a></li></ol></li></ol>
 </div>
 
 
@@ -283,8 +283,9 @@
 </ul>
 </blockquote>
 </li>
-<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">，因此直接通过这些参数计算出 camera_info 需要的参数即可。</li>
+<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：<img src="/images/blog_sdk_apriltag/biaoding_uinitree.png" alt="Alt text"></li>
 </ul>
+<h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
 
                 
 
