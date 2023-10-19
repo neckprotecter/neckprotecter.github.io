@@ -10,7 +10,8 @@
     <title>在宇树机器狗上用相机sdk打开相机并使用Apriltag | 围脖的生产地</title>
     <meta name="author" content="John Doe">
     
-    <meta name="description" content="解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题">
+    <meta name="description" content="解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题
+问题发现：在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -255,9 +256,9 @@
 
             <div class="entry amber-link-context" >
                 <p>解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题</p>
+<h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
 <span id="more"></span>
 
-<h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
 <h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/blog_sdk_apriltag/apriltag_topicshow.png" alt="apriltag话题"></p>
 <ul>
 <li>可以知道 apriltag 功能包需要接收 <strong>&#x2F;camera&#x2F;image_rect</strong> 和 <strong>&#x2F;camera&#x2F;camera_info</strong> 两个话题。</li>
@@ -283,9 +284,88 @@
 </ul>
 </blockquote>
 </li>
-<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：<img src="/images/blog_sdk_apriltag/biaoding_uinitree.png" alt="Alt text"></li>
+<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：</li>
 </ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 相机信息处理
+sensor_msgs::CameraInfo getCameraInfo(void)
+&#123;                                     &#x2F;&#x2F; extract cameraInfo.
+    sensor_msgs::CameraInfo cam_info; &#x2F;&#x2F; 信息对象
+
+    &#x2F;&#x2F; 相机参数赋值，K矩阵，D畸变参数等都根据宇树提供的相机标定参数计算得出
+    vector&lt;double&gt; D&#123;
+        -2.0874507966557976e-01, 2.6922545819193944e-02,
+        1.4887812678896397e-03, 3.5422189471526382e-03&#125;;
+
+    boost::array&lt;double, 9&gt; K &#x3D;
+        &#123;
+            1.9086173551086370e+02, 5.6239632677513474e-01, 2.2299573347226581e+02,
+            0., 1.9608536122280060e+02, 1.9553241319375684e+02,
+            0., 0., 1.&#125;;
+
+    boost::array&lt;double, 12&gt; P &#x3D;
+        &#123;
+            192.85, 0, 222.99, 0,
+            0, 196.08, 195.53, 0,
+            0, 0, 1, 0&#125;;
+
+    boost::array&lt;double, 9&gt; r &#x3D;
+        &#123;
+            -9.9992248085182622e-01, 1.1878079705669157e-02, -3.7341009138761533e-03,
+            -1.1878162517594585e-02, -9.9992945213910256e-01, 0.,
+            -3.7338374810443040e-03, 4.4354257512119405e-05, 9.9999302822087976e-01&#125;;
+
+    cam_info.height &#x3D; 480;
+    cam_info.width &#x3D; 640;
+    cam_info.distortion_model &#x3D; &quot;plumb_bob&quot;;
+    cam_info.D &#x3D; D;
+    cam_info.K &#x3D; K;
+    cam_info.P &#x3D; P;
+    cam_info.R &#x3D; r;
+    cam_info.binning_x &#x3D; 0;
+    cam_info.binning_y &#x3D; 0;
+    cam_info.header.frame_id &#x3D; &quot;camera&quot;; &#x2F;&#x2F; frame_id为camera，也就是相机名字
+
+    return cam_info;
+&#125;
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
+<pre class="line-numbers language-none"><code class="language-none">while (cam.isOpened())
+   &#123;
+       &#x2F;&#x2F; 同时获取左右两个相机画面，但后续只用到左侧
+       cv::Mat left, right;
+       if (!cam.getRectStereoFrame(left, right)) &#x2F;&#x2F;&#x2F;&lt; get rectify left,right frame
+       &#123;
+           usleep(1000);
+           continue;
+       &#125;
+       cv::flip(left, left, -1);         &#x2F;&#x2F; 原图像为翻转图像，使用该函数翻转为正图像
+       cv::imshow(&quot;Longlat_Rect&quot;, left); &#x2F;&#x2F; 将图像显示在屏幕上
+
+       &#x2F;&#x2F; ---------------------------------------------------------------------------------------------------------------
+
+       &#x2F;&#x2F; 信息整合发布
+       &#x2F;&#x2F; 图像信息需要信息头header
+       std_msgs::Header image_header;
+       image_header.frame_id &#x3D; &quot;camera&quot;;
+       image_header.stamp &#x3D; ros::Time::now();
+
+       &#x2F;&#x2F; 相机信息赋值，函数见最上方
+       camera_info_msg &#x3D; getCameraInfo();
+       camera_info_msg.header.stamp &#x3D; image_header.stamp; &#x2F;&#x2F; 相机信息和图像信息的时间戳要相同
+
+       sensor_msgs::ImagePtr image_msg &#x3D; cv_bridge::CvImage(image_header, &quot;bgr8&quot;, left).toImageMsg(); &#x2F;&#x2F; 将图像信息的信息头header和图像left整合
+       pub_image.publish(image_msg);                                                                  &#x2F;&#x2F; 图像信息发布
+       pub_info.publish(camera_info_msg);                                                             &#x2F;&#x2F; 相机信息发布
+
+       &#x2F;&#x2F; ---------------------------------------------------------------------------------------------------------------
+
+       char key &#x3D; cv::waitKey(10);
+       if (key &#x3D;&#x3D; 27) &#x2F;&#x2F; esc键退出
+           break;
+   &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>完整代码见：</p>
 
                 
 
