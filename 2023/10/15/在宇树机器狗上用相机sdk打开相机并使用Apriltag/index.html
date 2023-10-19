@@ -258,7 +258,15 @@
 <span id="more"></span>
 
 <h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
-<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/apriltag_topicshow.png" alt="apriltag话题"><br>可以知道 apriltag 功能包接收**&#x2F;camera&#x2F;image_rect**</p>
+<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/apriltag_topicshow.png" alt="apriltag话题"></p>
+<ul>
+<li>可以知道 apriltag 功能包需要接收 <strong>&#x2F;camera&#x2F;image_rect</strong> 和 <strong>&#x2F;camera&#x2F;camera_info</strong> 两个话题。</li>
+<li>而调用相机 sdk 之后，得到的图像就可以作为 image_rect 话题的输入，那么问题就到了 camera_info 这个话题上，有两个方面需要解决：这个话题是什么，这个话题怎么给。</li>
+<li>首先，这个话题是关于相机的一些参数信息，根据博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wangmj_hdu/article/details/115002514">https://blog.csdn.net/wangmj_hdu/article/details/115002514</a> 中的分享，我们可以得知这些参数的意思：<blockquote>
+<p>header：标准消息头<br>seq：序列 ID，连续递增的 ID 号<br>stamp：两个时间戳<br>frame_id：与此数据相关联的帧 ID<br>height：图像尺寸，height 代表高度，（height<em>width）相机的分辨率，以像素为单位<br>width：图像尺寸，width 代表宽度，（height</em>width）相机分辨率，以像素为单位<br>distortion_model：指定了相机畸变模型，对于大多数相机，”plumb_bob”简单的径向和切向畸变模型就足够了<br>D：畸变参数，取决于畸变模型，(k1, k2, t1, t2, k3)，（我的这个 usb 相机号称是无畸变相机，但通过标定结果可以看出来还是存在畸变的，是不是被商家坑了，哈哈哈）<br>K：相机内参矩阵，使用焦距(fx, fy)和主点坐标(cx, cy)，单位为像素，内参矩阵可以将相机坐标中的 3D 点投影到 2D 像素坐标<br>R：旋转矩阵，将相机坐标系统对准理想的立体图像平面，使两张立体图像中的极线平行<br>P：投影矩阵<br>binning_x：图像下采样参数，水平方向<br>binning_y：图像下采样参数，竖直方向<br>(width &#x2F; binning_x) x (height &#x2F; binning_y)<br>下采样：binning_x &#x3D; binning_y ＞ 1。缩小图像，生成对应图像的缩略图，使得图像符合显示区域的大小。<br>roi：感兴趣区域定义，即完整图像上的一个矩形子窗口</p>
+</blockquote>
+</li>
+</ul>
 
                 
 
