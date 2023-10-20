@@ -7,13 +7,15 @@
 
     
 
-    <title>归档：2023 | 围脖的生产地</title>
+    <title>简陋零食系统 | 围脖的生产地</title>
     <meta name="author" content="John Doe">
+    
+    <meta name="description" content="实现了简易的零食系统，可以区分管理员和用户，管理员负责添加库存，用户可以购买零食，有简陋的网页交互，基于 gpt 编写^_^">
     
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    
+    <meta property="og:title" content="简陋零食系统"/>
     <meta property="og:site_name" content="neckprotecter"/>
 
     
@@ -208,52 +210,99 @@
 
     <main>
         <div class="container main-container">
-    
-
-<nav class="page-nav hide-on-small-only">
+    <nav class="page-nav hide-on-small-only">
     <div class="nav-wrapper grey darken-4">
-        <span class="breadcrumb">当前位置（归档）</span>
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/数据库/">数据库</a>
+
+
         
 
         
     </div>
 </nav>
 
+<article>
+    <div class="card"  style="background-color: rgba(41, 37, 37, 0.438);">  <!-- ��������ҳ�ı�����ɫ -->
+        <div class="card-content" >
+            
+
+            <div class="article-title">
+                
+    
+        <h1>简陋零食系统</h1>
+    
 
 
-    <ul class="collapsible mt-0" data-collapsible="accordion">
+            </div>
+            <time class="amber-link-context" datetime="2023-10-20T02:09:40.000Z"><a href="/2023/10/20/%E7%AE%80%E9%99%8B%E9%9B%B6%E9%A3%9F%E8%B4%AD%E4%B9%B0%E7%B3%BB%E7%BB%9F/">2023-10-20</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
         
+            <a href="/tags/php/" class="chip amber">php</a>
         
-            <li>
-                <div class="collapsible-header active">
-                    <i class="fa fa-archive"></i>2023
-                </div>
-                <div class="collapsible-body">
-                    <div class="collection">
-                        
-                            <a href="/2023/10/20/%E7%AE%80%E9%99%8B%E9%9B%B6%E9%A3%9F%E8%B4%AD%E4%B9%B0%E7%B3%BB%E7%BB%9F/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2023-10-20T02:09:40.000Z">2023-10-20</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                简陋零食系统
-                            </a>
-                        
-                            <a href="/2023/10/15/%E5%9C%A8%E5%AE%87%E6%A0%91%E6%9C%BA%E5%99%A8%E7%8B%97%E4%B8%8A%E7%94%A8%E7%9B%B8%E6%9C%BAsdk%E6%89%93%E5%BC%80%E7%9B%B8%E6%9C%BA%E5%B9%B6%E4%BD%BF%E7%94%A8Apriltag/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2023-10-15T04:07:58.000Z">2023-10-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                在宇树机器狗上用相机sdk打开相机并使用Apriltag
-                            </a>
-                        
-                            <a href="/2023/10/15/hello-world/" class="collection-item grey-text text-darken-1">
-                                <time datetime="2023-10-15T03:25:42.211Z">2023-10-15</time>
-                                <span>&nbsp;&nbsp;&nbsp;</span>
-                                Hello World
-                            </a>
-                        
-                    </div>
-                </div>
-            </li>
+            <a href="/tags/mysql/" class="chip amber">mysql</a>
         
-    </ul>
+    </div>
+
+
+            <div class="toc amber-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E6%98%8E%E7%A1%AE%E9%9C%80%E6%B1%82"><span class="section table-of-contents-text">明确需求</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E5%9F%BA%E7%A1%80"><span class="section table-of-contents-text">基础</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E8%BF%9B%E9%98%B6"><span class="section table-of-contents-text">进阶</span></a></li></ol></li></ol>
+</div>
+
+
+            <div class="entry amber-link-context" >
+                <p>实现了简易的零食系统，可以区分管理员和用户，管理员负责添加库存，用户可以购买零食，有简陋的网页交互，基于 gpt 编写^_^</p>
+<span id="more"></span>
+
+<h1 id="明确需求"><a href="#明确需求" class="headerlink" title="明确需求"></a>明确需求</h1><p>只有先明确了需求才能了解一个小项目的大纲，这样有助于我们逻辑清晰地完成目标，不至于缺漏。</p>
+<blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ol>
+<li>数据库设计：设计数据库模式，以存储用户信息、零食库存、进货记录和账单信息。使用 MySQL 或其他关系型数据库管理系统存储数据。</li>
+<li>用户管理： 创建用户登录和身份验证系统，区分管理员和成员。使用 PHP 中的会话管理来跟踪用户的登录状态。</li>
+<li>成员区分： 在用户数据库中，添加一个字段来区分实习成员和正式成员。字段用于计算购买折扣。</li>
+<li>零食购买： 创建一个界面，允许用户浏览零食库存、选择要购买的零食和数量，根据用户身份（实习成员或正式成员）计算折扣，并生成账单。另外可以指定想要补充的零食名称和数量，选择性上传购买链接。</li>
+<li>进货操作： 管理员有权向仓库添加零食库存。创建一个界面，管理员可以输入零食的名称、数量和进货价格来添加库存。</li>
+<li>账单生成： 创建一个账单系统，记录每次购买的细节，包括零食名称、购买数量、单价、折扣和日期。在账单中跟踪实验室的余额，并记录每月的采购补贴。</li>
+<li>实验室余额： 管理员应能够查看实验室的余额，根据进货和销售来更新余额。</li>
+<li>数据展示： 创建一个界面，允许管理员和成员查看账单和库存情况，以便他们了解进货和购买的历史记录。</li>
+</ol>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><ol>
+<li>安全性考虑： 要确保系统的安全性，包括输入验证、防止 SQL 注入、密码加密和访问控制等方面。</li>
+<li>用户界面： 设计用户友好的用户界面，以便成员和管理员可以轻松地执行操作和浏览信息。</li>
+<li>数据备份： 定期备份数据库，以防止数据丢失。</li>
+</ol>
+</blockquote>
+
+                
+
+
+<p class="amber-link-context">
+    <a href="/2023/10/15/%E5%9C%A8%E5%AE%87%E6%A0%91%E6%9C%BA%E5%99%A8%E7%8B%97%E4%B8%8A%E7%94%A8%E7%9B%B8%E6%9C%BAsdk%E6%89%93%E5%BC%80%E7%9B%B8%E6%9C%BA%E5%B9%B6%E4%BD%BF%E7%94%A8Apriltag/" rel="next" title="在宇树机器狗上用相机sdk打开相机并使用Apriltag">
+    下一篇：在宇树机器狗上用相机sdk打开相机并使用Apriltag
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
 
 
 </div>
