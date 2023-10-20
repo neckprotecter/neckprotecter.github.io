@@ -344,7 +344,7 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><br><br><strong>问题 1：若出现报错，提示 apriltag_ros 功能包没有安装，如图：</strong><br><img src="/images/blog_dog_apriltag/1-7.png" alt="Alt text"></p>
+<p><br><br><strong><font color=red>问题 1：若出现报错，提示 apriltag_ros 功能包没有安装，如图：</font></strong><br><img src="/images/blog_dog_apriltag/1-7.png" alt="Alt text"></p>
 <ul>
 <li>则安装 apriltag_ros 包，将源码拷贝到 ros 工作空间中的 src 目录下：</li>
 </ul>
@@ -362,7 +362,8 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><br><br><strong>问题 2：若出现类似的缺少功能包问题，下载需要的功能包即可</strong><br><img src="/images/blog_dog_apriltag/1-11.png" alt="Alt text"></p>
+<p><br><br><strong><font color=red>问题 2：若出现类似的缺少功能包问题，下载需要的功能包即可</font></strong></p>
+<p><img src="/images/blog_dog_apriltag/1-11.png" alt="Alt text"></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sudo apt-get install ros-melodic-apriltag<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <ul>
@@ -373,7 +374,7 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 <ul>
 <li>然后用 aptitude 代替 apt-get 下载，这个工具会帮助下载所有需要的依赖包</li>
 </ul>
-<p><br><br><strong>问题 3：若出现类似的 opencv 路径问题，是因为 NVIDIA 的 32.3.1image 自带的是 opencv4 版本，把 opencv 命名成了 opencv4</strong><br><img src="/images/blog_dog_apriltag/1-12.png" alt="Alt text"></p>
+<p><br><br><strong><font color=red>问题 3：若出现类似的 opencv 路径问题，是因为 NVIDIA 的 32.3.1image 自带的是 opencv4 版本，把 opencv 命名成了 opencv4</font></strong><br><img src="/images/blog_dog_apriltag/1-12.png" alt="Alt text"></p>
 <ul>
 <li><p>解决办法可以根据博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43310597/article/details/109256838">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法_project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv-CSDN 博客</a></p>
 </li>
@@ -382,7 +383,7 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 <li><p>也可以如博客内评论所说，将 opencv 的命名软连接到 opencv4 上，这是修改系统环境，可以适配大部分功能包<br><img src="/images/blog_dog_apriltag/1-13.png" alt="Alt text"></p>
 </li>
 </ul>
-<p><br><br><strong>问题 4：会发现之前的 apriltag_ros 功能包成功通过编译，但在宇树相机部分出现错误，这是因为没有配置好宇树相关的 sdk 文件</strong><br><img src="/images/blog_dog_apriltag/1-14.png" alt="Alt text"></p>
+<p><br><br><strong><font color=red>问题 4：会发现之前的 apriltag_ros 功能包成功通过编译，但在宇树相机部分出现错误，这是因为没有配置好宇树相关的 sdk 文件</font></strong><br><img src="/images/blog_dog_apriltag/1-14.png" alt="Alt text"></p>
 <ul>
 <li><p>将相机 sdk&#x2F;include 中的三个文件复制进 camera_move 功能包的 include 中<br><img src="/images/blog_dog_apriltag/1-15.png" alt="Alt text"></p>
 </li>
@@ -401,7 +402,7 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 <li><p>这里提示的 warning 暂且不管，先尝试运行，发现失败：<br><img src="/images/blog_dog_apriltag/1-23.png" alt="Alt text"></p>
 </li>
 </ul>
-<p><br><br><strong>问题 5：这是 cv_bridge 与 opencv4 版本冲突导致的，解决办法是将 cv_bridge 和自己功能包的依赖设为同一版本的 opencv，这里参考的是这篇文章，写得很详细：</strong></p>
+<p><br><br><strong><font color=red>问题 5：这是 cv_bridge 与 opencv4 版本冲突导致的，解决办法是将 cv_bridge 和自己功能包的依赖设为同一版本的 opencv，这里参考的是这篇文章，写得很详细：</font></strong></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43196818/article/details/124514966">解决 cv_bridge 与 opencv4 版本冲突问题_Thoven 的博客-CSDN 博客</a></p>
 <ul>
 <li><p>先下载 noetic 版本的 cv_bridge（狗上的 ubuntu 是 melodic 版，但不影响，noetic 版本的 cv_bridge 经过一定修改后在 melodic 上也可以使用）</p>
@@ -434,7 +435,7 @@ code .  打开 vscode<span aria-hidden="true" class="line-numbers-rows"><span><
 <li><p>最后一步，在 camera_move 功能包中的 CMakeList.txt 和 package.xml（有三个地方需要修改）中修改 cv_bridge 名字：<br><img src="/images/blog_dog_apriltag/1-34.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-35.png" alt="Alt text"></p>
 </li>
 </ul>
-<p><br><br><strong>问题 6：如果运行时一直出现 invalid devicenode 错误，反复检查配置文件都没有问题，检查是否添加了 stereo_camera_config.yaml 文件到 wksp 目录下。</strong></p>
+<p><br><br><strong><font color=red>问题 6：如果运行时一直出现 invalid devicenode 错误，反复检查配置文件都没有问题，检查是否添加了 stereo_camera_config.yaml 文件到 wksp 目录下。</font></strong></p>
 <p>-因为是在 wksp 路径处进行的 rosrun，因此代码中寻找这个文件时，会以 wksp 路径作为源路径，所以这个 yaml 文件会在 wksp 中找，一旦找不到就会程序崩溃。<br><img src="/images/blog_dog_apriltag/1-36.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-37.png" alt="Alt text"></p>
 <ul>
 <li><p>最后成功启动得到的画面：<br><img src="/images/blog_dog_apriltag/1-38.png" alt="Alt text"></p>
