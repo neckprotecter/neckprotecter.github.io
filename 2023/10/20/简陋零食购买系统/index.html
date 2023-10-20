@@ -287,33 +287,31 @@
 <h2 id="创建数据库-snack-和数据库表-users、snacks、purchase-history"><a href="#创建数据库-snack-和数据库表-users、snacks、purchase-history" class="headerlink" title="创建数据库 snack 和数据库表 users、snacks、purchase_history"></a>创建数据库 snack 和数据库表 users、snacks、purchase_history</h2><p>分别存储登录账号、零食信息、历史购买记录</p>
 <p><img src="/images/blog_snack_sql/sql_table.png" alt="table表展示"></p>
 <h2 id="创建用户登录的-html-表单：userlogin-html"><a href="#创建用户登录的-html-表单：userlogin-html" class="headerlink" title="创建用户登录的 html 表单：userlogin.html"></a>创建用户登录的 html 表单：userlogin.html</h2><p>用于用户输入用户名和密码来进行登录</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;!-- &lt;form method&#x3D;&quot;post&quot; action&#x3D;&quot;userlogin_do.php&quot;&gt; --&gt;
-&lt;style&gt;
-    body
-    &#123;
-        text-align: center; &#x2F;* 居中显示文本 *&#x2F;
-        padding: 20px; &#x2F;* 增大上下行间距 *&#x2F;
-        margin-bottom : 20px;
-    &#125;
-    label, input
-    &#123;
-        margin-top : 10px; &#x2F;* 增大上下行间距 *&#x2F;
-        margin-bottom : 10px; &#x2F;* 增大上下行间距 *&#x2F;
-    &#125;
-&lt;&#x2F;style&gt;
-&lt;form method&#x3D;&quot;post&quot; action&#x3D;&quot;http:&#x2F;&#x2F;localhost&#x2F;userlogin_do.php&quot;&gt;
-    &lt;h1&gt;登录页面&lt;&#x2F;h1&gt;
-    &lt;br&gt;
-    &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot; placeholder&#x3D;&quot;输入你的登录名&quot;&gt;
-    &lt;br&gt;
-    &lt;input type&#x3D;&quot;password&quot; name&#x3D;&quot;password&quot; placeholder&#x3D;&quot;输入密码&quot;&gt;
-    &lt;br&gt;
-    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;登录&quot;&gt;
-&lt;&#x2F;form&gt;
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-markup" data-language="markup"><code class="language-markup"><span class="token comment">&lt;!-- &lt;form method="post" action="userlogin_do.php"> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">body</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span> <span class="token comment">/* 居中显示文本 */</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span> <span class="token comment">/* 增大上下行间距 */</span>
+    <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">label,
+  input</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">margin-top</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span> <span class="token comment">/* 增大上下行间距 */</span>
+    <span class="token property">margin-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span> <span class="token comment">/* 增大上下行间距 */</span>
+  <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://localhost/userlogin_do.php<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>登录页面<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>username<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>输入你的登录名<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>password<span class="token punctuation">"</span></span> <span class="token attr-name">placeholder</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>输入密码<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span> <span class="token punctuation">/></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>登录<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="创建-php-处理登录表单-userlogin-do-php"><a href="#创建-php-处理登录表单-userlogin-do-php" class="headerlink" title="创建 php 处理登录表单:userlogin_do.php"></a>创建 php 处理登录表单:userlogin_do.php</h2><p>用于判断用户名和密码是否符合，并且要区分管理员和用户</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
 header(&quot;content-type:text&#x2F;html; charset&#x3D;GBK&quot;);         &#x2F;&#x2F;设置编码
 session_start();
 
@@ -395,7 +393,7 @@ if ($_SERVER[&quot;REQUEST_METHOD&quot;] &#x3D;&#x3D; &quot;POST&quot;)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="创建-php-处理不同身份的登录状况"><a href="#创建-php-处理不同身份的登录状况" class="headerlink" title="创建 php 处理不同身份的登录状况"></a>创建 php 处理不同身份的登录状况</h2><p>用户和管理员登陆后所需要实现的功能不同</p>
-<h3 id="管理员端：admin-dashboard-php"><a href="#管理员端：admin-dashboard-php" class="headerlink" title="管理员端：admin_dashboard.php"></a>管理员端：admin_dashboard.php</h3><pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<h3 id="管理员端：admin-dashboard-php"><a href="#管理员端：admin-dashboard-php" class="headerlink" title="管理员端：admin_dashboard.php"></a>管理员端：admin_dashboard.php</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
 header(&quot;content-type:text&#x2F;html; charset&#x3D;GBK&quot;);         &#x2F;&#x2F;设置编码
 
 session_start();
@@ -415,7 +413,7 @@ session_start();
 &lt;&#x2F;body&gt;
 &lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="用户端：user-dashboard-php"><a href="#用户端：user-dashboard-php" class="headerlink" title="用户端：user_dashboard.php"></a>用户端：user_dashboard.php</h3><pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<h3 id="用户端：user-dashboard-php"><a href="#用户端：user-dashboard-php" class="headerlink" title="用户端：user_dashboard.php"></a>用户端：user_dashboard.php</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
 header(&quot;content-type:text&#x2F;html; charset&#x3D;GBK&quot;);         &#x2F;&#x2F;设置编码
 
 session_start();
@@ -435,7 +433,7 @@ session_start();
 &lt;&#x2F;body&gt;
 &lt;&#x2F;html&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="创建-php-提供注销功能：logout-php"><a href="#创建-php-提供注销功能：logout-php" class="headerlink" title="创建 php 提供注销功能：logout.php"></a>创建 php 提供注销功能：logout.php</h2><pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<h2 id="创建-php-提供注销功能：logout-php"><a href="#创建-php-提供注销功能：logout-php" class="headerlink" title="创建 php 提供注销功能：logout.php"></a>创建 php 提供注销功能：logout.php</h2><pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
     session_start(); &#x2F;&#x2F; 启动会话
     session_unset(); &#x2F;&#x2F; 清空会话数据
     session_destroy(); &#x2F;&#x2F; 销毁会话
@@ -444,7 +442,7 @@ session_start();
 ?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="细化管理员端：admin-dashboard-php"><a href="#细化管理员端：admin-dashboard-php" class="headerlink" title="细化管理员端：admin_dashboard.php"></a>细化管理员端：admin_dashboard.php</h2><p>实现库存展示、添加库存的功能</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;
@@ -545,7 +543,7 @@ session_start();
 &lt;&#x2F;html&gt;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="创建-php-实现添加库存功能：admin-add-snack-php"><a href="#创建-php-实现添加库存功能：admin-add-snack-php" class="headerlink" title="创建 php 实现添加库存功能：admin_add_snack.php"></a>创建 php 实现添加库存功能：admin_add_snack.php</h3><pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<h3 id="创建-php-实现添加库存功能：admin-add-snack-php"><a href="#创建-php-实现添加库存功能：admin-add-snack-php" class="headerlink" title="创建 php 实现添加库存功能：admin_add_snack.php"></a>创建 php 实现添加库存功能：admin_add_snack.php</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
 header(&quot;content-type:text&#x2F;html; charset&#x3D;utf8&quot;);         &#x2F;&#x2F; 设置编码
 session_start();
 
@@ -611,7 +609,7 @@ if ($_SERVER[&quot;REQUEST_METHOD&quot;] &#x3D;&#x3D;&#x3D; &quot;POST&quot;) &#
 ?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="细化用户端：user-dashboard-php"><a href="#细化用户端：user-dashboard-php" class="headerlink" title="细化用户端：user_dashboard.php"></a>细化用户端：user_dashboard.php</h2><p>实现购买零食功能</p>
-<pre class="line-numbers language-none"><code class="language-none">&lt;!DOCTYPE html&gt;
+<pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
     &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;
@@ -690,7 +688,7 @@ if ($_SERVER[&quot;REQUEST_METHOD&quot;] &#x3D;&#x3D;&#x3D; &quot;POST&quot;) &#
 &lt;&#x2F;html&gt;
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="创建-php-实现购买零食功能：member-purchase-snacks-php"><a href="#创建-php-实现购买零食功能：member-purchase-snacks-php" class="headerlink" title="创建 php 实现购买零食功能：member_purchase_snacks.php"></a>创建 php 实现购买零食功能：member_purchase_snacks.php</h3><pre class="line-numbers language-none"><code class="language-none">&lt;?php
+<h3 id="创建-php-实现购买零食功能：member-purchase-snacks-php"><a href="#创建-php-实现购买零食功能：member-purchase-snacks-php" class="headerlink" title="创建 php 实现购买零食功能：member_purchase_snacks.php"></a>创建 php 实现购买零食功能：member_purchase_snacks.php</h3><pre class="line-numbers language-php" data-language="php"><code class="language-php">&lt;?php
 header(&quot;content-type:text&#x2F;html; charset&#x3D;utf8&quot;);         &#x2F;&#x2F; 设置编码
 session_start();
 
@@ -755,8 +753,7 @@ if ($_SERVER[&quot;REQUEST_METHOD&quot;] &#x3D;&#x3D;&#x3D; &quot;POST&quot;) &#
 &#125;
 ?&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>最终创建的所有文件如下（hello world 省略）：<br><img src="/images/blog_snack_sql/file.png" alt="文件展示"><br>视频展示：</p>
-<iframe height=498 width=510 src="images/blog_snack_sql/show.mkv">
+<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>最终创建的所有文件如下（hello world 省略）：<br><img src="/images/blog_snack_sql/file.png" alt="文件展示"></p>
 
                 
 

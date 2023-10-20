@@ -294,7 +294,7 @@
 </li>
 <li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：</li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F; 相机信息处理
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 相机信息处理
 sensor_msgs::CameraInfo getCameraInfo(void)
 &#123;                                     &#x2F;&#x2F; extract cameraInfo.
     sensor_msgs::CameraInfo cam_info; &#x2F;&#x2F; 信息对象
@@ -338,7 +338,7 @@ sensor_msgs::CameraInfo getCameraInfo(void)
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
-<pre class="line-numbers language-none"><code class="language-none">while (cam.isOpened())
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">while (cam.isOpened())
    &#123;
        &#x2F;&#x2F; 同时获取左右两个相机画面，但后续只用到左侧
        cv::Mat left, right;
