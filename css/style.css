@@ -179,7 +179,7 @@ footer.page-footer {
 }
 html,
 body {
-  font-family: "Roboto", "sans-serif", "微软雅黑", "Helvetica Neue";
+  font-family: 'FangSong', 'SimSun', 'SimSun', 'KaiTi', "Roboto", "sans-serif", "微软雅黑", "Helvetica Neue";
 }
 body {
   background-color: rgba(15,15,15,0.829);
@@ -528,6 +528,7 @@ a.social-link:hover {
   padding-top: 20px;
 }
 .slider-image {
+  background-image: ".deploy_git//images//background.jpg";
   border: none;
   border-radius: 0;
   background-color: transparent;
@@ -958,7 +959,7 @@ figure.highlight .gutter {
   margin-top: 25px;
   margin-bottom: 0;
   color: #fff;
-  text-shadow: 1px 1px 1px #444;
+  text-shadow: 1px 1px 1px #000;
 }
 .about-page .info .name {
   font-size: 1.8em;
