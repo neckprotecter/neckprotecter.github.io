@@ -1,0 +1,739 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>基于Apriltag实现位姿调整 | 围脖的生产地</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="基于Apriltag实现位姿调整"/>
+    <meta property="og:site_name" content="neckprotecter"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="neckprotecter" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <img src="themes\raytaylorism\source\images\background.jpg"
+        style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="grey darken-4">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">neckprotecter</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav grey darken-4" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="images//5t50.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">neckprotecter</p>
+                        <p class="desc">嵌入式开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav grey darken-4" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/技术/">
+                    技术 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/机器狗/">
+                    机器狗 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/机器狗/Opencv/">
+                    Opencv <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/数据库/">
+                    数据库 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper grey darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/技术/">技术</a><a class="breadcrumb" href="/categories/技术/机器狗/">机器狗</a><a class="breadcrumb" href="/categories/技术/机器狗/Opencv/">Opencv</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card"  style="background-color: rgba(41, 37, 37, 0.438);">  <!-- ��������ҳ�ı�����ɫ -->
+        <div class="card-content" >
+            
+
+            <div class="article-title">
+                
+    
+        <h1>基于Apriltag实现位姿调整</h1>
+    
+
+
+            </div>
+            <time class="amber-link-context" datetime="2023-10-20T05:18:40.000Z"><a href="/2023/10/20/%E5%9F%BA%E4%BA%8EApriltag%E5%AE%9E%E7%8E%B0%E4%BD%8D%E5%A7%BF%E8%B0%83%E6%95%B4/">2023-10-20</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/Opencv/" class="chip amber">Opencv</a>
+        
+            <a href="/tags/机器狗/" class="chip amber">机器狗</a>
+        
+            <a href="/tags/Apriltag/" class="chip amber">Apriltag</a>
+        
+    </div>
+
+
+            <div class="toc amber-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E7%9B%AE%E5%BD%95"><span class="section table-of-contents-text">目录</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="section table-of-contents-text">一、前期准备</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E4%BA%8C%E3%80%81%E8%B0%83%E7%94%A8%E7%9B%B8%E6%9C%BA%E5%8F%91%E5%B8%83%E8%AF%9D%E9%A2%98%E5%8A%9F%E8%83%BD%E5%8C%85%EF%BC%88camera-move%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="section table-of-contents-text">二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E8%BF%9B%E5%85%A5-src-%E7%9B%AE%E5%BD%95%E7%BC%96%E8%BE%91%E6%BA%90%E6%96%87%E4%BB%B6%EF%BC%88C-%E4%BB%A3%E7%A0%81%E8%BF%9B%E5%85%A5-src%EF%BC%8Cpython-%E6%96%87%E4%BB%B6%E9%9C%80%E8%A6%81%E5%8F%A6%E5%A4%96%E5%88%9B%E5%BB%BA-script-%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89"><span class="section table-of-contents-text">进入 src 目录编辑源文件（C++代码进入 src，python 文件需要另外创建 script 文件夹）</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%BE%93%E5%85%A5%EF%BC%9A"><span class="section table-of-contents-text">命令行输入：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%82%B9%E5%87%BB%E4%BF%A1%E4%BB%BB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="section table-of-contents-text">点击信任文件夹</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E5%9C%A8%E5%B7%A6%E4%BE%A7%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8-src-camera-move-src-%E7%9B%AE%E5%BD%95%E5%A4%84%E5%8F%B3%E9%94%AE%EF%BC%8C%E5%88%9B%E5%BB%BA-cpp-%E6%96%87%E4%BB%B6%EF%BC%88%E6%96%87%E4%BB%B6%E5%90%8D%E4%B8%BA-camera-pub%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%AE%9E%E7%8E%B0%E7%9B%B8%E6%9C%BA%E5%9B%BE%E5%83%8F%E4%BF%A1%E6%81%AF%E5%8F%91%E5%B8%83"><span class="section table-of-contents-text">在左侧文件管理器 src&#x2F;camera_move&#x2F;src 目录处右键，创建 cpp 文件（文件名为 camera_pub，用于实现相机图像信息发布</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E6%B3%A8%E6%84%8F-cpp-%E5%90%8E%E7%BC%80"><span class="section table-of-contents-text">注意 cpp 后缀</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%8C%E9%93%BE%E6%8E%A5%E6%89%93%E5%BC%80%E4%B8%BA%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%A7%A3%E6%9E%90%E5%9C%A8%E6%B3%A8%E9%87%8A%E4%B8%AD%EF%BC%9A"><span class="section table-of-contents-text">编写代码如下，链接打开为代码，解析在注释中：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E9%85%8D%E7%BD%AE-CmakeLists-txt-%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%9A"><span class="section table-of-contents-text">配置 CmakeLists.txt 文件夹：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%BC%96%E8%AF%91%E8%BF%90%E8%A1%8C%EF%BC%9A"><span class="section table-of-contents-text">编译运行：</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E6%B3%A8%E6%84%8F%EF%BC%8C%E4%B8%80%E8%88%AC%E9%83%BD%E5%AD%98%E6%94%BE%E5%9C%A8-usr-local-share-opencv4-%E4%B8%AD%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87"><span class="section table-of-contents-text">注意，一般都存放在&#x2F;usr&#x2F;local&#x2F;share&#x2F;opencv4 中，可以通过</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Apriltag-%E4%BF%A1%E6%81%AF%E6%8E%A5%E6%94%B6%E5%8A%9F%E8%83%BD%E5%8C%85%EF%BC%88detection-sub%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="section table-of-contents-text">Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E5%9C%A8-src-%E7%9B%AE%E5%BD%95%E5%88%9B%E5%BB%BA%E7%AC%AC%E4%BA%8C%E4%B8%AA-cpp-%E6%96%87%E4%BB%B6%EF%BC%9Adetection-sub%EF%BC%8C%E7%94%A8%E4%BA%8E%E6%8E%A5%E6%94%B6-apriltag-ros-%E8%AF%86%E5%88%AB%E5%AE%8C-tag-%E5%90%8E%E5%8F%91%E5%87%BA%E7%9A%84%E8%AF%9D%E9%A2%98%EF%BC%8C%E5%B9%B6%E4%B8%94%E8%BF%9B%E8%A1%8C%E8%BF%90%E5%8A%A8%E6%8E%A7%E5%88%B6%EF%BC%9A"><span class="section table-of-contents-text">在 src 目录创建第二个 cpp 文件：detection_sub，用于接收 apriltag_ros 识别完 tag 后发出的话题，并且进行运动控制：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%8C%E8%A7%A3%E6%9E%90%E5%9C%A8%E6%B3%A8%E9%87%8A%E4%B8%AD%EF%BC%9A"><span class="section table-of-contents-text">代码如下，解析在注释中：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E4%B9%8B%E5%90%8E%E9%9C%80%E8%A6%81%E6%A0%B9%E6%8D%AE%E5%AE%87%E6%A0%91%E8%BF%90%E5%8A%A8-sdk-%E9%85%8D%E7%BD%AE-CMakeList-txt-%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="section table-of-contents-text">之后需要根据宇树运动 sdk 配置 CMakeList.txt 文件：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%84%B6%E5%90%8E%E5%B0%86%E9%9C%80%E8%A6%81%E7%9A%84-lib-%E7%AD%89%E6%96%87%E4%BB%B6%E6%B7%BB%E5%8A%A0%EF%BC%8C%E5%90%8C%E6%A0%B7%E5%9C%A8-sdk-%E4%B8%AD%E5%AF%BB%E6%89%BE%EF%BC%9A"><span class="section table-of-contents-text">然后将需要的 lib 等文件添加，同样在 sdk 中寻找：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E6%9C%80%E5%90%8E-catkin-make-%E7%BC%96%E8%AF%91%E6%88%90%E5%8A%9F%EF%BC%9A"><span class="section table-of-contents-text">最后 catkin_make 编译成功：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%94%A8-rosrun-camera-move-detection-sub-%E5%B0%9D%E8%AF%95%E8%BF%90%E8%A1%8C%EF%BC%8C%E8%8B%A5%E6%88%90%E5%8A%9F%E8%BF%90%E8%A1%8C%E4%BC%9A%E5%87%BA%E7%8E%B0%EF%BC%9A"><span class="section table-of-contents-text">用 rosrun camera_move detection_sub 尝试运行，若成功运行会出现：</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Launch-%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8%EF%BC%88start-launch%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="section table-of-contents-text">Launch 文件一键启动（start.launch）的创建、配置和代码编写</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E6%8E%A5%E4%B8%8B%E6%9D%A5%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-launch-%E6%96%87%E4%BB%B6%E7%94%A8%E4%BA%8E%E4%B8%80%E6%AC%A1%E6%80%A7%E5%90%AF%E5%8A%A8%E4%B8%89%E4%B8%AA%E7%A8%8B%E5%BA%8F%EF%BC%8Ccamera-pub%EF%BC%8Capriltag-tag-%E8%AF%86%E5%88%AB%EF%BC%8Cdetection-sub%EF%BC%9A"><span class="section table-of-contents-text">接下来编写一个 launch 文件用于一次性启动三个程序，camera_pub，apriltag_tag 识别，detection_sub：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E5%85%88%E5%9C%A8-sksp-%E8%B7%AF%E5%BE%84%E4%B8%8B%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-launch-%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%86%8D%E5%9C%A8%E6%96%87%E4%BB%B6%E5%A4%B9%E9%87%8C%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-start-launch-%E6%96%87%E4%BB%B6%EF%BC%8C%E7%BC%96%E5%86%99%EF%BC%9A"><span class="section table-of-contents-text">先在 sksp 路径下创建一个 launch 文件夹，再在文件夹里创建一个 start.launch 文件，编写：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E6%9C%80%E5%90%8E%E9%9C%80%E8%A6%81%E9%85%8D%E7%BD%AE-apriltag-ros-%E4%B8%AD%E5%85%B3%E4%BA%8E%E6%A0%87%E7%AD%BE%E7%9A%84%E9%85%8D%E7%BD%AE%E4%BF%A1%E6%81%AF%EF%BC%8C%E7%94%A8%E4%BA%8E%E8%AF%86%E5%88%AB%E5%88%B0%E8%A7%84%E5%AE%9A%E5%A5%BD%E7%9A%84%E6%A0%87%E7%AD%BE%EF%BC%9A"><span class="section table-of-contents-text">最后需要配置 apriltag_ros 中关于标签的配置信息，用于识别到规定好的标签：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E7%BC%96%E8%AF%91%E5%90%8E%E8%BF%90%E8%A1%8C-launch-%E6%96%87%E4%BB%B6%EF%BC%9A"><span class="section table-of-contents-text">编译后运行 launch 文件：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#%E5%B0%B1%E8%83%BD%E5%90%AF%E5%8A%A8%E6%89%80%E6%9C%89%E7%A8%8B%E5%BA%8F%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%A0%B9%E6%8D%AE-apriltag-%E8%AF%86%E5%88%AB%E7%BB%93%E6%9E%9C%E8%BF%9B%E8%A1%8C%E4%BD%8D%E5%A7%BF%E8%B0%83%E6%95%B4%E3%80%82"><span class="section table-of-contents-text">就能启动所有程序，实现根据 apriltag 识别结果进行位姿调整。</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E6%80%BB%E7%BB%93"><span class="section table-of-contents-text">总结</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="section table-of-contents-text">结果：</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E6%94%B9%E8%BF%9B%EF%BC%9A"><span class="section table-of-contents-text">改进：</span></a></li></ol>
+</div>
+
+
+            <div class="entry amber-link-context" >
+                <p>本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。</p>
+<span id="more"></span>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><a name="_toc23457"></a><a name="_toc11609"></a><strong>目录</strong></h1><blockquote>
+<p><a href="#_toc29734">一、 前期准备</a></p>
+<p><a href="#_toc30145">二、 调用相机发布话题功能包（camera_move）的创建、配置和代码编写</a></p>
+<p><a href="#_toc11798">三、 Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</a></p>
+<p><a href="#_toc28338">四、 Launch 文件一键启动（start.launch）的创建、配置和代码编写</a></p>
+<p><a href="#_toc27334">五、 总结</a></p>
+</blockquote>
+<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a><a name="_toc3142"></a><a name="_toc29734"></a><strong>一、前期准备</strong></h1><ol>
+<li>宇树 Go1 机器狗。</li>
+<li>ROS 基础使用及话题通信机制基础了解，可以通过<a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1.html">文字教程</a>和<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ/?vd_source=391720e1f55e6322e615e13817063f4e">视频教程</a>进行相关知识的学习。</li>
+</ol>
+<h1 id="二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写"><a href="#二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写" class="headerlink" title="二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写"></a><a name="_toc32232"></a><a name="_toc30145"></a><strong>二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写</strong></h1><ul>
+<li>创建工作空间（workspace，可以自定义名称，这里用缩写 wksp），并初始化</li>
+</ul>
+<p>打开命令行，输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mkdir -p  自定义空间名称（以 wksp 为例，下文不再提及）&#x2F;src
+cd wksp
+catkin_make<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>进入 src 创建 ros 功能包并添加依赖</li>
+</ul>
+<p>命令行输入：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">cd src
+catkin_create_pkg  自定义 ros 包名（这里名字为 camera_move，后文不再强调） roscpp rospy std_msgs cv_bridge image_transport sensor_msgs apriltag_ros<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>这里的 roscpp、rospy、std_msgs 是不同的库：</p>
+<p>roscpp 是使用 C++实现的库</p>
+<p>cospy 是使用 python 实现的库</p>
+<p>std_msgs 是标准信息库</p>
+<p>cv_bridge 用于提供 ros 和 opencv 之间的接口，我们用 opencv 获取图像</p>
+<p>image_transport 用来发布和接收图像</p>
+<p>sensor_msgs 是一种消息类型</p>
+<p>apriltag_ros 是识别 aptiltag 码的 ros 包</p>
+<ol>
+<li><h2 id="进入-src-目录编辑源文件（C-代码进入-src，python-文件需要另外创建-script-文件夹）"><a href="#进入-src-目录编辑源文件（C-代码进入-src，python-文件需要另外创建-script-文件夹）" class="headerlink" title="进入 src 目录编辑源文件（C++代码进入 src，python 文件需要另外创建 script 文件夹）"></a><a name="_toc26989"></a><a name="_toc22311"></a><strong>进入 src 目录编辑源文件（C++代码进入 src，python 文件需要另外创建 script 文件夹）</strong></h2><ol>
+<li><h3 id="命令行输入："><a href="#命令行输入：" class="headerlink" title="命令行输入："></a>命令行输入：</h3></li>
+</ol>
+</li>
+<li><p><strong>cd ..退回上级目录 wksp</strong></p>
+</li>
+<li><p><strong>code .打开 vscode</strong></p>
+</li>
+<li><h3 id="点击信任文件夹"><a href="#点击信任文件夹" class="headerlink" title="点击信任文件夹"></a>点击信任文件夹</h3></li>
+<li><h3 id="在左侧文件管理器-src-camera-move-src-目录处右键，创建-cpp-文件（文件名为-camera-pub，用于实现相机图像信息发布"><a href="#在左侧文件管理器-src-camera-move-src-目录处右键，创建-cpp-文件（文件名为-camera-pub，用于实现相机图像信息发布" class="headerlink" title="在左侧文件管理器 src&#x2F;camera_move&#x2F;src 目录处右键，创建 cpp 文件（文件名为 camera_pub，用于实现相机图像信息发布"></a>在左侧文件管理器 src&#x2F;camera_move&#x2F;src 目录处右键，创建 cpp 文件（文件名为 camera_pub，用于实现相机图像信息发布</h3></li>
+<li><h3 id="注意-cpp-后缀"><a href="#注意-cpp-后缀" class="headerlink" title="注意 cpp 后缀"></a>注意 cpp 后缀</h3></li>
+<li><h3 id="编写代码如下，链接打开为代码，解析在注释中："><a href="#编写代码如下，链接打开为代码，解析在注释中：" class="headerlink" title="编写代码如下，链接打开为代码，解析在注释中："></a>编写代码如下，链接打开为代码，解析在注释中：</h3><p>camera_pub.cc 代码：<a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/5MBb2VwrHV/" title="camera_pub"><a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/jrrPgJZG5W/">Ubuntu Pastebin</a></a></p>
+</li>
+<li><h3 id="配置-CmakeLists-txt-文件夹："><a href="#配置-CmakeLists-txt-文件夹：" class="headerlink" title="配置 CmakeLists.txt 文件夹："></a><a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/5MBb2VwrHV/" title="camera_pub"></a>配置 CmakeLists.txt 文件夹：</h3></li>
+<li><p>140 行左右：</p>
+</li>
+<li><p>add_executable(camera_pub src&#x2F;camera_pub.cpp)</p>
+</li>
+<li><p>154 行左右：</p>
+</li>
+<li><p>target_link_libraries(camera_pub</p>
+</li>
+<li><p><code>  </code>${catkin_LIBRARIES}</p>
+</li>
+<li><p>)</p>
+</li>
+<li><h3 id="编译运行："><a href="#编译运行：" class="headerlink" title="编译运行："></a>编译运行：</h3></li>
+<li><p>catkin_make</p>
+</li>
+</ol>
+<p><strong>问题 1：若出现报错，提示 apriltag_ros 功能包没有安装，如图：</strong></p>
+<p>则安装 apriltag_ros 包，将源码拷贝到 ros 工作空间中的 src 目录下：</p>
+<ol>
+<li>git clone <a target="_blank" rel="noopener" href="https://github.com/AprilRobotics/apriltag/_ros.git">https://github.com/AprilRobotics/apriltag\_ros.git</a>  #在 src 文件夹内</li>
+</ol>
+<p>若一直 clone 失败，注意检查机器狗对应板卡是否插入网卡，再通过 ifconfig 查看 eth0 是否存在，若存在，使用 sudo ifconfig eth0 down 命令关闭 eth0（密码 123），再重试 git clone 命令，可以尝试先 ping github.com，ping 通后，再进行 git clone</p>
+<p>如果一直访问 github 网址失败，也可以直接下载压缩包，U 盘传入再解压；</p>
+<p>成功后，工作空间下的 src 目录会多出一个 apriltag_ros 功能包；</p>
+<p>这时重新编译：</p>
+<ol>
+<li>catkin_make</li>
+</ol>
+<p><strong>问题 2：若出现类似的缺少功能包问题，下载需要的功能包即可</strong></p>
+<p>缺少 apriltag</p>
+<ol>
+<li>sudo apt-get install ros-melodic-apriltag</li>
+</ol>
+<p>使用 apt-get 需要机器狗联网，否则需要上 github 搜索对应功能包，用压缩包的方式安装，若出现类似套娃式的依赖包缺失，可以先</p>
+<ol>
+<li>sudo apt-get install aptitude</li>
+</ol>
+<p>然后用 aptitude 代替 apt-get 下载，这个工具会帮助下载所有需要的依赖包</p>
+<p><strong>问题 3：若出现类似的 opencv 路径问题，是因为 NVIDIA 的 32.3.1image 自带的是 opencv4 版本，把 opencv 命名成了 opencv4</strong></p>
+<p>解决办法可以根据博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43310597/article/details/109256838">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法_project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv-CSDN 博客</a></p>
+<p>找到对应的文件，修改 opencv 为 opencv4，这是让功能包适应系统环境</p>
+<p>也可以如博客内评论所说，将 opencv 的命名软连接到 opencv4 上，这是修改系统环境，可以适配大部分功能包</p>
+<p><strong>问题 4：会发现之前的 apriltag_ros 功能包成功通过编译，但在宇树相机部分出现错误，这是因为没有配置好宇树相关的 sdk 文件</strong></p>
+<p>将相机 sdk&#x2F;include 中的三个文件复制进 camera_move 功能包的 include 中</p>
+<p>将相机 sdk 的 lib 文件夹复制进 camera_move 功能包中</p>
+<p>最后根据相机 sdk 中的 CMakeLists.txt 配置功能包中的 CMakeLists.txt</p>
+<p>复制蓝字部分</p>
+<p>取消 include 的注释</p>
+<p>在这后面增加${SDKLIBS}</p>
+<p>最后成功编译</p>
+<p>这里提示的 warning 暂且不管，先尝试运行，发现失败：</p>
+<p><strong>问题 5：这是 cv_bridge 与 opencv4 版本冲突导致的，解决办法是将 cv_bridge 和自己功能包的依赖设为同一版本的 opencv，这里参考的是这篇文章，写得很详细：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43196818/article/details/124514966">解决 cv_bridge 与 opencv4 版本冲突问题_Thoven 的博客-CSDN 博客</a></p>
+<p>先下载 noetic 版本的 cv_bridge（狗上的 ubuntu 是 melodic 版，但不影响，noetic 版本的 cv_bridge 经过一定修改后在 melodic 上也可以使用）</p>
+<p>在 <a target="_blank" rel="noopener" href="https://github.com/ros-perception/vision_opencv/tree/noetic">https://github.com/ros-perception/vision_opencv/tree/noetic</a> 处下载，解压缩后将里面的 cv_bridge 文件夹拷贝到工作空间的 src 文件夹下，并将这个包重命名为 cv_bridge_new，以防混淆</p>
+<p>同时修改 cv_bridge_new 功能包中 package.xml 和 CMakeLists.txt 中的包名</p>
+<p>在 cv_bridge_new 中的 CMakeLists.txt 中指定为 camera_move 的 CMakeLists.txt 中指定的 opencv4 路径</p>
+<h1 id="注意，一般都存放在-usr-local-share-opencv4-中，可以通过"><a href="#注意，一般都存放在-usr-local-share-opencv4-中，可以通过" class="headerlink" title="注意，一般都存放在&#x2F;usr&#x2F;local&#x2F;share&#x2F;opencv4 中，可以通过"></a><a name="_toc574"></a><a name="_toc31533"></a>注意，一般都存放在&#x2F;usr&#x2F;local&#x2F;share&#x2F;opencv4 中，可以通过</h1><ol>
+<li>sudo find &#x2F; -iname “*opencv4*”</li>
+</ol>
+<p>查找确认，这里 opencv4 的子目录没有 build 文件夹，因此省略后面的路径</p>
+<p><strong>然后在工作空间编译，会出现错误：</strong></p>
+<p>需要在 CMakeLists.txt 文件中修改 python37 为 python3</p>
+<p><strong>再编译出现第二个错误：</strong></p>
+<p>直接修改 cv_bridge_new&#x2F;src&#x2F;module.hpp 文件下 void* do_numpy_import()函数如下：</p>
+<p>最后编译成功：</p>
+<p>最后一步，在 camera_move 功能包中的 CMakeList.txt 和 package.xml（有三个地方需要修改）中修改 cv_bridge 名字：</p>
+<p><strong>问题 6：如果运行时一直出现 invalid devicenode 错误，反复检查配置文件都没有问题，检查是否添加了 stereo_camera_config.yaml 文件到 wksp 目录下。</strong></p>
+<p>因为是在 wksp 路径处进行的 rosrun，因此代码中寻找这个文件时，会以 wksp 路径作为源路径，所以这个 yaml 文件会在 wksp 中找，一旦找不到就会程序崩溃。</p>
+<p>最后成功启动得到的画面：</p>
+<p>这样相机的图像就能获取到了。</p>
+<ol>
+<li><h1 id="Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写"><a href="#Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写" class="headerlink" title="Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写"></a><a name="_toc23771"></a><a name="_toc11798"></a><strong>Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</strong></h1></li>
+<li><h2 id="在-src-目录创建第二个-cpp-文件：detection-sub，用于接收-apriltag-ros-识别完-tag-后发出的话题，并且进行运动控制："><a href="#在-src-目录创建第二个-cpp-文件：detection-sub，用于接收-apriltag-ros-识别完-tag-后发出的话题，并且进行运动控制：" class="headerlink" title="在 src 目录创建第二个 cpp 文件：detection_sub，用于接收 apriltag_ros 识别完 tag 后发出的话题，并且进行运动控制："></a><a name="_toc18313"></a><a name="_toc6302"></a><strong>在 src 目录创建第二个 cpp 文件：detection_sub，用于接收 apriltag_ros 识别完 tag 后发出的话题，并且进行运动控制：</strong></h2></li>
+<li><h3 id="代码如下，解析在注释中："><a href="#代码如下，解析在注释中：" class="headerlink" title="代码如下，解析在注释中："></a>代码如下，解析在注释中：</h3><p>detection_sub 代码：<a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/cBWYkQTF2W/">Ubuntu Pastebin</a></p>
+</li>
+<li><h3 id="之后需要根据宇树运动-sdk-配置-CMakeList-txt-文件："><a href="#之后需要根据宇树运动-sdk-配置-CMakeList-txt-文件：" class="headerlink" title="之后需要根据宇树运动 sdk 配置 CMakeList.txt 文件："></a>之后需要根据宇树运动 sdk 配置 CMakeList.txt 文件：</h3></li>
+<li><h3 id="然后将需要的-lib-等文件添加，同样在-sdk-中寻找："><a href="#然后将需要的-lib-等文件添加，同样在-sdk-中寻找：" class="headerlink" title="然后将需要的 lib 等文件添加，同样在 sdk 中寻找："></a>然后将需要的 lib 等文件添加，同样在 sdk 中寻找：</h3></li>
+<li><h3 id="最后-catkin-make-编译成功："><a href="#最后-catkin-make-编译成功：" class="headerlink" title="最后 catkin_make 编译成功："></a>最后 catkin_make 编译成功：</h3></li>
+<li><h3 id="用-rosrun-camera-move-detection-sub-尝试运行，若成功运行会出现："><a href="#用-rosrun-camera-move-detection-sub-尝试运行，若成功运行会出现：" class="headerlink" title="用 rosrun camera_move detection_sub 尝试运行，若成功运行会出现："></a>用 rosrun camera_move detection_sub 尝试运行，若成功运行会出现：</h3></li>
+<li><h1 id="Launch-文件一键启动（start-launch）的创建、配置和代码编写"><a href="#Launch-文件一键启动（start-launch）的创建、配置和代码编写" class="headerlink" title="Launch 文件一键启动（start.launch）的创建、配置和代码编写"></a><a name="_toc6881"></a><a name="_toc28338"></a><strong>Launch 文件一键启动（start.launch）的创建、配置和代码编写</strong></h1></li>
+<li><h2 id="接下来编写一个-launch-文件用于一次性启动三个程序，camera-pub，apriltag-tag-识别，detection-sub："><a href="#接下来编写一个-launch-文件用于一次性启动三个程序，camera-pub，apriltag-tag-识别，detection-sub：" class="headerlink" title="接下来编写一个 launch 文件用于一次性启动三个程序，camera_pub，apriltag_tag 识别，detection_sub："></a><a name="_toc7644"></a><a name="_toc3360"></a><strong>接下来编写一个 launch 文件用于一次性启动三个程序，camera_pub，apriltag_tag 识别，detection_sub：</strong></h2></li>
+<li><h3 id="先在-sksp-路径下创建一个-launch-文件夹，再在文件夹里创建一个-start-launch-文件，编写："><a href="#先在-sksp-路径下创建一个-launch-文件夹，再在文件夹里创建一个-start-launch-文件，编写：" class="headerlink" title="先在 sksp 路径下创建一个 launch 文件夹，再在文件夹里创建一个 start.launch 文件，编写："></a>先在 sksp 路径下创建一个 launch 文件夹，再在文件夹里创建一个 start.launch 文件，编写：</h3></li>
+</ol>
+<p>意思是按顺序启动三个程序，这里需要注意，用 launch 文件启动时，启动路径与 rosrun 不同，因此之前设置的 yaml 文件路径最好修改成绝对路径：</p>
+<ol>
+<li><h3 id="最后需要配置-apriltag-ros-中关于标签的配置信息，用于识别到规定好的标签："><a href="#最后需要配置-apriltag-ros-中关于标签的配置信息，用于识别到规定好的标签：" class="headerlink" title="最后需要配置 apriltag_ros 中关于标签的配置信息，用于识别到规定好的标签："></a>最后需要配置 apriltag_ros 中关于标签的配置信息，用于识别到规定好的标签：</h3></li>
+<li><h3 id="编译后运行-launch-文件："><a href="#编译后运行-launch-文件：" class="headerlink" title="编译后运行 launch 文件："></a>编译后运行 launch 文件：</h3></li>
+<li><p>roslaunch camera_move start.launch</p>
+</li>
+<li><h3 id="就能启动所有程序，实现根据-apriltag-识别结果进行位姿调整。"><a href="#就能启动所有程序，实现根据-apriltag-识别结果进行位姿调整。" class="headerlink" title="就能启动所有程序，实现根据 apriltag 识别结果进行位姿调整。"></a>就能启动所有程序，实现根据 apriltag 识别结果进行位姿调整。</h3></li>
+<li><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a><a name="_toc27334"></a><strong>总结</strong></h1></li>
+<li><h1 id="结果："><a href="#结果：" class="headerlink" title="结果："></a><a name="_toc5678"></a><strong>结果：</strong></h1><p>项目最终能够成功通过 apriltag 让机器狗调整位姿，通过参数控制可以保持规定好的距离、角度，且准确度不错，并且延迟在可接受范围内。</p>
+</li>
+</ol>
+<p>不足：受到机器狗本身相机的分辨率限制，5cm 的 apriltag 码识别范围只在 1m 左右；另外，狗的位姿调节方式，即运动控制还存在一定问题，例如向右平移和向右转向的速度没有达到预期效果，pid 的效果也并不明显。</p>
+<ol>
+<li><h1 id="改进："><a href="#改进：" class="headerlink" title="改进："></a><a name="_toc14682"></a><strong>改进：</strong></h1>研究清楚机器狗对向右方向的运动存在什么问题，尝试解决；在项目的基础上仔细调参，使 pid 真正发挥作用，让位姿调节的时间达到最低，最终能够应用在集群控制上。</li>
+</ol>
+
+                
+
+
+<p class="amber-link-context">
+    <a href="/2023/10/20/%E7%AE%80%E9%99%8B%E9%9B%B6%E9%A3%9F%E8%B4%AD%E4%B9%B0%E7%B3%BB%E7%BB%9F/" rel="next" title="简陋零食系统">
+    下一篇：简陋零食系统
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large orange darken-4">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect orange lighten-2" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange lighten-2"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer grey darken-4 darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://github.com/neckprotecter" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">raytaylorism主题作者Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright amber-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a target="_blank" rel="noopener" href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('orange lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge orange darken-4"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword amber lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword amber lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
