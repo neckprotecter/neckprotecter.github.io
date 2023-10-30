@@ -1,0 +1,746 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>自动控制与物联网控制概述 | 围脖的生产地</title>
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="【物联网控制】第一章_自动控制与物联网控制概述物联网控制第一章复习整理">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="自动控制与物联网控制概述"/>
+    <meta property="og:site_name" content="neckprotecter"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="neckprotecter" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+    <img src="themes\raytaylorism\source\images\background.jpg"
+        style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="grey darken-4">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">neckprotecter</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav grey darken-4" id="main-menu">
+        
+        <li class="side-user">
+            <div class="row">
+                <div class="col s4 no-padding">
+                    <img class="avatar-image circle responsive-img" src="images//5t50.jpg" alt="User Avatar">
+                </div>
+                <div class="info col s8 valign-wrapper no-padding">
+                    <div class="valign">
+                        <p class="name">neckprotecter</p>
+                        <p class="desc">嵌入式开发</p>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav grey darken-4" id="category-menu">
+    
+
+            
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/技术/">
+                    技术 <span class="right">3 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/机器狗/">
+                    机器狗 <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-2" collapse-level="2">
+                <a class="no-padding" href="/categories/技术/机器狗/Opencv/">
+                    Opencv <span class="right">2 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/技术/数据库/">
+                    数据库 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-0" collapse-level="0">
+                <a class="no-padding" href="/categories/课程/">
+                    课程 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+            <li class="collapse-level-1" collapse-level="1">
+                <a class="no-padding" href="/categories/课程/物联网控制/">
+                    物联网控制 <span class="right">1 篇</span></a>
+                </a>
+            </li>
+
+        
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper grey darken-4">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+    
+    
+    <a class="breadcrumb" href="/categories/课程/">课程</a><a class="breadcrumb" href="/categories/课程/物联网控制/">物联网控制</a>
+
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card"  style="background-color: rgba(41, 37, 37, 0.438);">  <!-- ��������ҳ�ı�����ɫ -->
+        <div class="card-content" >
+            
+
+            <div class="article-title">
+                
+    
+        <h1>自动控制与物联网控制概述</h1>
+    
+
+
+            </div>
+            <time class="amber-link-context" datetime="2023-10-30T12:18:40.000Z"><a href="/2023/10/30/%E3%80%90%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0/">2023-10-30</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+    <div class="tags-row">
+        
+            <a href="/tags/课程/" class="chip amber">课程</a>
+        
+            <a href="/tags/物联网控制/" class="chip amber">物联网控制</a>
+        
+    </div>
+
+
+            <div class="toc amber-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E3%80%90%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0"><span class="section table-of-contents-text">【物联网控制】第一章_自动控制与物联网控制概述</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F"><span class="section table-of-contents-text">自动控制系统</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E5%8F%8D%E9%A6%88%E6%8E%A7%E5%88%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="section table-of-contents-text">反馈控制的概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="section table-of-contents-text">物联网控制系统的概念</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="section table-of-contents-text">计算机控制系统的基本组成</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%A1%AC%E4%BB%B6%E7%BB%84%E6%88%90"><span class="section table-of-contents-text">计算机控制系统的硬件组成</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="section table-of-contents-text">计算机控制系统的软件</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="section table-of-contents-text">计算机控制系统的类型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E7%89%A9%E8%81%94%E7%BD%91%E8%BF%9C%E7%A8%8B%E6%8E%A7%E5%88%B6%E6%8A%80%E6%9C%AF"><span class="section table-of-contents-text">物联网远程控制技术</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#%E5%AF%B9%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82%EF%BC%9A"><span class="section table-of-contents-text">对自动控制系统性能的基本要求：</span></a></li></ol>
+</div>
+
+
+            <div class="entry amber-link-context" >
+                <h1 id="【物联网控制】第一章-自动控制与物联网控制概述"><a href="#【物联网控制】第一章-自动控制与物联网控制概述" class="headerlink" title="【物联网控制】第一章_自动控制与物联网控制概述"></a>【物联网控制】第一章_自动控制与物联网控制概述</h1><p>物联网控制第一章复习整理</p>
+<span id="more"></span>
+
+<p>目录</p>
+<p>**TOC \o “1-2” \h \u <a href="#_Toc29095">第一章 自动控制与物联网控制概述 PAGEREF _Toc29095 \h 1**</a>**</p>
+<p><a href="#_Toc4775"><strong>1.1 自动控制系统 PAGEREF _Toc4775 \h 1</strong></a></p>
+<p><a href="#_Toc11515"><strong>1.2 反馈控制的概念 PAGEREF _Toc11515 \h 2</strong></a></p>
+<p><a href="#_Toc23861"><strong>1.3 物联网控制系统的概念 PAGEREF _Toc23861 \h 2</strong></a></p>
+<p><a href="#_Toc10586"><strong>1.4 计算机控制系统的基本组成 PAGEREF _Toc10586 \h 3</strong></a></p>
+<p><a href="#_Toc24350">1.4.1 计算机控制系统的硬件组成 PAGEREF _Toc24350 \h 3</a></p>
+<p><a href="#_Toc7467">1.4.2 计算机控制系统的软件 PAGEREF _Toc7467 \h 4</a></p>
+<p><a href="#_Toc31531"><strong>1.5 计算机控制系统的类型 PAGEREF _Toc31531 \h 4</strong></a></p>
+<p><a href="#_Toc13856"><strong>1.6 物联网远程控制技术 PAGEREF _Toc13856 \h 6</strong></a></p>
+<p><a href="#_Toc28176"><strong>1.7 对自动控制系统性能的基本要求： PAGEREF _Toc28176 \h 8</strong></a></p>
+<h1 id="自动控制系统"><a href="#自动控制系统" class="headerlink" title="自动控制系统"></a><strong>自动控制系统</strong></h1><ol>
+<li>第一个自动控制系统：1788 年瓦特发明飞球调节器</li>
+</ol>
+<p>——推动社会进步是飞球调节器被公认为第一个自动控制系统的最主要原因</p>
+<ol start="2">
+<li>自动控制理论的开端：麦克斯韦的“论调速器”</li>
+</ol>
+<p>——指出： 不应单独研究飞球调节器，必须从整个系统分析控制的不稳定。</p>
+<p>建立系统微分方程，分析微分方程解的稳定性，从而分析实际系统是否会出现不稳定现象。</p>
+<p>这样，控制系统稳定性的分析，变成了判别微分方程的特征根的实部的正、负号问题。</p>
+<ol start="3">
+<li><strong>自动控制是什么：在没有人参与的情况下，系统的控制器自动地按照人预定的要求控制设备或过程，使之具有一定的状态和性能。</strong></li>
+<li>自动控制系统是什么：自动控制功能的系统称为自动控制系统。</li>
+<li>人在控制过程中起到的作用：</li>
+</ol>
+<p><strong>——观测：</strong>用眼睛去观测温度计和转速表的指示值；</p>
+<p><strong>——比较与决策：</strong>人脑把观测得到的数据与要求的数据相比较，进行判断，根据给定的控制规律给出控制量；</p>
+<p><strong>——执行：</strong>根据控制量用手具体调节，如调节阀门开度、改变触点位置。</p>
+<p><strong>——在自动控制中，则用控制装置代替人来完成上述功能。</strong></p>
+<ol start="5">
+<li>控制系统框图：</li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.001.jpeg" alt="95560_2"></p>
+<h1 id="反馈控制的概念"><a href="#反馈控制的概念" class="headerlink" title="反馈控制的概念"></a><strong>反馈控制的概念</strong></h1><ol>
+<li><strong>开环控制系统：如果控制系统的被控量对系统没有控制作用。</strong></li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.002.png"></p>
+<p>——优点： 简单，保证系统的稳定性</p>
+<p>——缺点： 控制精度易受扰动影响</p>
+<p>控制精度差（扰动存在时）</p>
+<p>——应用场合：逻辑控制、顺序控制、扰动少的场合</p>
+<ol start="2">
+<li><strong>闭环（负反馈）控制系统：系统的被控量直接或间接地参与控制。</strong></li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.003.png"></p>
+<h1 id="物联网控制系统的概念"><a href="#物联网控制系统的概念" class="headerlink" title="物联网控制系统的概念"></a><strong>物联网控制系统的概念</strong></h1><ol>
+<li>物联网是：由各种具备联网能力的设备经由相互连接构成复杂网络结构。</li>
+<li><strong>物联网控制系统是：以物联网为基础的计算机控制系统。</strong></li>
+<li><strong>两种物联网控制系统结构：直接网络控制结构和间接网络控制结构。</strong></li>
+</ol>
+<p>——根据控制策略的生成是否在本地控制回路中</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.004.png"> <img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.005.png"></p>
+<ol start="4">
+<li>物联网络：作为系统各部分进行<strong>信息传输的介质</strong>，为系统中所有的传感器、执行器和控制器所共享，负责质量信号、控制信号以及状态反馈等信号的传输任务。</li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.006.png"></p>
+<h1 id="计算机控制系统的基本组成"><a href="#计算机控制系统的基本组成" class="headerlink" title="计算机控制系统的基本组成"></a><strong>计算机控制系统的基本组成</strong></h1><ol>
+<li><strong>计算机系统：数字计算机及 A&#x2F;D、D&#x2F;A 转换器等统称为计算机系统</strong></li>
+</ol>
+<p><strong>——主要作用：根据接受的被控对象以及外界的有关信息，按选定的算法进行变换处理并产生必要的控制指令输出作用于被控对象</strong></p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.007.png"></p>
+<h2 id="计算机控制系统的硬件组成"><a href="#计算机控制系统的硬件组成" class="headerlink" title="计算机控制系统的硬件组成"></a><strong>计算机控制系统的硬件组成</strong></h2><ol>
+<li>包括：计算机、外部设备、测量装置以及执行装置。图中点画线框所包围部分为实时控制所必需的计算机系统的最小配置。</li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.008.png"></p>
+<h2 id="计算机控制系统的软件"><a href="#计算机控制系统的软件" class="headerlink" title="计算机控制系统的软件"></a><strong>计算机控制系统的软件</strong></h2><p>——计算机控制系统的软件由系统软件和应用软件两大类组成。</p>
+<ol>
+<li>系统软件：计算机的通用软件，主要包括实时操作系统及一些公共服务系统（如编译程序、诊断程序、调试程序及通信软件等）。系统程序由计算机厂家提供。</li>
+<li>应用软件：计算机在系统软件支持下实现各种应用功能的专用程序。一般包括控制算法程序、输入输出接口程序、监控程序及信息管理程序。一般情况下，应用软件应由计算机控制系统设计人员根据所选用的硬件及软件环境和系统要求开发编写。</li>
+</ol>
+<h1 id="计算机控制系统的类型"><a href="#计算机控制系统的类型" class="headerlink" title="计算机控制系统的类型"></a><strong>计算机控制系统的类型</strong></h1><ol>
+<li>一共五种类型：操作指导控制系统 OIS、直接数字控制系统 DDC、监督控制系统 SCC、集散控制系统 DCS、分级计算机控制系统</li>
+<li>操作指导控制系统：操作指导是指计算机的输入不直接用来控制对象，只是每隔一段时间，计算机进行一次数据采集，将系统的一些参数经 A&#x2F;D 转换后送入计算机进行计算及处理，然后进行报警、打印和显示。</li>
+</ol>
+<p>——起作用的是：操作人员</p>
+<p>——开环 or 闭环控制：开环</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.009.png"></p>
+<p><strong>直接数字控制系统（闭环控制）：</strong>计算机首先通过模拟量输入通道（AI）和开关量输入通道（DI）实时采集数据，然后按照一定的控制规律进行计算，最后发出控制信息，并通过模拟量输出通道（AO）和开关量输出通道（DO）直接控制生成过程。</p>
+<p>——要求实时性好、可靠性高和适应性强。</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.010.png"></p>
+<ol>
+<li>监督控制系统：计算机根据原始工艺信息和其他参数，按照描述生产过程的数学模型或其他方法，自动地改变模拟&#x2F;数字调节器或以直接数字控制方式工作的计算机中的给定值，从而使生产过程始终处于最优工况（如保持高质量、高效率、低消耗、低成本等等）。</li>
+</ol>
+<p>——提高可靠性可以增加什么环节：DDC 直接数字控制系统</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.011.png"></p>
+<ol start="2">
+<li>集散控制系统：采用分散控制、集中操作、分级管理、分而自治和综合协调的设计原则，把系统从上到下分为分散过程控制级、集中操作监控级、综合信息管理级，形成分级分布式控制，其结构如图所示。</li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.012.png"></p>
+<ol start="3">
+<li>分级计算机控制系统：特点是将控制任务分散，用多台计算机分别执行不同的任务，既能进行控制又能实现管理。分级计算机控制系统是一个四级系统，如图所示。</li>
+</ol>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.013.png" alt="1-10.png"></p>
+<ol start="4">
+<li>物联网是利用无所不在的网络技术建立起来的。网络远程控制是在网络上由主控端去控制远程客户端设备（被控端 Host／服务器端）的技术。这里的远程是指通过网络控制远端的设备或执行结构。</li>
+</ol>
+<h1 id="物联网远程控制技术"><a href="#物联网远程控制技术" class="headerlink" title="物联网远程控制技术"></a><strong>物联网远程控制技术</strong></h1><ol>
+<li><strong>物联网的 3 种控制模式：远程控制模式、本地控制模式、调度控制模式</strong></li>
+</ol>
+<p><strong>——实现了物联网的灵活性与开放性</strong></p>
+<ol start="2">
+<li>移动通信远程控制：指通信的双方中至少有一方是在运动过程中实现信息交换的通信。</li>
+</ol>
+<p><strong>——无线电台：</strong>是最常用的远距离通信方式之一，电台适合多点通信，点数越多费用越低。但是，用无线电台作为通信手段存在以下问题：</p>
+<ol start="3">
+<li>无线电超短波的局限性，一般台站的天线应远离高大建筑物，但实际情况不能满足这一要求；</li>
+<li>无线电频谱是一种资源，随着国家对无线电频谱资源的管理、限制和对电磁污染的治理，无线超短波通信现在已经不是企业采集数据传输的最佳方案；</li>
+<li>现有的传输系统不仅需要人工巡查维护，费用大，并且由于体积大和发射功率大，对仪表的运行会造成干扰。</li>
+</ol>
+<p><strong>——拨号：</strong>利用公共电话网络通过 Model 拨号，配合相应的软件来实现监控。其缺点是只有拨号后才能通信，因此不能实现同时“点对多点”通信等，而且无论是上位机还是客户机都必须有专门的电话线设备。</p>
+<p><strong>——数字电路：</strong>是这四种方法中最为经济的，但是其前期电缆的铺设时间和费用投入比较大，而且铺设中间还要设有中继站，在运行过程中要注意防雷、防干扰、防破损等。因此，数据只能传输到实际线路铺设的地方。</p>
+<p><strong>——GPRS：</strong>是一种基于 GSM 无线分组交换技术，提供端到端的广域的无线 IP 连接。GPRS 无线通信系统由发射设备、传输介质、接收设备等组成。无线通信原理如下图所示。</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.014.png"></p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.015.png"></p>
+<p><strong>——网络遥操作：</strong>虽然是为了处理核原料提出来的，但它的应用范围现在已经扩展到多个领域：</p>
+<p>① 人类不能直接到达的场合，比如深海、距离很远的外层太空等；</p>
+<p>② 对人类有害的场合，比如有核辐射的地区；</p>
+<p>③ 延长专业人员的服务范围，比如远程医疗、远程手术等，通过这种方式可以把专家的技术服务范围延伸到全球。</p>
+<p>在物联网领域，遥操作的典型应用之一是远程医疗( tele-medicine)。远程医疗系统可实现的具体业务，主要包括：</p>
+<ol>
+<li>远程会诊</li>
+<li>远程医疗教学</li>
+<li>远程医疗会议</li>
+</ol>
+<p>物联网络远程控制的一个经典实例是遥操作系统，操作者在本地进行操作，由远程设备完成远程复杂或危险环境下的任务。</p>
+<p>在网络环境下，遥操作机器人实验系统的工作原理如下图所示，它由操作者、主机械手、Internet 通信环节、从机械手和环境构成。</p>
+<p><img src="/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.016.png"></p>
+<ol start="6">
+<li>对控制系统的<strong>基本要求：</strong></li>
+</ol>
+<p><strong>——稳定性：系统动态过程的振荡倾向及其恢复平衡状态的能力。</strong>稳定的系统当输出量偏离平衡状态时，其输出能随时间的增长收敛并回到初始平衡状态。稳定性是控制系统正常工作的先决条件。这里讨论的控制系统稳定性由系统结构所决定，与外界因素无关。</p>
+<p><strong>——精确性：</strong>控制精度，主要以稳态误差来衡量。</p>
+<p>——稳态误差：系统的调整（过渡）过程结束而趋于稳定状态时，系统输出量的实际值与给定量之间的差值<strong>。</strong></p>
+<p><strong>——快速性：</strong>输出量和输入量产生偏差时，系统消除这种偏差的快慢程度。快速性表征系统的动态性能。</p>
+<h1 id="对自动控制系统性能的基本要求："><a href="#对自动控制系统性能的基本要求：" class="headerlink" title="对自动控制系统性能的基本要求："></a><strong>对自动控制系统性能的基本要求：</strong></h1><ol>
+<li><strong>基本要求：</strong></li>
+</ol>
+<p><strong>——稳定性：系统正常工作的首要条件——稳</strong></p>
+<p><strong>——稳态性能：控制的准确性——准</strong></p>
+<p><strong>——暂态性能：控制的快速性——快</strong></p>
+
+                
+
+
+<p class="amber-link-context">
+    <a href="/2023/10/20/%E5%9F%BA%E4%BA%8EApriltag%E5%AE%9E%E7%8E%B0%E4%BD%8D%E5%A7%BF%E8%B0%83%E6%95%B4/" rel="next" title="基于Apriltag实现位姿调整">
+    下一篇：基于Apriltag实现位姿调整
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large orange darken-4">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect orange lighten-2" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse orange lighten-2"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer grey darken-4 darken-1">
+    
+    <div class="footer-container container">
+        <div class="row">
+            
+            <div class="social-group col m4 s12">
+                <h5 class="white-text">社交</h5>
+                
+                    <a class="social-link" href="https://github.com/neckprotecter" target="_blank">
+                        <i class="fa fa-2x fa-github"></i>
+                    </a>
+                
+                
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+    </script>
+    <div class="site-visitors-container white-text">
+        <span>
+            <i class="fa fa-user"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+        </span>
+        <span>&nbsp;|&nbsp;</span>
+        <span>
+            <i class="fa fa-eye"></i>
+            <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+        </span>
+    </div>
+
+
+            </div>
+            
+
+            
+            <div class="col m8 s12">
+                <h5 class="white-text">友情链接</h5>
+                
+                    <a class="social-link" href="http://raytaylorlin.com/" target="_blank">raytaylorism主题作者的技术博客</a>
+                
+                    <a class="social-link" href="https://github.com/raytaylorlin" target="_blank">raytaylorism主题作者Github地址</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+
+    <div class="footer-copyright amber-link-context">
+        <div class="container">
+            © 2016 example.com, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a target="_blank" rel="noopener" href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('orange lighten-2');
+
+            
+            // 添加new标签
+            $('.menu-reading, .menu-about').append('<span class="new badge orange darken-4"></span>');
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword amber lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword amber lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
