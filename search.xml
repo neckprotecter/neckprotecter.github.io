@@ -1,45 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
+    <title>你好，世界</title>
     <url>/2024/12/12/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <content><![CDATA[<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
 <span id="more"></span>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line"></span><br><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a+b)</span><br></pre></td></tr></table></figure>]]></content>
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+]]></content>
       <categories>
-        <category>Testing</category>
+        <category>测试</category>
       </categories>
   </entry>
   <entry>
-    <title>test</title>
-    <url>/2024/12/12/test-1/</url>
-    <content><![CDATA[<p>这是测试用</p>
+    <title>ubuntu20.04常见工具下载安装</title>
+    <url>/2024/12/12/ubuntu20-04%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h1 id="可能有用的工具"><a href="#可能有用的工具" class="headerlink" title="可能有用的工具"></a>可能有用的工具</h1><blockquote>
+<p>本篇文章记录了实测在 ubuntu20.04 可用的工具安装方法，注意主要为安装方法，下载链接随缘放出。<br>推荐下载文章中指定的版本，也许你下载的其他更新或更老的版本就是我踩过的坑。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="Clash-verge"><a href="#Clash-verge" class="headerlink" title="Clash-verge"></a>Clash-verge</h2><p>更新的版本实测无法使用，最好下载下面指定的版本。有其他更多可用版本欢迎补充。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./clash-verge_1.7.7_amd64.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找即可，订阅链接需自行获取。</li>
+</ul>
+<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>文字编辑工具，不多说。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/vscode.list</span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install code</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h2><p>这是一个很好用的贴图工具，能通过截图的方法将你需要的内容置顶在界面上，方便查看某些教程，或进行图像的参考对比。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./Snipaste-2.10.2-x86_64.AppImage</span><br></pre></td></tr></table></figure></li>
+<li>其实是启动方法。</li>
+<li>配置自启动：  <ul>
+<li>在应用列表中找到 <code>启动应用程序</code>；</li>
+<li>找到 <code>添加</code>；</li>
+<li>自行输入名字，如<code>Snipaste</code>；</li>
+<li>在 <code>命令</code> 处找到 <code>Snipaste-2.10.2-x86_64.AppImage</code> 的路径，添加即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Raylink"><a href="#Raylink" class="headerlink" title="Raylink"></a>Raylink</h2><p>远程连接工具，免费前提下支持三个可连接设备。值得一提的是有移动端，不占用连接设备数，可以用手机远程PC。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./RayLink_8.0.4.8.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找。</li>
+</ul>
+<h2 id="Anaconda3"><a href="#Anaconda3" class="headerlink" title="Anaconda3"></a>Anaconda3</h2><p>参考博客写得很清楚，还附带了YOLOv5的部署方法，部署过很多次，没有问题。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash ./Anaconda3-2024.06-1-Linux-x86_64.sh</span><br></pre></td></tr></table></figure></li>
+<li>后续默认yes即可，在路径选择时根据需要修改。<blockquote>
+<p>参考博客：<a href="https://blog.csdn.net/weixin_70026476/article/details/128184135">https://blog.csdn.net/weixin_70026476/article/details/128184135</a></p>
+</blockquote>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>Testing</category>
-        <category>test2</category>
+        <category>教程</category>
       </categories>
-  </entry>
-  <entry>
-    <title>测试</title>
-    <url>/2024/12/12/test/</url>
-    <content><![CDATA[<h1 id="测试用文章"><a href="#测试用文章" class="headerlink" title="测试用文章"></a>测试用文章</h1><h2 id="这是第二篇"><a href="#这是第二篇" class="headerlink" title="这是第二篇"></a>这是第二篇</h2><p>你好</p>
-]]></content>
-      <categories>
-        <category>Testing</category>
-      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>工具</tag>
+      </tags>
   </entry>
 </search>
