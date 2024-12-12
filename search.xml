@@ -24,15 +24,6 @@
       </categories>
   </entry>
   <entry>
-    <title>测试</title>
-    <url>/2024/12/12/test/</url>
-    <content><![CDATA[<h1 id="测试用文章"><a href="#测试用文章" class="headerlink" title="测试用文章"></a>测试用文章</h1><h2 id="这是第二篇"><a href="#这是第二篇" class="headerlink" title="这是第二篇"></a>这是第二篇</h2><p>你好</p>
-]]></content>
-      <categories>
-        <category>Testing</category>
-      </categories>
-  </entry>
-  <entry>
     <title>test</title>
     <url>/2024/12/12/test-1/</url>
     <content><![CDATA[<p>这是测试用</p>
@@ -40,6 +31,15 @@
       <categories>
         <category>Testing</category>
         <category>test2</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>测试</title>
+    <url>/2024/12/12/test/</url>
+    <content><![CDATA[<h1 id="测试用文章"><a href="#测试用文章" class="headerlink" title="测试用文章"></a>测试用文章</h1><h2 id="这是第二篇"><a href="#这是第二篇" class="headerlink" title="这是第二篇"></a>这是第二篇</h2><p>你好</p>
+]]></content>
+      <categories>
+        <category>Testing</category>
       </categories>
   </entry>
 </search>
