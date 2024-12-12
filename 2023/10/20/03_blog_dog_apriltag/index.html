@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Apriltag实现位姿调整">
+<meta property="og:url" content="http://example.com/2023/10/20/03_blog_dog_apriltag/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-1.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-2.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-3.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-4.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-5.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-6.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-7.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-8.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-9.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-10.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-11.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-12.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-13.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-14.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-15.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-16.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-17.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-18.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-19.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-20.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-21.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-22.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-23.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-24.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-25.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-26.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-27.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-28.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-29.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-30.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-31.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-32.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-33.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-34.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-35.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-36.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-37.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/1-38.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-1.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-2.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-3.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-4.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-5.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-6.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-7.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-8.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-9.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-10.png">
+<meta property="og:image" content="http://example.com/images/blog_dog_apriltag/2-11.png">
+<meta property="article:published_time" content="2023-10-20T05:18:40.000Z">
+<meta property="article:modified_time" content="2024-12-12T09:44:37.456Z">
+<meta property="article:author" content="neckprotecter">
+<meta property="article:tag" content="Opencv">
+<meta property="article:tag" content="机器狗">
+<meta property="article:tag" content="Apriltag">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/blog_dog_apriltag/1-1.png">
+
+<link rel="canonical" href="http://example.com/2023/10/20/03_blog_dog_apriltag/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>基于Apriltag实现位姿调整 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hexo</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/20/03_blog_dog_apriltag/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="neckprotecter">
+      <meta itemprop="description" content="围脖工厂">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基于Apriltag实现位姿调整
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-20 13:18:40" itemprop="dateCreated datePublished" datetime="2023-10-20T13:18:40+08:00">2023-10-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-12-12 17:44:37" itemprop="dateModified" datetime="2024-12-12T17:44:37+08:00">2024-12-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%BA%E5%99%A8%E7%8B%97/" itemprop="url" rel="index"><span itemprop="name">机器狗</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%9C%BA%E5%99%A8%E7%8B%97/Opencv/" itemprop="url" rel="index"><span itemprop="name">Opencv</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2023/10/20/03_blog_dog_apriltag/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2023/10/20/03_blog_dog_apriltag/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。</p>
+<span id="more"></span>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><a name="_toc23457"></a><a name="_toc11609"></a><strong>目录</strong></h1><blockquote>
+<p><a href="#_toc29734">一、 前期准备</a></p>
+<p><a href="#_toc30145">二、 调用相机发布话题功能包（camera_move）的创建、配置和代码编写</a></p>
+<p><a href="#_toc11798">三、 Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</a></p>
+<p><a href="#_toc28338">四、 Launch 文件一键启动（start.launch）的创建、配置和代码编写</a></p>
+<p><a href="#_toc27334">五、 总结</a></p>
+</blockquote>
+<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a><a name="_toc3142"></a><a name="_toc29734"></a><strong>一、前期准备</strong></h1><ol>
+<li>宇树 Go1 机器狗。</li>
+<li>ROS 基础使用及话题通信机制基础了解，可以通过<a target="_blank" rel="noopener" href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1.html">文字教程</a>和<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ/?vd_source=391720e1f55e6322e615e13817063f4e">视频教程</a>进行相关知识的学习。</li>
+</ol>
+<h1 id="二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写"><a href="#二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写" class="headerlink" title="二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写"></a><a name="_toc32232"></a><a name="_toc30145"></a><strong>二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写</strong></h1><ol>
+<li>创建工作空间（workspace，可以自定义名称，这里用缩写 wksp），并初始化</li>
+<li>打开命令行，输入：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p  自定义空间名称（以 wksp 为例，下文不再提及）/src</span><br><span class="line"><span class="built_in">cd</span> wksp</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-1.png" alt="Alt text"></p>
+<ol start="3">
+<li><p>进入 src 创建 ros 功能包并添加依赖</p>
+</li>
+<li><p>命令行输入：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">catkin_create_pkg  自定义 ros 包名（这里名字为 camera_move，后文不再强调） roscpp rospy std_msgs cv_bridge image_transport sensor_msgs apriltag_ros</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-2.png" alt="Alt text"></p>
+<blockquote>
+<p>这里的 roscpp、rospy、std_msgs 是不同的库：</p>
+<p>roscpp 是使用 C++实现的库</p>
+<p>cospy 是使用 python 实现的库</p>
+<p>std_msgs 是标准信息库</p>
+<p>cv_bridge 用于提供 ros 和 opencv 之间的接口，我们用 opencv 获取图像</p>
+<p>image_transport 用来发布和接收图像</p>
+<p>sensor_msgs 是一种消息类型</p>
+<p>apriltag_ros 是识别 aptiltag 码的 ros 包</p>
+</blockquote>
+<ol start="5">
+<li>进入 src 目录编辑源文件（C++代码进入 src，python 文件需要另外创建 script 文件夹）</li>
+</ol>
+<ul>
+<li>命令行输入：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..  退回上级目录 wksp</span><br><span class="line">code .  打开 vscode</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-3.png" alt="Alt text"></p>
+<ul>
+<li>点击信任文件夹</li>
+</ul>
+<p><img src="/images/blog_dog_apriltag/1-4.png" alt="Alt text"></p>
+<ul>
+<li>在左侧文件管理器 src&#x2F;camera_move&#x2F;src 目录处右键，创建 cpp 文件（文件名为 camera_pub，用于实现相机图像信息发布</li>
+</ul>
+<p><img src="/images/blog_dog_apriltag/1-5.png" alt="Alt text"></p>
+<blockquote>
+<p>注意 cpp 后缀<br><img src="/images/blog_dog_apriltag/1-6.png" alt="Alt text"></p>
+</blockquote>
+<ul>
+<li><p>编写代码如下，链接打开为代码，解析在注释中：</p>
+</li>
+<li><p>camera_pub.cc 代码：<a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/5MBb2VwrHV/" title="camera_pub"><a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/jrrPgJZG5W/">Ubuntu Pastebin</a></a></p>
+</li>
+</ul>
+<ol start="6">
+<li>配置 CmakeLists.txt 文件夹：</li>
+</ol>
+<blockquote>
+<p>140 行左右：<br>add_executable(camera_pub src&#x2F;camera_pub.cpp)<br>154 行左右：<br>target_link_libraries(camera_pub<br>${catkin_LIBRARIES}<br>)</p>
+</blockquote>
+<ol start="7">
+<li>编译运行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><br><br><strong><font color=red>问题 1：若出现报错，提示 apriltag_ros 功能包没有安装，如图：</font></strong><br><img src="/images/blog_dog_apriltag/1-7.png" alt="Alt text"></p>
+<ul>
+<li>则安装 apriltag_ros 包，将源码拷贝到 ros 工作空间中的 src 目录下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AprilRobotics/apriltag\_ros.git   <span class="comment">#在 src 文件夹内</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>若一直 clone 失败，注意检查机器狗对应板卡是否插入网卡，再通过 ifconfig 查看 eth0 是否存在，若存在，使用 sudo ifconfig eth0 down 命令关闭 eth0（密码 123），再重试 git clone 命令，可以尝试先 ping github.com，ping 通后，再进行 git clone<br><img src="/images/blog_dog_apriltag/1-8.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-9.png" alt="Alt text"></p>
+</li>
+<li><p>如果一直访问 github 网址失败，也可以直接下载压缩包，U 盘传入再解压；</p>
+</li>
+<li><p>成功后，工作空间下的 src 目录会多出一个 apriltag_ros 功能包；<br><img src="/images/blog_dog_apriltag/1-10.png" alt="Alt text"></p>
+</li>
+<li><p>这时重新编译：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><br><br><strong><font color=red>问题 2：若出现类似的缺少功能包问题，下载需要的功能包即可</font></strong></p>
+<p><img src="/images/blog_dog_apriltag/1-11.png" alt="Alt text"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install ros-melodic-apriltag</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 apt-get 需要机器狗联网，否则需要上 github 搜索对应功能包，用压缩包的方式安装，若出现类似套娃式的依赖包缺失，可以先</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install aptitude</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后用 aptitude 代替 apt-get 下载，这个工具会帮助下载所有需要的依赖包</li>
+</ul>
+<p><br><br><strong><font color=red>问题 3：若出现类似的 opencv 路径问题，是因为 NVIDIA 的 32.3.1image 自带的是 opencv4 版本，把 opencv 命名成了 opencv4</font></strong><br><img src="/images/blog_dog_apriltag/1-12.png" alt="Alt text"></p>
+<ul>
+<li><p>解决办法可以根据博客：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43310597/article/details/109256838">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法_project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv-CSDN 博客</a></p>
+</li>
+<li><p>找到对应的文件，修改 opencv 为 opencv4，这是让功能包适应系统环境</p>
+</li>
+<li><p>也可以如博客内评论所说，将 opencv 的命名软连接到 opencv4 上，这是修改系统环境，可以适配大部分功能包<br><img src="/images/blog_dog_apriltag/1-13.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 4：会发现之前的 apriltag_ros 功能包成功通过编译，但在宇树相机部分出现错误，这是因为没有配置好宇树相关的 sdk 文件</font></strong><br><img src="/images/blog_dog_apriltag/1-14.png" alt="Alt text"></p>
+<ul>
+<li><p>将相机 sdk&#x2F;include 中的三个文件复制进 camera_move 功能包的 include 中<br><img src="/images/blog_dog_apriltag/1-15.png" alt="Alt text"></p>
+</li>
+<li><p>将相机 sdk 的 lib 文件夹复制进 camera_move 功能包中<br><img src="/images/blog_dog_apriltag/1-16.png" alt="Alt text"></p>
+</li>
+<li><p>最后根据相机 sdk 中的 CMakeLists.txt 配置功能包中的 CMakeLists.txt：</p>
+</li>
+<li><p>复制蓝字部分<br><img src="/images/blog_dog_apriltag/1-17.png" alt="Alt text"></p>
+</li>
+<li><p>取消 include 的注释<br><img src="/images/blog_dog_apriltag/1-18.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-19.png" alt="Alt text"></p>
+</li>
+<li><p>在这后面增加${SDKLIBS}<br><img src="/images/blog_dog_apriltag/1-20.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-21.png" alt="Alt text"></p>
+</li>
+<li><p>最后成功编译<br><img src="/images/blog_dog_apriltag/1-22.png" alt="Alt text"></p>
+</li>
+<li><p>这里提示的 warning 暂且不管，先尝试运行，发现失败：<br><img src="/images/blog_dog_apriltag/1-23.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 5：这是 cv_bridge 与 opencv4 版本冲突导致的，解决办法是将 cv_bridge 和自己功能包的依赖设为同一版本的 opencv，这里参考的是这篇文章，写得很详细：</font></strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43196818/article/details/124514966">解决 cv_bridge 与 opencv4 版本冲突问题_Thoven 的博客-CSDN 博客</a></p>
+<ul>
+<li><p>先下载 noetic 版本的 cv_bridge（狗上的 ubuntu 是 melodic 版，但不影响，noetic 版本的 cv_bridge 经过一定修改后在 melodic 上也可以使用）</p>
+</li>
+<li><p>在 <a target="_blank" rel="noopener" href="https://github.com/ros-perception/vision_opencv/tree/noetic">https://github.com/ros-perception/vision_opencv/tree/noetic</a> 处下载，解压缩后将里面的 cv_bridge 文件夹拷贝到工作空间的 src 文件夹下，并将这个包重命名为 cv_bridge_new，以防混淆<br><img src="/images/blog_dog_apriltag/1-24.png" alt="Alt text"></p>
+</li>
+<li><p>同时修改 cv_bridge_new 功能包中 package.xml 和 CMakeLists.txt 中的包名<br><img src="/images/blog_dog_apriltag/1-25.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-26.png" alt="Alt text"></p>
+</li>
+<li><p>在 cv_bridge_new 中的 CMakeLists.txt 中指定为 camera_move 的 CMakeLists.txt 中指定的 opencv4 路径<br><img src="/images/blog_dog_apriltag/1-27.png" alt="Alt text"></p>
+</li>
+<li><p>注意，一般都存放在&#x2F;usr&#x2F;local&#x2F;share&#x2F;opencv4 中，可以通过</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> find / -iname “\*opencv4\*”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查找确认，这里 opencv4 的子目录没有 build 文件夹，因此省略后面的路径</p>
+</li>
+<li><p>然后在工作空间编译，会出现错误：<br><img src="/images/blog_dog_apriltag/1-28.png" alt="Alt text"></p>
+</li>
+<li><p>需要在 CMakeLists.txt 文件中修改 python37 为 python3<br><img src="/images/blog_dog_apriltag/1-29.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-30.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><strong>再编译出现第二个错误：</strong><br><img src="/images/blog_dog_apriltag/1-31.png" alt="Alt text"></p>
+<ul>
+<li><p>直接修改 cv_bridge_new&#x2F;src&#x2F;module.hpp 文件下 void* do_numpy_import()函数如下：<br><img src="/images/blog_dog_apriltag/1-32.png" alt="Alt text"></p>
+</li>
+<li><p>最后编译成功：<br><img src="/images/blog_dog_apriltag/1-33.png" alt="Alt text"></p>
+</li>
+<li><p>最后一步，在 camera_move 功能包中的 CMakeList.txt 和 package.xml（有三个地方需要修改）中修改 cv_bridge 名字：<br><img src="/images/blog_dog_apriltag/1-34.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-35.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 6：如果运行时一直出现 invalid devicenode 错误，反复检查配置文件都没有问题，检查是否添加了 stereo_camera_config.yaml 文件到 wksp 目录下。</font></strong></p>
+<p>因为是在 wksp 路径处进行的 rosrun，因此代码中寻找这个文件时，会以 wksp 路径作为源路径，所以这个 yaml 文件会在 wksp 中找，一旦找不到就会程序崩溃。<br><img src="/images/blog_dog_apriltag/1-36.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-37.png" alt="Alt text"></p>
+<ul>
+<li><p>最后成功启动得到的画面：<br><img src="/images/blog_dog_apriltag/1-38.png" alt="Alt text"></p>
+</li>
+<li><p>这样相机的图像就能获取到了。</p>
+</li>
+</ul>
+<h1 id="三、Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写"><a href="#三、Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写" class="headerlink" title="三、Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写"></a><a name="_toc23771"></a><a name="_toc11798"></a><strong>三、Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</strong></h1><ol>
+<li>在 src 目录创建第二个 cpp 文件：detection_sub，用于接收 apriltag_ros 识别完 tag 后发出的话题，并且进行运动控制：<br><img src="/images/blog_dog_apriltag/2-1.png" alt="Alt text"></li>
+</ol>
+<ul>
+<li>代码如下，解析在注释中：<br>detection_sub 代码：<a target="_blank" rel="noopener" href="https://paste.ubuntu.com/p/cBWYkQTF2W/">Ubuntu Pastebin</a></li>
+</ul>
+<ol start="2">
+<li><p>之后需要根据宇树运动 sdk 配置 CMakeList.txt 文件：<br><img src="/images/blog_dog_apriltag/2-2.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-3.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-4.png" alt="Alt text"></p>
+</li>
+<li><p>然后将需要的 lib 等文件添加，同样在 sdk 中寻找：<br><img src="/images/blog_dog_apriltag/2-5.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-6.png" alt="Alt text"></p>
+</li>
+<li><p>最后 catkin_make 编译成功：<br><img src="/images/blog_dog_apriltag/2-7.png" alt="Alt text"></p>
+</li>
+<li><p>用 rosrun camera_move detection_sub 尝试运行，若成功运行会出现：<br><img src="/images/blog_dog_apriltag/2-8.png" alt="Alt text"></p>
+</li>
+</ol>
+<h1 id="四、Launch-文件一键启动（start-launch）的创建、配置和代码编写"><a href="#四、Launch-文件一键启动（start-launch）的创建、配置和代码编写" class="headerlink" title="四、Launch 文件一键启动（start.launch）的创建、配置和代码编写"></a><a name="_toc6881"></a><a name="_toc28338"></a><strong>四、Launch 文件一键启动（start.launch）的创建、配置和代码编写</strong></h1><p>接下来编写一个 launch 文件用于一次性启动三个程序，camera_pub，apriltag_tag 识别，detection_sub：</p>
+<ol>
+<li>先在 sksp 路径下创建一个 launch 文件夹，再在文件夹里创建一个 start.launch 文件，编写：<br><img src="/images/blog_dog_apriltag/2-9.png" alt="Alt text"></li>
+</ol>
+<ul>
+<li>意思是按顺序启动三个程序，这里需要注意，用 launch 文件启动时，启动路径与 rosrun 不同，因此之前设置的 yaml 文件路径最好修改成绝对路径：<br><img src="/images/blog_dog_apriltag/2-10.png" alt="Alt text"></li>
+</ul>
+<ol start="2">
+<li><p>最后需要配置 apriltag_ros 中关于标签的配置信息，用于识别到规定好的标签：<br><img src="/images/blog_dog_apriltag/2-11.png" alt="Alt text"></p>
+</li>
+<li><p>编译后运行 launch 文件：<br>roslaunch camera_move start.launch</p>
+</li>
+<li><p>就能启动所有程序，实现根据 apriltag 识别结果进行位姿调整。</p>
+</li>
+</ol>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a><a name="_toc27334"></a><strong>五、总结</strong></h1><p><strong>结果：</strong></p>
+<ul>
+<li><p>项目最终能够成功通过 apriltag 让机器狗调整位姿，通过参数控制可以保持规定好的距离、角度，且准确度不错，并且延迟在可接受范围内。</p>
+</li>
+<li><p>不足：受到机器狗本身相机的分辨率限制，5cm 的 apriltag 码识别范围只在 1m 左右；另外，狗的位姿调节方式，即运动控制还存在一定问题，例如向右平移和向右转向的速度没有达到预期效果，pid 的效果也并不明显。</p>
+</li>
+</ul>
+<p><strong>改进：</strong></p>
+<ul>
+<li>研究清楚机器狗对向右方向的运动存在什么问题，尝试解决；在项目的基础上仔细调参，使 pid 真正发挥作用，让位姿调节的时间达到最低，最终能够应用在集群控制上。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Opencv/" rel="tag"># Opencv</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E7%8B%97/" rel="tag"># 机器狗</a>
+              <a href="/tags/Apriltag/" rel="tag"># Apriltag</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/20/02_blog_snack_sql/" rel="prev" title="简陋零食系统">
+      <i class="fa fa-chevron-left"></i> 简陋零食系统
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/10/31/04_blog_wlwkz1/" rel="next" title="自动控制与物联网控制概述">
+      自动控制与物联网控制概述 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%89%8D%E6%9C%9F%E5%87%86%E5%A4%87"><span class="nav-number">2.</span> <span class="nav-text">一、前期准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%B0%83%E7%94%A8%E7%9B%B8%E6%9C%BA%E5%8F%91%E5%B8%83%E8%AF%9D%E9%A2%98%E5%8A%9F%E8%83%BD%E5%8C%85%EF%BC%88camera-move%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="nav-number">3.</span> <span class="nav-text">二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%89%E3%80%81Apriltag-%E4%BF%A1%E6%81%AF%E6%8E%A5%E6%94%B6%E5%8A%9F%E8%83%BD%E5%8C%85%EF%BC%88detection-sub%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="nav-number">4.</span> <span class="nav-text">三、Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Launch-%E6%96%87%E4%BB%B6%E4%B8%80%E9%94%AE%E5%90%AF%E5%8A%A8%EF%BC%88start-launch%EF%BC%89%E7%9A%84%E5%88%9B%E5%BB%BA%E3%80%81%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BB%A3%E7%A0%81%E7%BC%96%E5%86%99"><span class="nav-number">5.</span> <span class="nav-text">四、Launch 文件一键启动（start.launch）的创建、配置和代码编写</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neckprotecter"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">neckprotecter</p>
+  <div class="site-description" itemprop="description">围脖工厂</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/neckprotecter" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;neckprotecter" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://space.bilibili.com/3493286356453879?spm_id_from=333.1296.0.0" title="Twitter → https:&#x2F;&#x2F;space.bilibili.com&#x2F;3493286356453879?spm_id_from&#x3D;333.1296.0.0" rel="noopener" target="_blank"><i class="fab fa-twitter fa-fw"></i>Twitter</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neckprotecter</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://neck.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://example.com/2023/10/20/03_blog_dog_apriltag/";
+    this.page.identifier = "2023/10/20/03_blog_dog_apriltag/";
+    this.page.title = "基于Apriltag实现位姿调整";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://neck.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
