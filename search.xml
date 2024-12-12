@@ -29,6 +29,15 @@
 </ul>
 </li>
 </ul>
+<h2 id="Edge"><a href="#Edge" class="headerlink" title="Edge"></a>Edge</h2><p>浏览器，主要是可以同步账号，比较方便。</p>
+<ul>
+<li>安装方法：<ul>
+<li>在官网下载deb包；</li>
+<li>输入：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ./microsoft-edge-stable_131.0.2903.86-1_amd64.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找即可。</li>
+</ul>
+</li>
+</ul>
 <h2 id="Raylink"><a href="#Raylink" class="headerlink" title="Raylink"></a>Raylink</h2><p>远程连接工具，免费前提下支持三个可连接设备。值得一提的是有移动端，不占用连接设备数，可以用手机远程PC。</p>
 <ul>
 <li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./RayLink_8.0.4.8.deb</span><br></pre></td></tr></table></figure></li>
