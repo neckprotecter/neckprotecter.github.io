@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hello, world</title>
-    <url>/2024/12/12/hello-world/</url>
-    <content><![CDATA[<blockquote>
-<p>自动生成的，但不想删掉qwq</p>
-</blockquote>
-<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
-<span id="more"></span>
-
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
-<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
-<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
-]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ubuntu20.04常见工具下载安装</title>
     <url>/2024/12/12/ubuntu20-04%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h1 id="可能有用的工具"><a href="#可能有用的工具" class="headerlink" title="可能有用的工具"></a>可能有用的工具</h1><blockquote>
@@ -75,6 +49,553 @@
       <tags>
         <tag>ubuntu</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hello, world</title>
+    <url>/2024/12/12/hello-world/</url>
+    <content><![CDATA[<blockquote>
+<p>自动生成的，但不想删掉qwq</p>
+</blockquote>
+<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
+<span id="more"></span>
+
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>在宇树机器狗上用相机sdk打开相机并使用Apriltag</title>
+    <url>/2023/10/15/%E5%9C%A8%E5%AE%87%E6%A0%91%E6%9C%BA%E5%99%A8%E7%8B%97%E4%B8%8A%E7%94%A8%E7%9B%B8%E6%9C%BAsdk%E6%89%93%E5%BC%80%E7%9B%B8%E6%9C%BA%E5%B9%B6%E4%BD%BF%E7%94%A8Apriltag/</url>
+    <content><![CDATA[<p>解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题</p>
+<h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
+<span id="more"></span>
+
+<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/blog_sdk_apriltag/apriltag_topicshow.png" alt="apriltag话题"></p>
+<ul>
+<li>可以知道 apriltag 功能包需要接收 <strong>&#x2F;camera&#x2F;image_rect</strong> 和 <strong>&#x2F;camera&#x2F;camera_info</strong> 两个话题。</li>
+<li>而调用相机 sdk 之后，得到的图像就可以作为 image_rect 话题的输入，那么问题就到了 camera_info 这个话题上，有两个方面需要解决：这个话题是什么，这个话题怎么给。</li>
+<li>首先，这个话题是关于相机的一些参数信息，根据博客：<a href="https://blog.csdn.net/wangmj_hdu/article/details/115002514">https://blog.csdn.net/wangmj_hdu/article/details/115002514</a> 中的分享，我们可以得知这些参数的含义：<blockquote>
+<ul>
+<li>header：标准消息头</li>
+<li>seq：序列 ID，连续递增的 ID 号</li>
+<li>stamp：两个时间戳</li>
+<li>frame_id：与此数据相关联的帧 ID</li>
+<li>height：图像尺寸，height 代表高度，（height*width）相机的分辨率，以像素为单位</li>
+<li>width：图像尺寸，width 代表宽度，（height*width）相机分辨率，以像素为单位</li>
+<li>distortion_model：指定了相机畸变模型，对于大多数相机，”plumb_bob”简单的径向和切向畸变模型就足够了</li>
+<li>D：畸变参数，取决于畸变模型，(k1, k2, t1, t2, k3)，（我的这个 usb 相机号称是无畸变相机，但通过标定结果可以看出来还是存在畸变的，是不是被商家坑了，哈哈哈）</li>
+<li>K：相机内参矩阵，使用焦距(fx, fy)和主点坐标(cx, cy)，单位为像素，内参矩阵可以将相机坐标中的 3D 点投影到 2D 像素坐标<br><img src="/images/blog_sdk_apriltag/K.png" alt="Alt text"></li>
+<li>R：旋转矩阵，将相机坐标系统对准理想的立体图像平面，使两张立体图像中的极线平行</li>
+<li>P：投影矩阵<br><img src="/images/blog_sdk_apriltag/P.png" alt="Alt text"><br>左边 3*3 矩阵是相机的内参矩阵，将相机坐标中的 3D 点投影到 2D 像素坐标，可能与相机内参 K 不同。对于单目相机 Tx &#x3D; Ty &#x3D; 0。对于双目相机，Tx 和 Ty 有所不同。</li>
+<li>binning_x：图像下采样参数，水平方向</li>
+<li>binning_y：图像下采样参数，竖直方向</li>
+<li>(width &#x2F; binning_x) x (height &#x2F; binning_y)</li>
+<li>下采样：binning_x &#x3D; binning_y ＞ 1。缩小图像，生成对应图像的缩略图，使得图像符合显示区域的大小。</li>
+<li>roi：感兴趣区域定义，即完整图像上的一个矩形子窗口</li>
+</ul>
+</blockquote>
+</li>
+<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 相机信息处理</span></span><br><span class="line"><span class="function">sensor_msgs::CameraInfo <span class="title">getCameraInfo</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;                                     <span class="comment">// extract cameraInfo.</span></span><br><span class="line">    sensor_msgs::CameraInfo cam_info; <span class="comment">// 信息对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相机参数赋值，K矩阵，D畸变参数等都根据宇树提供的相机标定参数计算得出</span></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; D&#123;</span><br><span class="line">        <span class="number">-2.0874507966557976e-01</span>, <span class="number">2.6922545819193944e-02</span>,</span><br><span class="line">        <span class="number">1.4887812678896397e-03</span>, <span class="number">3.5422189471526382e-03</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; K =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">1.9086173551086370e+02</span>, <span class="number">5.6239632677513474e-01</span>, <span class="number">2.2299573347226581e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">1.9608536122280060e+02</span>, <span class="number">1.9553241319375684e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 12&gt; P =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">192.85</span>, <span class="number">0</span>, <span class="number">222.99</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">196.08</span>, <span class="number">195.53</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; r =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">-9.9992248085182622e-01</span>, <span class="number">1.1878079705669157e-02</span>, <span class="number">-3.7341009138761533e-03</span>,</span><br><span class="line">            <span class="number">-1.1878162517594585e-02</span>, <span class="number">-9.9992945213910256e-01</span>, <span class="number">0.</span>,</span><br><span class="line">            <span class="number">-3.7338374810443040e-03</span>, <span class="number">4.4354257512119405e-05</span>, <span class="number">9.9999302822087976e-01</span>&#125;;</span><br><span class="line"></span><br><span class="line">    cam_info.height = <span class="number">480</span>;</span><br><span class="line">    cam_info.width = <span class="number">640</span>;</span><br><span class="line">    cam_info.distortion_model = <span class="string">&quot;plumb_bob&quot;</span>;</span><br><span class="line">    cam_info.D = D;</span><br><span class="line">    cam_info.K = K;</span><br><span class="line">    cam_info.P = P;</span><br><span class="line">    cam_info.R = r;</span><br><span class="line">    cam_info.binning_x = <span class="number">0</span>;</span><br><span class="line">    cam_info.binning_y = <span class="number">0</span>;</span><br><span class="line">    cam_info.header.frame_id = <span class="string">&quot;camera&quot;</span>; <span class="comment">// frame_id为camera，也就是相机名字</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cam_info;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (cam.<span class="built_in">isOpened</span>())</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="comment">// 同时获取左右两个相机画面，但后续只用到左侧</span></span><br><span class="line">       cv::Mat left, right;</span><br><span class="line">       <span class="keyword">if</span> (!cam.<span class="built_in">getRectStereoFrame</span>(left, right)) <span class="comment">///&lt; get rectify left,right frame</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">           <span class="keyword">continue</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       cv::<span class="built_in">flip</span>(left, left, <span class="number">-1</span>);         <span class="comment">// 原图像为翻转图像，使用该函数翻转为正图像</span></span><br><span class="line">       cv::<span class="built_in">imshow</span>(<span class="string">&quot;Longlat_Rect&quot;</span>, left); <span class="comment">// 将图像显示在屏幕上</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// 信息整合发布</span></span><br><span class="line">       <span class="comment">// 图像信息需要信息头header</span></span><br><span class="line">       std_msgs::Header image_header;</span><br><span class="line">       image_header.frame_id = <span class="string">&quot;camera&quot;</span>;</span><br><span class="line">       image_header.stamp = ros::Time::<span class="built_in">now</span>();</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 相机信息赋值，函数见最上方</span></span><br><span class="line">       camera_info_msg = <span class="built_in">getCameraInfo</span>();</span><br><span class="line">       camera_info_msg.header.stamp = image_header.stamp; <span class="comment">// 相机信息和图像信息的时间戳要相同</span></span><br><span class="line"></span><br><span class="line">       sensor_msgs::ImagePtr image_msg = cv_bridge::<span class="built_in">CvImage</span>(image_header, <span class="string">&quot;bgr8&quot;</span>, left).<span class="built_in">toImageMsg</span>(); <span class="comment">// 将图像信息的信息头header和图像left整合</span></span><br><span class="line">       pub_image.<span class="built_in">publish</span>(image_msg);                                                                  <span class="comment">// 图像信息发布</span></span><br><span class="line">       pub_info.<span class="built_in">publish</span>(camera_info_msg);                                                             <span class="comment">// 相机信息发布</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="type">char</span> key = cv::<span class="built_in">waitKey</span>(<span class="number">10</span>);</span><br><span class="line">       <span class="keyword">if</span> (key == <span class="number">27</span>) <span class="comment">// esc键退出</span></span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码见：</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>机器狗</category>
+        <category>Opencv</category>
+      </categories>
+      <tags>
+        <tag>Opencv</tag>
+        <tag>机器狗</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>自动控制与物联网控制概述</title>
+    <url>/2023/10/31/%E3%80%90%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0/</url>
+    <content><![CDATA[<h1 id="【物联网控制】第一章-自动控制与物联网控制概述"><a href="#【物联网控制】第一章-自动控制与物联网控制概述" class="headerlink" title="【物联网控制】第一章_自动控制与物联网控制概述"></a>【物联网控制】第一章_自动控制与物联网控制概述</h1><p>物联网控制第一章复习整理</p>
+<span id="more"></span>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h1><blockquote>
+<p><a href="#_toc4775">1.1 自动控制系统 </a></p>
+<p><a href="#_toc11515">1.2 反馈控制的概念 </a></p>
+<p><a href="#_toc23861">1.3 物联网控制系统的概念</a></p>
+<p><a href="#_toc10586">1.4 计算机控制系统的基本组成</a></p>
+<blockquote>
+<p><a href="#_toc24350">1.4.1 计算机控制系统的硬件组成</a></p>
+<p><a href="#_toc7467">1.4.2 计算机控制系统的软件</a></p>
+</blockquote>
+<p><a href="#_toc31531">1.5 计算机控制系统的类型</a></p>
+<p><a href="#_toc13856">1.6 物联网远程控制技术</a></p>
+<p><a href="#_toc28176">1.7 对自动控制系统性能的基本要求</a></p>
+</blockquote>
+<h1 id="自动控制系统"><a href="#自动控制系统" class="headerlink" title="自动控制系统"></a><a name="_toc4775"></a><strong>自动控制系统</strong></h1><ol>
+<li>第一个自动控制系统：1788 年瓦特发明飞球调节器</li>
+</ol>
+<p>——推动社会进步是飞球调节器被公认为第一个自动控制系统的最主要原因</p>
+<ol start="2">
+<li>自动控制理论的开端：麦克斯韦的“论调速器”</li>
+</ol>
+<p>——指出： 不应单独研究飞球调节器，必须从整个系统分析控制的不稳定。</p>
+<p>建立系统微分方程，分析微分方程解的稳定性，从而分析实际系统是否会出现不稳定现象。</p>
+<p>这样，控制系统稳定性的分析，变成了判别微分方程的特征根的实部的正、负号问题。</p>
+<ol start="3">
+<li><strong>自动控制是什么：在没有人参与的情况下，系统的控制器自动地按照人预定的要求控制设备或过程，使之具有一定的状态和性能。</strong></li>
+<li>自动控制系统是什么：自动控制功能的系统称为自动控制系统。</li>
+<li>人在控制过程中起到的作用：</li>
+</ol>
+<p><strong>——观测：</strong> 用眼睛去观测温度计和转速表的指示值；</p>
+<p><strong>——比较与决策：</strong> 人脑把观测得到的数据与要求的数据相比较，进行判断，根据给定的控制规律给出控制量；</p>
+<p><strong>——执行：</strong> 根据控制量用手具体调节，如调节阀门开度、改变触点位置。</p>
+<p><strong>——在自动控制中，则用控制装置代替人来完成上述功能。</strong></p>
+<ol start="6">
+<li>控制系统框图：</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.001.jpeg" alt="Alt text"></p>
+<h1 id="反馈控制的概念"><a href="#反馈控制的概念" class="headerlink" title="反馈控制的概念"></a><a name="_toc11515"></a><strong>反馈控制的概念</strong></h1><ol>
+<li><strong>开环控制系统：如果控制系统的被控量对系统没有控制作用。</strong></li>
+</ol>
+<p>——优点： 简单，保证系统的稳定性</p>
+<p>——缺点： 控制精度易受扰动影响</p>
+<p>控制精度差（扰动存在时）</p>
+<p>——应用场合：逻辑控制、顺序控制、扰动少的场合</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.002.png" alt="Alt text"></p>
+<ol start="2">
+<li><strong>闭环（负反馈）控制系统：系统的被控量直接或间接地参与控制。</strong></li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.003.png" alt="Alt text"></p>
+<h1 id="物联网控制系统的概念"><a href="#物联网控制系统的概念" class="headerlink" title="物联网控制系统的概念"></a><a name="_toc23861"></a><strong>物联网控制系统的概念</strong></h1><ol>
+<li>物联网是：由各种具备联网能力的设备经由相互连接构成复杂网络结构。</li>
+<li><strong>物联网控制系统是：以物联网为基础的计算机控制系统。</strong></li>
+<li><strong>两种物联网控制系统结构：直接网络控制结构和间接网络控制结构。</strong></li>
+</ol>
+<p>——根据控制策略的生成是否在本地控制回路中<br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.004.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.005.png" alt="Alt text"></p>
+<ol start="4">
+<li>物联网络：作为系统各部分进行<strong>信息传输的介质</strong>，为系统中所有的传感器、执行器和控制器所共享，负责质量信号、控制信号以及状态反馈等信号的传输任务。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.006.png" alt="Alt text"></p>
+<h1 id="计算机控制系统的基本组成"><a href="#计算机控制系统的基本组成" class="headerlink" title="计算机控制系统的基本组成"></a><a name="_toc10586"></a><strong>计算机控制系统的基本组成</strong></h1><ol>
+<li><strong>计算机系统：数字计算机及 A&#x2F;D、D&#x2F;A 转换器等统称为计算机系统</strong></li>
+</ol>
+<p><strong>——主要作用：根据接受的被控对象以及外界的有关信息，按选定的算法进行变换处理并产生必要的控制指令输出作用于被控对象</strong></p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.007.png" alt="Alt text"></p>
+<h2 id="计算机控制系统的硬件组成"><a href="#计算机控制系统的硬件组成" class="headerlink" title="计算机控制系统的硬件组成"></a><a name="_toc24350"></a><strong>计算机控制系统的硬件组成</strong></h2><ol>
+<li>包括：计算机、外部设备、测量装置以及执行装置。图中点画线框所包围部分为实时控制所必需的计算机系统的最小配置。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.008.png" alt="Alt text"></p>
+<h2 id="计算机控制系统的软件"><a href="#计算机控制系统的软件" class="headerlink" title="计算机控制系统的软件"></a><a name="_toc7467"></a><strong>计算机控制系统的软件</strong></h2><p>——计算机控制系统的软件由系统软件和应用软件两大类组成。</p>
+<ol>
+<li>系统软件：计算机的通用软件，主要包括实时操作系统及一些公共服务系统（如编译程序、诊断程序、调试程序及通信软件等）。系统程序由计算机厂家提供。</li>
+<li>应用软件：计算机在系统软件支持下实现各种应用功能的专用程序。一般包括控制算法程序、输入输出接口程序、监控程序及信息管理程序。一般情况下，应用软件应由计算机控制系统设计人员根据所选用的硬件及软件环境和系统要求开发编写。</li>
+</ol>
+<h1 id="计算机控制系统的类型"><a href="#计算机控制系统的类型" class="headerlink" title="计算机控制系统的类型"></a><a name="_toc31531"></a><strong>计算机控制系统的类型</strong></h1><ol>
+<li>一共五种类型：操作指导控制系统 OIS、直接数字控制系统 DDC、监督控制系统 SCC、集散控制系统 DCS、分级计算机控制系统</li>
+<li>操作指导控制系统：操作指导是指计算机的输入不直接用来控制对象，只是每隔一段时间，计算机进行一次数据采集，将系统的一些参数经 A&#x2F;D 转换后送入计算机进行计算及处理，然后进行报警、打印和显示。</li>
+</ol>
+<p>——起作用的是：操作人员</p>
+<p>——开环 or 闭环控制：开环</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.009.png" alt="Alt text"></p>
+<ol start="2">
+<li><strong>直接数字控制系统（闭环控制）：</strong>计算机首先通过模拟量输入通道（AI）和开关量输入通道（DI）实时采集数据，然后按照一定的控制规律进行计算，最后发出控制信息，并通过模拟量输出通道（AO）和开关量输出通道（DO）直接控制生成过程。</li>
+</ol>
+<p>——要求实时性好、可靠性高和适应性强。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.010.png" alt="Alt text"></p>
+<ol start="3">
+<li>监督控制系统：计算机根据原始工艺信息和其他参数，按照描述生产过程的数学模型或其他方法，自动地改变模拟&#x2F;数字调节器或以直接数字控制方式工作的计算机中的给定值，从而使生产过程始终处于最优工况（如保持高质量、高效率、低消耗、低成本等等）。</li>
+</ol>
+<p>——提高可靠性可以增加什么环节：DDC 直接数字控制系统</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.011.png" alt="Alt text"></p>
+<ol start="4">
+<li>集散控制系统：采用分散控制、集中操作、分级管理、分而自治和综合协调的设计原则，把系统从上到下分为分散过程控制级、集中操作监控级、综合信息管理级，形成分级分布式控制，其结构如图所示。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.012.png" alt="Alt text"></p>
+<ol start="5">
+<li>分级计算机控制系统：特点是将控制任务分散，用多台计算机分别执行不同的任务，既能进行控制又能实现管理。分级计算机控制系统是一个四级系统，如图所示。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.013.png" alt="Alt text"></p>
+<ol start="6">
+<li>物联网是利用无所不在的网络技术建立起来的。网络远程控制是在网络上由主控端去控制远程客户端设备（被控端 Host／服务器端）的技术。这里的远程是指通过网络控制远端的设备或执行结构。</li>
+</ol>
+<h1 id="物联网远程控制技术"><a href="#物联网远程控制技术" class="headerlink" title="物联网远程控制技术"></a><a name="_toc13856"></a><strong>物联网远程控制技术</strong></h1><ol>
+<li><strong>物联网的 3 种控制模式：远程控制模式、本地控制模式、调度控制模式</strong></li>
+</ol>
+<p><strong>——实现了物联网的灵活性与开放性</strong></p>
+<ol start="2">
+<li>移动通信远程控制：指通信的双方中至少有一方是在运动过程中实现信息交换的通信。</li>
+</ol>
+<p><strong>——无线电台：</strong> 是最常用的远距离通信方式之一，电台适合多点通信，点数越多费用越低。但是，用无线电台作为通信手段存在以下问题：</p>
+<ol start="3">
+<li>无线电超短波的局限性，一般台站的天线应远离高大建筑物，但实际情况不能满足这一要求；</li>
+<li>无线电频谱是一种资源，随着国家对无线电频谱资源的管理、限制和对电磁污染的治理，无线超短波通信现在已经不是企业采集数据传输的最佳方案；</li>
+<li>现有的传输系统不仅需要人工巡查维护，费用大，并且由于体积大和发射功率大，对仪表的运行会造成干扰。</li>
+</ol>
+<p><strong>——拨号：</strong> 利用公共电话网络通过 Model 拨号，配合相应的软件来实现监控。其缺点是只有拨号后才能通信，因此不能实现同时“点对多点”通信等，而且无论是上位机还是客户机都必须有专门的电话线设备。</p>
+<p><strong>——数字电路：</strong> 是这四种方法中最为经济的，但是其前期电缆的铺设时间和费用投入比较大，而且铺设中间还要设有中继站，在运行过程中要注意防雷、防干扰、防破损等。因此，数据只能传输到实际线路铺设的地方。</p>
+<p><strong>——GPRS：</strong> 是一种基于 GSM 无线分组交换技术，提供端到端的广域的无线 IP 连接。GPRS 无线通信系统由发射设备、传输介质、接收设备等组成。无线通信原理如下图所示。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.014.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.015.png" alt="Alt text"></p>
+<p><strong>——网络遥操作：</strong> 虽然是为了处理核原料提出来的，但它的应用范围现在已经扩展到多个领域：</p>
+<blockquote>
+<p>① 人类不能直接到达的场合，比如深海、距离很远的外层太空等；</p>
+<p>② 对人类有害的场合，比如有核辐射的地区；</p>
+<p>③ 延长专业人员的服务范围，比如远程医疗、远程手术等，通过这种方式可以把专家的技术服务范围延伸到全球。</p>
+</blockquote>
+<p>——在物联网领域，遥操作的典型应用之一是远程医疗( tele-medicine)。远程医疗系统可实现的具体业务，主要包括：</p>
+<blockquote>
+<ol>
+<li>远程会诊</li>
+<li>远程医疗教学</li>
+<li>远程医疗会议</li>
+</ol>
+</blockquote>
+<p>——物联网络远程控制的一个经典实例是遥操作系统，操作者在本地进行操作，由远程设备完成远程复杂或危险环境下的任务。</p>
+<p>——在网络环境下，遥操作机器人实验系统的工作原理如下图所示，它由操作者、主机械手、Internet 通信环节、从机械手和环境构成。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.016.png" alt="Alt text"></p>
+<ol start="3">
+<li>对控制系统的<strong>基本要求：</strong></li>
+</ol>
+<p><strong>——稳定性：系统动态过程的振荡倾向及其恢复平衡状态的能力。</strong> 稳定的系统当输出量偏离平衡状态时，其输出能随时间的增长收敛并回到初始平衡状态。稳定性是控制系统正常工作的先决条件。这里讨论的控制系统稳定性由系统结构所决定，与外界因素无关。</p>
+<p><strong>——精确性：</strong> 控制精度，主要以稳态误差来衡量。</p>
+<p>——稳态误差：系统的调整（过渡）过程结束而趋于稳定状态时，系统输出量的实际值与给定量之间的差值<strong>。</strong></p>
+<p><strong>——快速性：</strong> 输出量和输入量产生偏差时，系统消除这种偏差的快慢程度。快速性表征系统的动态性能。</p>
+<ol>
+<li><h1 id="对自动控制系统性能的基本要求："><a href="#对自动控制系统性能的基本要求：" class="headerlink" title="对自动控制系统性能的基本要求："></a><a name="_toc28176"></a><strong>对自动控制系统性能的基本要求：</strong></h1></li>
+<li><strong>基本要求：</strong></li>
+</ol>
+<p><a name="_toc5319"></a><strong>——稳定性：系统正常工作的首要条件——稳</strong></p>
+<p><strong>——稳态性能：控制的准确性——准</strong></p>
+<p><strong>——暂态性能：控制的快速性——快</strong></p>
+]]></content>
+      <categories>
+        <category>课程</category>
+        <category>物联网控制</category>
+      </categories>
+      <tags>
+        <tag>课程</tag>
+        <tag>物联网控制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于Apriltag实现位姿调整</title>
+    <url>/2023/10/20/%E5%9F%BA%E4%BA%8EApriltag%E5%AE%9E%E7%8E%B0%E4%BD%8D%E5%A7%BF%E8%B0%83%E6%95%B4/</url>
+    <content><![CDATA[<p>本文主要讲解如何在宇树机器狗上使用 OpenCV 调用摄像头并进行 Apriltag 识别，再通过运动 sdk 实现位姿调整。</p>
+<span id="more"></span>
+
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><a name="_toc23457"></a><a name="_toc11609"></a><strong>目录</strong></h1><blockquote>
+<p><a href="#_toc29734">一、 前期准备</a></p>
+<p><a href="#_toc30145">二、 调用相机发布话题功能包（camera_move）的创建、配置和代码编写</a></p>
+<p><a href="#_toc11798">三、 Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</a></p>
+<p><a href="#_toc28338">四、 Launch 文件一键启动（start.launch）的创建、配置和代码编写</a></p>
+<p><a href="#_toc27334">五、 总结</a></p>
+</blockquote>
+<h1 id="一、前期准备"><a href="#一、前期准备" class="headerlink" title="一、前期准备"></a><a name="_toc3142"></a><a name="_toc29734"></a><strong>一、前期准备</strong></h1><ol>
+<li>宇树 Go1 机器狗。</li>
+<li>ROS 基础使用及话题通信机制基础了解，可以通过<a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1.html">文字教程</a>和<a href="https://www.bilibili.com/video/BV1Ci4y1L7ZZ/?vd_source=391720e1f55e6322e615e13817063f4e">视频教程</a>进行相关知识的学习。</li>
+</ol>
+<h1 id="二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写"><a href="#二、调用相机发布话题功能包（camera-move）的创建、配置和代码编写" class="headerlink" title="二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写"></a><a name="_toc32232"></a><a name="_toc30145"></a><strong>二、调用相机发布话题功能包（camera_move）的创建、配置和代码编写</strong></h1><ol>
+<li>创建工作空间（workspace，可以自定义名称，这里用缩写 wksp），并初始化</li>
+<li>打开命令行，输入：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p  自定义空间名称（以 wksp 为例，下文不再提及）/src</span><br><span class="line"><span class="built_in">cd</span> wksp</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-1.png" alt="Alt text"></p>
+<ol start="3">
+<li><p>进入 src 创建 ros 功能包并添加依赖</p>
+</li>
+<li><p>命令行输入：</p>
+</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">catkin_create_pkg  自定义 ros 包名（这里名字为 camera_move，后文不再强调） roscpp rospy std_msgs cv_bridge image_transport sensor_msgs apriltag_ros</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-2.png" alt="Alt text"></p>
+<blockquote>
+<p>这里的 roscpp、rospy、std_msgs 是不同的库：</p>
+<p>roscpp 是使用 C++实现的库</p>
+<p>cospy 是使用 python 实现的库</p>
+<p>std_msgs 是标准信息库</p>
+<p>cv_bridge 用于提供 ros 和 opencv 之间的接口，我们用 opencv 获取图像</p>
+<p>image_transport 用来发布和接收图像</p>
+<p>sensor_msgs 是一种消息类型</p>
+<p>apriltag_ros 是识别 aptiltag 码的 ros 包</p>
+</blockquote>
+<ol start="5">
+<li>进入 src 目录编辑源文件（C++代码进入 src，python 文件需要另外创建 script 文件夹）</li>
+</ol>
+<ul>
+<li>命令行输入：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..  退回上级目录 wksp</span><br><span class="line">code .  打开 vscode</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/blog_dog_apriltag/1-3.png" alt="Alt text"></p>
+<ul>
+<li>点击信任文件夹</li>
+</ul>
+<p><img src="/images/blog_dog_apriltag/1-4.png" alt="Alt text"></p>
+<ul>
+<li>在左侧文件管理器 src&#x2F;camera_move&#x2F;src 目录处右键，创建 cpp 文件（文件名为 camera_pub，用于实现相机图像信息发布</li>
+</ul>
+<p><img src="/images/blog_dog_apriltag/1-5.png" alt="Alt text"></p>
+<blockquote>
+<p>注意 cpp 后缀<br><img src="/images/blog_dog_apriltag/1-6.png" alt="Alt text"></p>
+</blockquote>
+<ul>
+<li><p>编写代码如下，链接打开为代码，解析在注释中：</p>
+</li>
+<li><p>camera_pub.cc 代码：<a href="https://paste.ubuntu.com/p/5MBb2VwrHV/" title="camera_pub"><a href="https://paste.ubuntu.com/p/jrrPgJZG5W/">Ubuntu Pastebin</a></a></p>
+</li>
+</ul>
+<ol start="6">
+<li>配置 CmakeLists.txt 文件夹：</li>
+</ol>
+<blockquote>
+<p>140 行左右：<br>add_executable(camera_pub src&#x2F;camera_pub.cpp)<br>154 行左右：<br>target_link_libraries(camera_pub<br>${catkin_LIBRARIES}<br>)</p>
+</blockquote>
+<ol start="7">
+<li>编译运行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><br><br><strong><font color=red>问题 1：若出现报错，提示 apriltag_ros 功能包没有安装，如图：</font></strong><br><img src="/images/blog_dog_apriltag/1-7.png" alt="Alt text"></p>
+<ul>
+<li>则安装 apriltag_ros 包，将源码拷贝到 ros 工作空间中的 src 目录下：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/AprilRobotics/apriltag\_ros.git   <span class="comment">#在 src 文件夹内</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>若一直 clone 失败，注意检查机器狗对应板卡是否插入网卡，再通过 ifconfig 查看 eth0 是否存在，若存在，使用 sudo ifconfig eth0 down 命令关闭 eth0（密码 123），再重试 git clone 命令，可以尝试先 ping github.com，ping 通后，再进行 git clone<br><img src="/images/blog_dog_apriltag/1-8.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-9.png" alt="Alt text"></p>
+</li>
+<li><p>如果一直访问 github 网址失败，也可以直接下载压缩包，U 盘传入再解压；</p>
+</li>
+<li><p>成功后，工作空间下的 src 目录会多出一个 apriltag_ros 功能包；<br><img src="/images/blog_dog_apriltag/1-10.png" alt="Alt text"></p>
+</li>
+<li><p>这时重新编译：</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p><br><br><strong><font color=red>问题 2：若出现类似的缺少功能包问题，下载需要的功能包即可</font></strong></p>
+<p><img src="/images/blog_dog_apriltag/1-11.png" alt="Alt text"></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install ros-melodic-apriltag</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用 apt-get 需要机器狗联网，否则需要上 github 搜索对应功能包，用压缩包的方式安装，若出现类似套娃式的依赖包缺失，可以先</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt-get install aptitude</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>然后用 aptitude 代替 apt-get 下载，这个工具会帮助下载所有需要的依赖包</li>
+</ul>
+<p><br><br><strong><font color=red>问题 3：若出现类似的 opencv 路径问题，是因为 NVIDIA 的 32.3.1image 自带的是 opencv4 版本，把 opencv 命名成了 opencv4</font></strong><br><img src="/images/blog_dog_apriltag/1-12.png" alt="Alt text"></p>
+<ul>
+<li><p>解决办法可以根据博客：<a href="https://blog.csdn.net/qq_43310597/article/details/109256838">Project ‘cv_bridge‘ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv‘ as an include dir, which is not found.的解决方法_project ‘cv_bridge’ specifies ‘&#x2F;usr&#x2F;include&#x2F;opencv-CSDN 博客</a></p>
+</li>
+<li><p>找到对应的文件，修改 opencv 为 opencv4，这是让功能包适应系统环境</p>
+</li>
+<li><p>也可以如博客内评论所说，将 opencv 的命名软连接到 opencv4 上，这是修改系统环境，可以适配大部分功能包<br><img src="/images/blog_dog_apriltag/1-13.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 4：会发现之前的 apriltag_ros 功能包成功通过编译，但在宇树相机部分出现错误，这是因为没有配置好宇树相关的 sdk 文件</font></strong><br><img src="/images/blog_dog_apriltag/1-14.png" alt="Alt text"></p>
+<ul>
+<li><p>将相机 sdk&#x2F;include 中的三个文件复制进 camera_move 功能包的 include 中<br><img src="/images/blog_dog_apriltag/1-15.png" alt="Alt text"></p>
+</li>
+<li><p>将相机 sdk 的 lib 文件夹复制进 camera_move 功能包中<br><img src="/images/blog_dog_apriltag/1-16.png" alt="Alt text"></p>
+</li>
+<li><p>最后根据相机 sdk 中的 CMakeLists.txt 配置功能包中的 CMakeLists.txt：</p>
+</li>
+<li><p>复制蓝字部分<br><img src="/images/blog_dog_apriltag/1-17.png" alt="Alt text"></p>
+</li>
+<li><p>取消 include 的注释<br><img src="/images/blog_dog_apriltag/1-18.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-19.png" alt="Alt text"></p>
+</li>
+<li><p>在这后面增加${SDKLIBS}<br><img src="/images/blog_dog_apriltag/1-20.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-21.png" alt="Alt text"></p>
+</li>
+<li><p>最后成功编译<br><img src="/images/blog_dog_apriltag/1-22.png" alt="Alt text"></p>
+</li>
+<li><p>这里提示的 warning 暂且不管，先尝试运行，发现失败：<br><img src="/images/blog_dog_apriltag/1-23.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 5：这是 cv_bridge 与 opencv4 版本冲突导致的，解决办法是将 cv_bridge 和自己功能包的依赖设为同一版本的 opencv，这里参考的是这篇文章，写得很详细：</font></strong></p>
+<p><a href="https://blog.csdn.net/weixin_43196818/article/details/124514966">解决 cv_bridge 与 opencv4 版本冲突问题_Thoven 的博客-CSDN 博客</a></p>
+<ul>
+<li><p>先下载 noetic 版本的 cv_bridge（狗上的 ubuntu 是 melodic 版，但不影响，noetic 版本的 cv_bridge 经过一定修改后在 melodic 上也可以使用）</p>
+</li>
+<li><p>在 <a href="https://github.com/ros-perception/vision_opencv/tree/noetic">https://github.com/ros-perception/vision_opencv/tree/noetic</a> 处下载，解压缩后将里面的 cv_bridge 文件夹拷贝到工作空间的 src 文件夹下，并将这个包重命名为 cv_bridge_new，以防混淆<br><img src="/images/blog_dog_apriltag/1-24.png" alt="Alt text"></p>
+</li>
+<li><p>同时修改 cv_bridge_new 功能包中 package.xml 和 CMakeLists.txt 中的包名<br><img src="/images/blog_dog_apriltag/1-25.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-26.png" alt="Alt text"></p>
+</li>
+<li><p>在 cv_bridge_new 中的 CMakeLists.txt 中指定为 camera_move 的 CMakeLists.txt 中指定的 opencv4 路径<br><img src="/images/blog_dog_apriltag/1-27.png" alt="Alt text"></p>
+</li>
+<li><p>注意，一般都存放在&#x2F;usr&#x2F;local&#x2F;share&#x2F;opencv4 中，可以通过</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> find / -iname “\*opencv4\*”</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>查找确认，这里 opencv4 的子目录没有 build 文件夹，因此省略后面的路径</p>
+</li>
+<li><p>然后在工作空间编译，会出现错误：<br><img src="/images/blog_dog_apriltag/1-28.png" alt="Alt text"></p>
+</li>
+<li><p>需要在 CMakeLists.txt 文件中修改 python37 为 python3<br><img src="/images/blog_dog_apriltag/1-29.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-30.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><strong>再编译出现第二个错误：</strong><br><img src="/images/blog_dog_apriltag/1-31.png" alt="Alt text"></p>
+<ul>
+<li><p>直接修改 cv_bridge_new&#x2F;src&#x2F;module.hpp 文件下 void* do_numpy_import()函数如下：<br><img src="/images/blog_dog_apriltag/1-32.png" alt="Alt text"></p>
+</li>
+<li><p>最后编译成功：<br><img src="/images/blog_dog_apriltag/1-33.png" alt="Alt text"></p>
+</li>
+<li><p>最后一步，在 camera_move 功能包中的 CMakeList.txt 和 package.xml（有三个地方需要修改）中修改 cv_bridge 名字：<br><img src="/images/blog_dog_apriltag/1-34.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-35.png" alt="Alt text"></p>
+</li>
+</ul>
+<p><br><br><strong><font color=red>问题 6：如果运行时一直出现 invalid devicenode 错误，反复检查配置文件都没有问题，检查是否添加了 stereo_camera_config.yaml 文件到 wksp 目录下。</font></strong></p>
+<p>因为是在 wksp 路径处进行的 rosrun，因此代码中寻找这个文件时，会以 wksp 路径作为源路径，所以这个 yaml 文件会在 wksp 中找，一旦找不到就会程序崩溃。<br><img src="/images/blog_dog_apriltag/1-36.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/1-37.png" alt="Alt text"></p>
+<ul>
+<li><p>最后成功启动得到的画面：<br><img src="/images/blog_dog_apriltag/1-38.png" alt="Alt text"></p>
+</li>
+<li><p>这样相机的图像就能获取到了。</p>
+</li>
+</ul>
+<h1 id="三、Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写"><a href="#三、Apriltag-信息接收功能包（detection-sub）的创建、配置和代码编写" class="headerlink" title="三、Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写"></a><a name="_toc23771"></a><a name="_toc11798"></a><strong>三、Apriltag 信息接收功能包（detection_sub）的创建、配置和代码编写</strong></h1><ol>
+<li>在 src 目录创建第二个 cpp 文件：detection_sub，用于接收 apriltag_ros 识别完 tag 后发出的话题，并且进行运动控制：<br><img src="/images/blog_dog_apriltag/2-1.png" alt="Alt text"></li>
+</ol>
+<ul>
+<li>代码如下，解析在注释中：<br>detection_sub 代码：<a href="https://paste.ubuntu.com/p/cBWYkQTF2W/">Ubuntu Pastebin</a></li>
+</ul>
+<ol start="2">
+<li><p>之后需要根据宇树运动 sdk 配置 CMakeList.txt 文件：<br><img src="/images/blog_dog_apriltag/2-2.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-3.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-4.png" alt="Alt text"></p>
+</li>
+<li><p>然后将需要的 lib 等文件添加，同样在 sdk 中寻找：<br><img src="/images/blog_dog_apriltag/2-5.png" alt="Alt text"><br><img src="/images/blog_dog_apriltag/2-6.png" alt="Alt text"></p>
+</li>
+<li><p>最后 catkin_make 编译成功：<br><img src="/images/blog_dog_apriltag/2-7.png" alt="Alt text"></p>
+</li>
+<li><p>用 rosrun camera_move detection_sub 尝试运行，若成功运行会出现：<br><img src="/images/blog_dog_apriltag/2-8.png" alt="Alt text"></p>
+</li>
+</ol>
+<h1 id="四、Launch-文件一键启动（start-launch）的创建、配置和代码编写"><a href="#四、Launch-文件一键启动（start-launch）的创建、配置和代码编写" class="headerlink" title="四、Launch 文件一键启动（start.launch）的创建、配置和代码编写"></a><a name="_toc6881"></a><a name="_toc28338"></a><strong>四、Launch 文件一键启动（start.launch）的创建、配置和代码编写</strong></h1><p>接下来编写一个 launch 文件用于一次性启动三个程序，camera_pub，apriltag_tag 识别，detection_sub：</p>
+<ol>
+<li>先在 sksp 路径下创建一个 launch 文件夹，再在文件夹里创建一个 start.launch 文件，编写：<br><img src="/images/blog_dog_apriltag/2-9.png" alt="Alt text"></li>
+</ol>
+<ul>
+<li>意思是按顺序启动三个程序，这里需要注意，用 launch 文件启动时，启动路径与 rosrun 不同，因此之前设置的 yaml 文件路径最好修改成绝对路径：<br><img src="/images/blog_dog_apriltag/2-10.png" alt="Alt text"></li>
+</ul>
+<ol start="2">
+<li><p>最后需要配置 apriltag_ros 中关于标签的配置信息，用于识别到规定好的标签：<br><img src="/images/blog_dog_apriltag/2-11.png" alt="Alt text"></p>
+</li>
+<li><p>编译后运行 launch 文件：<br>roslaunch camera_move start.launch</p>
+</li>
+<li><p>就能启动所有程序，实现根据 apriltag 识别结果进行位姿调整。</p>
+</li>
+</ol>
+<h1 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a><a name="_toc27334"></a><strong>五、总结</strong></h1><p><strong>结果：</strong></p>
+<ul>
+<li><p>项目最终能够成功通过 apriltag 让机器狗调整位姿，通过参数控制可以保持规定好的距离、角度，且准确度不错，并且延迟在可接受范围内。</p>
+</li>
+<li><p>不足：受到机器狗本身相机的分辨率限制，5cm 的 apriltag 码识别范围只在 1m 左右；另外，狗的位姿调节方式，即运动控制还存在一定问题，例如向右平移和向右转向的速度没有达到预期效果，pid 的效果也并不明显。</p>
+</li>
+</ul>
+<p><strong>改进：</strong></p>
+<ul>
+<li>研究清楚机器狗对向右方向的运动存在什么问题，尝试解决；在项目的基础上仔细调参，使 pid 真正发挥作用，让位姿调节的时间达到最低，最终能够应用在集群控制上。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>机器狗</category>
+        <category>Opencv</category>
+      </categories>
+      <tags>
+        <tag>Opencv</tag>
+        <tag>机器狗</tag>
+        <tag>Apriltag</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简陋零食系统</title>
+    <url>/2023/10/20/%E7%AE%80%E9%99%8B%E9%9B%B6%E9%A3%9F%E8%B4%AD%E4%B9%B0%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<p>实现了简易的零食系统，可以区分管理员和用户，管理员负责添加库存，用户可以购买零食，有简陋的网页交互，基于 gpt 编写^_^</p>
+<span id="more"></span>
+
+<h1 id="明确需求"><a href="#明确需求" class="headerlink" title="明确需求"></a>明确需求</h1><p>只有先明确了需求才能了解一个小项目的大纲，这样有助于我们逻辑清晰地完成目标，不至于缺漏。</p>
+<blockquote>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><ol>
+<li>数据库设计：设计数据库模式，以存储用户信息、零食库存、进货记录和账单信息。使用 MySQL 或其他关系型数据库管理系统存储数据。</li>
+<li>用户管理： 创建用户登录和身份验证系统，区分管理员和成员。使用 PHP 中的会话管理来跟踪用户的登录状态。</li>
+<li>成员区分： 在用户数据库中，添加一个字段来区分实习成员和正式成员。字段用于计算购买折扣。</li>
+<li>零食购买： 创建一个界面，允许用户浏览零食库存、选择要购买的零食和数量，根据用户身份（实习成员或正式成员）计算折扣，并生成账单。另外可以指定想要补充的零食名称和数量，选择性上传购买链接。</li>
+<li>进货操作： 管理员有权向仓库添加零食库存。创建一个界面，管理员可以输入零食的名称、数量和进货价格来添加库存。</li>
+<li>账单生成： 创建一个账单系统，记录每次购买的细节，包括零食名称、购买数量、单价、折扣和日期。在账单中跟踪实验室的余额，并记录每月的采购补贴。</li>
+<li>实验室余额： 管理员应能够查看实验室的余额，根据进货和销售来更新余额。</li>
+<li>数据展示： 创建一个界面，允许管理员和成员查看账单和库存情况，以便他们了解进货和购买的历史记录。</li>
+</ol>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><ol>
+<li>安全性考虑： 要确保系统的安全性，包括输入验证、防止 SQL 注入、密码加密和访问控制等方面。</li>
+<li>用户界面： 设计用户友好的用户界面，以便成员和管理员可以轻松地执行操作和浏览信息。</li>
+<li>数据备份： 定期备份数据库，以防止数据丢失。</li>
+</ol>
+</blockquote>
+<h1 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h1><p><img src="/images/blog_snack_sql/liucheng.png" alt="实现流程"></p>
+<h2 id="创建数据库-snack-和数据库表-users、snacks、purchase-history"><a href="#创建数据库-snack-和数据库表-users、snacks、purchase-history" class="headerlink" title="创建数据库 snack 和数据库表 users、snacks、purchase_history"></a>创建数据库 snack 和数据库表 users、snacks、purchase_history</h2><p>分别存储登录账号、零食信息、历史购买记录</p>
+<p><img src="/images/blog_snack_sql/sql_table.png" alt="table表展示"></p>
+<h2 id="创建用户登录的-html-表单：userlogin-html"><a href="#创建用户登录的-html-表单：userlogin-html" class="headerlink" title="创建用户登录的 html 表单：userlogin.html"></a>创建用户登录的 html 表单：userlogin.html</h2><p>用于用户输入用户名和密码来进行登录</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- &lt;form method=&quot;post&quot; action=&quot;userlogin_do.php&quot;&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="language-css"></span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">body</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">text-align</span>: center; <span class="comment">/* 居中显示文本 */</span></span></span><br><span class="line"><span class="language-css">    <span class="attribute">padding</span>: <span class="number">20px</span>; <span class="comment">/* 增大上下行间距 */</span></span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-bottom</span>: <span class="number">20px</span>;</span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">label</span>,</span></span><br><span class="line"><span class="language-css">  <span class="selector-tag">input</span> &#123;</span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-top</span>: <span class="number">10px</span>; <span class="comment">/* 增大上下行间距 */</span></span></span><br><span class="line"><span class="language-css">    <span class="attribute">margin-bottom</span>: <span class="number">10px</span>; <span class="comment">/* 增大上下行间距 */</span></span></span><br><span class="line"><span class="language-css">  &#125;</span></span><br><span class="line"><span class="language-css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">&quot;post&quot;</span> <span class="attr">action</span>=<span class="string">&quot;http://localhost/userlogin_do.php&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>登录页面<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;输入你的登录名&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;password&quot;</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;输入密码&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;submit&quot;</span> <span class="attr">value</span>=<span class="string">&quot;登录&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-php-处理登录表单-userlogin-do-php"><a href="#创建-php-处理登录表单-userlogin-do-php" class="headerlink" title="创建 php 处理登录表单:userlogin_do.php"></a>创建 php 处理登录表单:userlogin_do.php</h2><p>用于判断用户名和密码是否符合，并且要区分管理员和用户</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=GBK&quot;</span>);         <span class="comment">//设置编码</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&quot;REQUEST_METHOD&quot;</span>] == <span class="string">&quot;POST&quot;</span>)</span><br><span class="line">&#123;</span><br><span class="line"><span class="comment">// 连接数据库，查询用户信息</span></span><br><span class="line"><span class="comment">// 这里需要使用适当的数据库连接方法和SQL查询来检查用户输入的用户名和密码是否匹配</span></span><br><span class="line">    <span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>; <span class="comment">// 数据库服务器主机名</span></span><br><span class="line">    <span class="variable">$username</span> = <span class="string">&quot;root&quot;</span>; <span class="comment">// 数据库用户名</span></span><br><span class="line">    <span class="variable">$password</span> = <span class="string">&quot;root&quot;</span>; <span class="comment">// 数据库密码</span></span><br><span class="line">    <span class="variable">$database</span> = <span class="string">&quot;snack&quot;</span>; <span class="comment">// 数据库名称</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建数据库连接</span></span><br><span class="line">    <span class="variable">$conn</span> = <span class="keyword">new</span> <span class="title function_ invoke__">mysqli</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$database</span>);</span><br><span class="line">    <span class="comment">// 检查连接是否成功</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$conn</span>-&gt;connect_error)</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;连接数据库失败: &quot;</span> . <span class="variable">$conn</span>-&gt;connect_error);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 从用户提交的表单数据中获取用户名</span></span><br><span class="line">    <span class="comment">// $_POST 是一个超全局数组，用于从 POST 请求中获取数据。POST 请求通常用于向服务器提交表单数据</span></span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&quot;username&quot;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&quot;password&quot;</span>];</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$password</span> == <span class="string">&quot;&quot;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;登陆失败，密码不能为空，请重试。&quot;</span>;</span><br><span class="line">        <span class="keyword">exit</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$hashed_password</span> = <span class="title function_ invoke__">password_hash</span>(<span class="variable">$password</span>, PASSWORD_DEFAULT);  <span class="comment">// 哈希处理</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询user信息</span></span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;SELECT * FROM users&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$result</span>-&gt;num_rows &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="variable">$user_name</span> = <span class="variable">$row</span>[<span class="string">&quot;username&quot;</span>];</span><br><span class="line">            <span class="variable">$user_password</span> = <span class="variable">$row</span>[<span class="string">&quot;password&quot;</span>];</span><br><span class="line">            <span class="variable">$user_role</span> = <span class="variable">$row</span>[<span class="string">&quot;role&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$user_name</span> == <span class="variable">$username</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$user_hashed_password</span> = <span class="title function_ invoke__">password_hash</span>(<span class="variable">$user_password</span>, PASSWORD_DEFAULT);  <span class="comment">// 哈希处理</span></span><br><span class="line"></span><br><span class="line">        <span class="variable">$user</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>();</span><br><span class="line">        <span class="comment">// $stored_role = $user[&quot;role&quot;];</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="title function_ invoke__">password_verify</span>(<span class="variable">$password</span>, <span class="variable">$user_hashed_password</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 用户名和密码匹配，登录成功</span></span><br><span class="line">            <span class="variable">$_SESSION</span>[<span class="string">&quot;username&quot;</span>] = <span class="variable">$username</span>;</span><br><span class="line">            <span class="variable">$_SESSION</span>[<span class="string">&quot;role&quot;</span>] = <span class="variable">$user_role</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 根据用户的角色重定向到不同的页面</span></span><br><span class="line">            <span class="keyword">if</span> (!<span class="title function_ invoke__">strcmp</span>(<span class="variable">$_SESSION</span>[<span class="string">&quot;role&quot;</span>], <span class="string">&quot;admin&quot;</span>))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: admin_dashboard.php&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: member_dashboard.php&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 密码不匹配</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;登录失败，请检查密码。&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 用户名不存在</span></span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;登录失败，请检查用户名。&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-php-处理不同身份的登录状况"><a href="#创建-php-处理不同身份的登录状况" class="headerlink" title="创建 php 处理不同身份的登录状况"></a>创建 php 处理不同身份的登录状况</h2><p>用户和管理员登陆后所需要实现的功能不同</p>
+<h3 id="管理员端：admin-dashboard-php"><a href="#管理员端：admin-dashboard-php" class="headerlink" title="管理员端：admin_dashboard.php"></a>管理员端：admin_dashboard.php</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=GBK&quot;</span>);         <span class="comment">//设置编码</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Admin Dashboard&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Welcome to the Admin Dashboard&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;你好, 管理员。 &lt;!-- 显示用户的用户名 --&gt;</span><br><span class="line">    &lt;!-- 在此添加成员仪表板的内容 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a href=<span class="string">&quot;logout.php&quot;</span>&gt;Logout&lt;/a&gt; &lt;!-- 提供注销链接 --&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="用户端：user-dashboard-php"><a href="#用户端：user-dashboard-php" class="headerlink" title="用户端：user_dashboard.php"></a>用户端：user_dashboard.php</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=GBK&quot;</span>);         <span class="comment">//设置编码</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Member Dashboard&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Welcome to the Member Dashboard&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;你好,  <span class="meta">&lt;?php</span> <span class="keyword">echo</span> <span class="variable">$_SESSION</span>[<span class="string">&quot;username&quot;</span>]; <span class="meta">?&gt;</span>! &lt;!-- 显示用户的用户名 --&gt;</span><br><span class="line">    &lt;!-- 在此添加成员仪表板的内容 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a href=<span class="string">&quot;logout.php&quot;</span>&gt;Logout&lt;/a&gt; &lt;!-- 提供注销链接 --&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建-php-提供注销功能：logout-php"><a href="#创建-php-提供注销功能：logout-php" class="headerlink" title="创建 php 提供注销功能：logout.php"></a>创建 php 提供注销功能：logout.php</h2><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">session_start</span>(); <span class="comment">// 启动会话</span></span><br><span class="line">    <span class="title function_ invoke__">session_unset</span>(); <span class="comment">// 清空会话数据</span></span><br><span class="line">    <span class="title function_ invoke__">session_destroy</span>(); <span class="comment">// 销毁会话</span></span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: userlogin.html&quot;</span>); <span class="comment">// 重定向到登录页面</span></span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="细化管理员端：admin-dashboard-php"><a href="#细化管理员端：admin-dashboard-php" class="headerlink" title="细化管理员端：admin_dashboard.php"></a>细化管理员端：admin_dashboard.php</h2><p>实现库存展示、添加库存的功能</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;Admin Dashboard&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body</span><br><span class="line">        &#123;</span><br><span class="line">            text-align: center; <span class="comment">/* 居中显示文本 */</span></span><br><span class="line">            padding: <span class="number">20</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">            margin-bottom : <span class="number">20</span>px;</span><br><span class="line">        &#125;</span><br><span class="line">        form</span><br><span class="line">        &#123;</span><br><span class="line">            display: inline-block; <span class="comment">/* 使表单元素水平排列 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        label, input</span><br><span class="line">        &#123;</span><br><span class="line">            margin-left : <span class="number">5</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">            margin-right : <span class="number">5</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Welcome to the Admin Dashboard&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt; 你好, 管理员。 &lt;!-- 显示用户的用户名 --&gt;</span><br><span class="line">    &lt;!-- 在此添加成员仪表板的内容 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a href=<span class="string">&quot;logout.php&quot;</span>&gt; 退出登录 &lt;br&gt; &lt;br&gt; &lt;/a&gt; &lt;!-- 提供注销链接 --&gt;</span><br><span class="line"></span><br><span class="line">    <span class="meta">&lt;?php</span></span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=utf-8&quot;</span>);         <span class="comment">//设置编码</span></span><br><span class="line">    <span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line">    <span class="variable">$servername</span> = <span class="string">&quot;localhost&quot;</span>; <span class="comment">// 数据库服务器主机名</span></span><br><span class="line">    <span class="variable">$username</span> = <span class="string">&quot;root&quot;</span>; <span class="comment">// 数据库用户名</span></span><br><span class="line">    <span class="variable">$password</span> = <span class="string">&quot;root&quot;</span>; <span class="comment">// 数据库密码</span></span><br><span class="line">    <span class="variable">$database</span> = <span class="string">&quot;snack&quot;</span>; <span class="comment">// 数据库名称</span></span><br><span class="line">    <span class="comment">// 创建数据库连接</span></span><br><span class="line">    <span class="variable">$conn</span> = <span class="keyword">new</span> <span class="title function_ invoke__">mysqli</span>(<span class="variable">$servername</span>, <span class="variable">$username</span>, <span class="variable">$password</span>, <span class="variable">$database</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询数据库中零食的信息，包括零食名称、snack_quantity 和 snack_sold</span></span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;SELECT snack_name, snack_quantity, snack_sold FROM snacks&quot;</span>;</span><br><span class="line">    <span class="variable">$result</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">query</span>(<span class="variable">$query</span>);  <span class="comment">// conn是数据库连接对象，代表与数据库服务器的连接，query执行查询语句，返回一个结果集</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$result</span>-&gt;num_rows &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>()) &#123;</span><br><span class="line">            <span class="variable">$snack_name</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_name&quot;</span>];</span><br><span class="line">            <span class="variable">$snack_quantity</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_quantity&quot;</span>];</span><br><span class="line">            <span class="variable">$snack_sold</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_sold&quot;</span>];</span><br><span class="line">            <span class="variable">$remaining_quantity</span> = <span class="variable">$snack_quantity</span> - <span class="variable">$snack_sold</span>;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 在表单中显示零食名称和库存</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;label for=&#x27;snack_<span class="subst">$snack_name</span>&#x27;&gt;<span class="subst">$snack_name</span> (库存: <span class="subst">$remaining_quantity</span>) &lt;br&gt;&lt;br&gt; &lt;/label&gt; \n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;查询到表单为空。&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">?&gt;</span></span><br><span class="line"></span><br><span class="line">&lt;!-- 添加库存 --&gt;</span><br><span class="line">    &lt;form method=<span class="string">&quot;post&quot;</span> action=<span class="string">&quot;admin_add_snack.php&quot;</span>&gt;</span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">&quot;snack_name&quot;</span>&gt;零食名称：&lt;/label&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;text&quot;</span> name=<span class="string">&quot;snack_name&quot;</span> id=<span class="string">&quot;snack_name&quot;</span> required&gt;</span><br><span class="line"></span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">&quot;snack_quantity&quot;</span>&gt;数量：&lt;/label&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;number&quot;</span> name=<span class="string">&quot;snack_quantity&quot;</span> id=<span class="string">&quot;snack_quantity&quot;</span> required&gt;</span><br><span class="line"></span><br><span class="line">        &lt;label <span class="keyword">for</span>=<span class="string">&quot;snack_price&quot;</span>&gt;进货价格：&lt;/label&gt;</span><br><span class="line">        &lt;input type=<span class="string">&quot;number&quot;</span> name=<span class="string">&quot;snack_price&quot;</span> id=<span class="string">&quot;snack_price&quot;</span> step=<span class="string">&quot;0.01&quot;</span> required&gt;</span><br><span class="line"></span><br><span class="line">        &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;添加库存&quot;</span>&gt;</span><br><span class="line">        &lt;br&gt;  &lt;!-- 换行 --&gt;</span><br><span class="line">    &lt;/form&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 实时更新，也许有用 --&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="comment">// 获取所有零食输入字段</span></span><br><span class="line">        <span class="keyword">var</span> snackInputs = document.<span class="title function_ invoke__">querySelectorAll</span>(<span class="string">&#x27;input[name^=&quot;snack_&quot;]&#x27;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加事件监听器以在输入字段更改时更新库存信息</span></span><br><span class="line">        snackInputs.<span class="title function_ invoke__">forEach</span>(function (input) &#123;</span><br><span class="line">            input.<span class="title function_ invoke__">addEventListener</span>(<span class="string">&#x27;input&#x27;</span>, function () &#123;</span><br><span class="line">                <span class="comment">// 获取零食名称和库存输入字段的值</span></span><br><span class="line">                <span class="keyword">var</span> snackName = this.name.<span class="title function_ invoke__">substring</span>(<span class="number">6</span>); <span class="comment">// 去掉前缀 &quot;snack_&quot;</span></span><br><span class="line">                <span class="keyword">var</span> remainingQuantity = <span class="title function_ invoke__">parseInt</span>(this.max) - <span class="title function_ invoke__">parseInt</span>(this.value);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 更新显示的库存信息</span></span><br><span class="line">                <span class="keyword">var</span> label = document.<span class="title function_ invoke__">querySelector</span>(<span class="string">&#x27;label[for=&quot;snack_&#x27;</span> + snackName + <span class="string">&#x27;&quot;]&#x27;</span>);</span><br><span class="line">                label.innerHTML = snackName + <span class="string">&#x27; (库存: &#x27;</span> + remainingQuantity + <span class="string">&#x27;)&#x27;</span>;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-php-实现添加库存功能：admin-add-snack-php"><a href="#创建-php-实现添加库存功能：admin-add-snack-php" class="headerlink" title="创建 php 实现添加库存功能：admin_add_snack.php"></a>创建 php 实现添加库存功能：admin_add_snack.php</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=utf8&quot;</span>);         <span class="comment">// 设置编码</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&quot;REQUEST_METHOD&quot;</span>] === <span class="string">&quot;POST&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// 获取表单提交的数据</span></span><br><span class="line">    <span class="variable">$snack_name</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_name&quot;</span>];</span><br><span class="line">    <span class="variable">$snack_quantity</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_quantity&quot;</span>];</span><br><span class="line">    <span class="variable">$snack_price</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_price&quot;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="variable">$encoding</span> = <span class="keyword">array</span>(<span class="string">&#x27;UTF-8&#x27;</span>, <span class="string">&#x27;ASCII&#x27;</span>, <span class="string">&#x27;GB2312&#x27;</span>, <span class="string">&#x27;GBK&#x27;</span>);</span><br><span class="line">    <span class="variable">$utf8_snack_name</span> = <span class="title function_ invoke__">mb_convert_encoding</span>(<span class="variable">$snack_name</span>, <span class="string">&quot;UTF-8&quot;</span>, <span class="title function_ invoke__">mb_detect_encoding</span>(<span class="variable">$snack_name</span>, <span class="variable">$encoding</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接到数据库</span></span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;snack&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$conn</span>)</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;数据库连接失败: &quot;</span> . <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line"></span><br><span class="line">    <span class="variable">$snackid</span> = <span class="literal">null</span>; <span class="comment">// 初始化 snackid</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询是否有同名零食存在</span></span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;SELECT snack_id FROM snacks WHERE snack_name = ?&quot;</span>;</span><br><span class="line">    <span class="variable">$stmt0</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$query</span>);</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;s&quot;</span>, <span class="variable">$utf8_snack_name</span>);</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">store_result</span>();</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">bind_result</span>(<span class="variable">$snackid</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">fetch</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 零食已存在，执行更新操作</span></span><br><span class="line">        <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"></span><br><span class="line">        <span class="variable">$update_query</span> = <span class="string">&quot;UPDATE snacks SET snack_quantity = snack_quantity + ?, snack_price = snack_price + ? WHERE snack_id = ?&quot;</span>;</span><br><span class="line">        <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$update_query</span>);</span><br><span class="line">        <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;idi&quot;</span>, <span class="variable">$snack_quantity</span>, <span class="variable">$snack_price</span>, <span class="variable">$snackid</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>())</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;The snack was successfully added to inventory.&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;Error adding snacks: &quot;</span> . <span class="variable">$stmt</span>-&gt;error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 零食不存在，执行插入操作</span></span><br><span class="line">        <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"></span><br><span class="line">        <span class="variable">$insert_query</span> = <span class="string">&quot;INSERT INTO snacks (date, snack_name, snack_sold, snack_quantity, snack_price) VALUES (NULL, ?, 0, ?, ?)&quot;</span>;</span><br><span class="line">        <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$insert_query</span>);</span><br><span class="line">        <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;sid&quot;</span>, <span class="variable">$utf8_snack_name</span>, <span class="variable">$snack_quantity</span>, <span class="variable">$snack_price</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>())</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;The snack was successfully added to inventory.&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;Error adding snacks: &quot;</span> . <span class="variable">$stmt</span>-&gt;error;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: admin_dashboard.php&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">    <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="细化用户端：user-dashboard-php"><a href="#细化用户端：user-dashboard-php" class="headerlink" title="细化用户端：user_dashboard.php"></a>细化用户端：user_dashboard.php</h2><p>实现购买零食功能</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;utf-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;Member Dashboard&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        body</span><br><span class="line">        &#123;</span><br><span class="line">            text-align: center; <span class="comment">/* 居中显示文本 */</span></span><br><span class="line">            padding: <span class="number">20</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">            margin-bottom : <span class="number">20</span>px;</span><br><span class="line">        &#125;</span><br><span class="line">        form</span><br><span class="line">        &#123;</span><br><span class="line">            display: inline-block; <span class="comment">/* 使表单元素水平排列 */</span></span><br><span class="line">        &#125;</span><br><span class="line">        label, input</span><br><span class="line">        &#123;</span><br><span class="line">            margin-left : <span class="number">5</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">            margin-right : <span class="number">5</span>px; <span class="comment">/* 增大上下行间距 */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;h1&gt;Welcome to the Member Dashboard&lt;/h1&gt;</span><br><span class="line">    &lt;p&gt;你好,  <span class="meta">&lt;?php</span> <span class="title function_ invoke__">session_start</span>(); <span class="keyword">echo</span> <span class="variable">$_SESSION</span>[<span class="string">&quot;username&quot;</span>]; <span class="meta">?&gt;</span>! &lt;!-- 显示用户的用户名 --&gt;</span><br><span class="line">    &lt;!-- 在此添加成员仪表板的内容 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;a href=<span class="string">&quot;logout.php&quot;</span>&gt; 退出登录 &lt;br&gt; &lt;br&gt; &lt;/a&gt; &lt;!-- 提供注销链接 --&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div <span class="class"><span class="keyword">class</span>=&quot;<span class="title">inventory</span>&quot;&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">h2</span>&gt;零食库存 &lt;<span class="title">br</span>&gt; &lt;/<span class="title">h2</span>&gt;</span></span><br><span class="line"><span class="class">        &lt;<span class="title">form</span> <span class="title">method</span>=&quot;<span class="title">post</span>&quot; <span class="title">action</span>=&quot;<span class="title">member_purchase_snacks</span>.<span class="title">php</span>&quot;&gt;</span></span><br><span class="line"><span class="class">            &lt;?<span class="title">php</span></span></span><br><span class="line"><span class="class">            <span class="title">header</span>(&quot;<span class="title">content</span>-<span class="title">type</span>:<span class="title">text</span>/<span class="title">html</span>; <span class="title">charset</span>=<span class="title">utf</span>-8&quot;);         //设置编码</span></span><br><span class="line"><span class="class">            <span class="title">session_start</span>();</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">            $<span class="title">servername</span> = &quot;<span class="title">localhost</span>&quot;; // 数据库服务器主机名</span></span><br><span class="line"><span class="class">            $<span class="title">username</span> = &quot;<span class="title">root</span>&quot;; // 数据库用户名</span></span><br><span class="line"><span class="class">            $<span class="title">password</span> = &quot;<span class="title">root</span>&quot;; // 数据库密码</span></span><br><span class="line"><span class="class">            $<span class="title">database</span> = &quot;<span class="title">snack</span>&quot;; // 数据库名称</span></span><br><span class="line"><span class="class">            // 创建数据库连接</span></span><br><span class="line"><span class="class">            $<span class="title">conn</span> = <span class="title">new</span> <span class="title">mysqli</span>($<span class="title">servername</span>, $<span class="title">username</span>, $<span class="title">password</span>, $<span class="title">database</span>);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">            // 查询数据库中零食的信息，包括零食名称、<span class="title">snack_quantity</span>和<span class="title">snack_price</span></span></span><br><span class="line"><span class="class">            $<span class="title">query</span> = &quot;<span class="title">SELECT</span> <span class="title">snack_name</span>, <span class="title">snack_sold</span>, <span class="title">snack_quantity</span>, <span class="title">snack_price</span> <span class="title">FROM</span> <span class="title">snacks</span>&quot;;</span></span><br><span class="line"><span class="class">            $<span class="title">result</span> = $<span class="title">conn</span>-&gt;<span class="title">query</span>($<span class="title">query</span>);</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">            <span class="title">if</span> ($<span class="title">result</span>-&gt;<span class="title">num_rows</span> &gt; 0)</span></span><br><span class="line"><span class="class">            </span>&#123;</span><br><span class="line">                <span class="keyword">while</span> (<span class="variable">$row</span> = <span class="variable">$result</span>-&gt;<span class="title function_ invoke__">fetch_assoc</span>())</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="variable">$snack_name</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_name&quot;</span>];</span><br><span class="line">                    <span class="variable">$snack_quantity</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_quantity&quot;</span>];</span><br><span class="line">                    <span class="variable">$snack_price</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_price&quot;</span>];</span><br><span class="line">                    <span class="variable">$snack_sold</span> = <span class="variable">$row</span>[<span class="string">&quot;snack_sold&quot;</span>];</span><br><span class="line">                    <span class="variable">$remaining_quantity</span> = <span class="variable">$snack_quantity</span> - <span class="variable">$snack_sold</span>;</span><br><span class="line">                    <span class="variable">$snack_monovalent</span> = <span class="title function_ invoke__">number_format</span>(<span class="variable">$snack_price</span> / <span class="variable">$snack_quantity</span>, <span class="number">2</span>);  <span class="comment">//单价，小数点后两位</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">// 在表单中显示零食信息，包括名称、数量、单价和让用户选择购买的数量</span></span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;label for=&#x27;snack_<span class="subst">$snack_name</span>&#x27;&gt;<span class="subst">$snack_name</span> (库存: <span class="subst">$remaining_quantity</span>)&lt;/label&gt;&quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;label&gt;单价: <span class="subst">$snack_monovalent</span>&lt;/label&gt;&quot;</span>;</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">&quot;&lt;input type=&#x27;number&#x27; name=&#x27;snack_<span class="subst">$snack_name</span>&#x27; id=&#x27;snack_<span class="subst">$snack_name</span>&#x27; value=&#x27;0&#x27; min=&#x27;0&#x27; max=&#x27;<span class="subst">$remaining_quantity</span>&#x27;&gt;&lt;br&gt;&lt;br&gt;&quot;</span>;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">&quot;库存为空。&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="meta">?&gt;</span></span><br><span class="line">            &lt;br&gt;</span><br><span class="line">            &lt;input type=<span class="string">&quot;submit&quot;</span> value=<span class="string">&quot;购买&quot;</span>&gt;</span><br><span class="line">        &lt;/form&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建-php-实现购买零食功能：member-purchase-snacks-php"><a href="#创建-php-实现购买零食功能：member-purchase-snacks-php" class="headerlink" title="创建 php 实现购买零食功能：member_purchase_snacks.php"></a>创建 php 实现购买零食功能：member_purchase_snacks.php</h3><figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="title function_ invoke__">header</span>(<span class="string">&quot;content-type:text/html; charset=utf8&quot;</span>);         <span class="comment">// 设置编码</span></span><br><span class="line"><span class="title function_ invoke__">session_start</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="variable">$_SERVER</span>[<span class="string">&quot;REQUEST_METHOD&quot;</span>] === <span class="string">&quot;POST&quot;</span>) &#123;</span><br><span class="line">    <span class="comment">// 获取表单提交的数据</span></span><br><span class="line">    <span class="variable">$snack_name</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_name&quot;</span>];</span><br><span class="line">    <span class="variable">$snack_quantity</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_quantity&quot;</span>];</span><br><span class="line">    <span class="variable">$snack_price</span> = <span class="variable">$_POST</span>[<span class="string">&quot;snack_price&quot;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="variable">$encoding</span> = <span class="keyword">array</span>(<span class="string">&#x27;UTF-8&#x27;</span>, <span class="string">&#x27;ASCII&#x27;</span>, <span class="string">&#x27;GB2312&#x27;</span>, <span class="string">&#x27;GBK&#x27;</span>);</span><br><span class="line">    <span class="variable">$utf8_snack_name</span> = <span class="title function_ invoke__">mb_convert_encoding</span>(<span class="variable">$snack_name</span>, <span class="string">&quot;UTF-8&quot;</span>, <span class="title function_ invoke__">mb_detect_encoding</span>(<span class="variable">$snack_name</span>, <span class="variable">$encoding</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 连接到数据库</span></span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;snack&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!<span class="variable">$conn</span>)</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;数据库连接失败: &quot;</span> . <span class="title function_ invoke__">mysqli_connect_error</span>());</span><br><span class="line"></span><br><span class="line">    <span class="variable">$snackid</span> = <span class="literal">null</span>; <span class="comment">// 初始化 snackid</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查询是否有同名零食存在</span></span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;SELECT snack_id FROM snacks WHERE snack_name = ?&quot;</span>;</span><br><span class="line">    <span class="variable">$stmt0</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$query</span>);</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;s&quot;</span>, <span class="variable">$utf8_snack_name</span>);</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">store_result</span>();</span><br><span class="line">    <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">bind_result</span>(<span class="variable">$snackid</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">fetch</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 零食已存在，执行更新操作</span></span><br><span class="line">        <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"></span><br><span class="line">        <span class="variable">$update_query</span> = <span class="string">&quot;UPDATE snacks SET snack_quantity = snack_quantity + ?, snack_price = snack_price + ? WHERE snack_id = ?&quot;</span>;</span><br><span class="line">        <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$update_query</span>);</span><br><span class="line">        <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;idi&quot;</span>, <span class="variable">$snack_quantity</span>, <span class="variable">$snack_price</span>, <span class="variable">$snackid</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>())</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;The snack was successfully added to inventory.&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;Error adding snacks: &quot;</span> . <span class="variable">$stmt</span>-&gt;error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 零食不存在，执行插入操作</span></span><br><span class="line">        <span class="variable">$stmt0</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line"></span><br><span class="line">        <span class="variable">$insert_query</span> = <span class="string">&quot;INSERT INTO snacks (date, snack_name, snack_sold, snack_quantity, snack_price) VALUES (NULL, ?, 0, ?, ?)&quot;</span>;</span><br><span class="line">        <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="variable">$insert_query</span>);</span><br><span class="line">        <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;sid&quot;</span>, <span class="variable">$utf8_snack_name</span>, <span class="variable">$snack_quantity</span>, <span class="variable">$snack_price</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>())</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;The snack was successfully added to inventory.&quot;</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;Error adding snacks: &quot;</span> . <span class="variable">$stmt</span>-&gt;error;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">header</span>(<span class="string">&quot;Location: admin_dashboard.php&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">    <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">close</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h1><p>最终创建的所有文件如下（hello world 省略）：<br><img src="/images/blog_snack_sql/file.png" alt="文件展示"></p>
+<!-- <iframe height=498 width=510 src="https://www.bilibili.com/video/BV1494y1L7un/"> -->
+<!-- <div style="position: relative; width: 100%; height: 0; padding-bottom: 75%;">
+<iframe
+src="https://www.bilibili.com/video/BV1494y1L7un/" scrolling="no" border="0"
+frameborder="no" framespacing="0" allowfullscreen="true" style="position: absolute; width: 100%;
+height: 100%; left: 0; top: 0;"> </iframe></div> -->
+
+<!-- <video src="https://www.bilibili.com/video/BV1494y1L7un/" controls="controls" style="max-width: 100%; display: block; margin-left: auto; margin-right: auto;">
+your browser does not support the video tag
+</video> -->
+
+<iframe width="960" height="600" src="https://www.bilibili.com/video/BV1494y1L7un/" frameborder="0" allowfullscreen></iframe>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>php</tag>
+        <tag>mysql</tag>
       </tags>
   </entry>
 </search>
