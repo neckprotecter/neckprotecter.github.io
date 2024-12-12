@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>你好，世界</title>
+    <title>hello, world</title>
     <url>/2024/12/12/hello-world/</url>
-    <content><![CDATA[<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
+    <content><![CDATA[<blockquote>
+<p>自动生成的，但不想删掉qwq</p>
+</blockquote>
+<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
 <span id="more"></span>
 
 <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
@@ -27,7 +30,7 @@
     <title>ubuntu20.04常见工具下载安装</title>
     <url>/2024/12/12/ubuntu20-04%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h1 id="可能有用的工具"><a href="#可能有用的工具" class="headerlink" title="可能有用的工具"></a>可能有用的工具</h1><blockquote>
-<p>本篇文章记录了实测在 ubuntu20.04 可用的工具安装方法，注意主要为安装方法，下载链接随缘放出。<br>推荐下载文章中指定的版本，也许你下载的其他更新或更老的版本就是我踩过的坑。</p>
+<p>本篇文章记录了实测在 ubuntu20.04 可用的工具安装方法，注意主要为安装方法，下载链接随缘放出。<br>推荐下载文章中指定的版本，也许你下载的其他更新或更老的版本就是我踩过的坑 T T</p>
 </blockquote>
 <span id="more"></span>
 
