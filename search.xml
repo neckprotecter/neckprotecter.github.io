@@ -1,318 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>ubuntu20.04常见工具下载安装</title>
-    <url>/2024/12/12/05_blog_ubuntuTools/</url>
-    <content><![CDATA[<h1 id="可能有用的工具"><a href="#可能有用的工具" class="headerlink" title="可能有用的工具"></a>可能有用的工具</h1><blockquote>
-<p>本篇文章记录了实测在 ubuntu20.04 可用的工具安装方法，注意主要为安装方法，下载链接随缘放出。<br>推荐下载文章中指定的版本，也许你下载的其他更新或更老的版本就是我踩过的坑 T T</p>
-</blockquote>
+    <title>在宇树机器狗上用相机sdk打开相机并使用Apriltag</title>
+    <url>/2023/10/15/01_blog_sdk_apriltag/</url>
+    <content><![CDATA[<p>解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题</p>
+<h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
 <span id="more"></span>
 
-<h2 id="Clash-verge"><a href="#Clash-verge" class="headerlink" title="Clash-verge"></a>Clash-verge</h2><p>更新的版本实测无法使用，最好下载下面指定的版本。有其他更多可用版本欢迎补充。</p>
+<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/blog_sdk_apriltag/apriltag_topicshow.png" alt="apriltag话题"></p>
 <ul>
-<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./clash-verge_1.7.7_amd64.deb</span><br></pre></td></tr></table></figure></li>
-<li>安装后在应用列表查找即可，订阅链接需自行获取。</li>
-</ul>
-<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>文字编辑工具，不多说。</p>
+<li>可以知道 apriltag 功能包需要接收 <strong>&#x2F;camera&#x2F;image_rect</strong> 和 <strong>&#x2F;camera&#x2F;camera_info</strong> 两个话题。</li>
+<li>而调用相机 sdk 之后，得到的图像就可以作为 image_rect 话题的输入，那么问题就到了 camera_info 这个话题上，有两个方面需要解决：这个话题是什么，这个话题怎么给。</li>
+<li>首先，这个话题是关于相机的一些参数信息，根据博客：<a href="https://blog.csdn.net/wangmj_hdu/article/details/115002514">https://blog.csdn.net/wangmj_hdu/article/details/115002514</a> 中的分享，我们可以得知这些参数的含义：<blockquote>
 <ul>
-<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/vscode.list</span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install code</span><br></pre></td></tr></table></figure></li>
+<li>header：标准消息头</li>
+<li>seq：序列 ID，连续递增的 ID 号</li>
+<li>stamp：两个时间戳</li>
+<li>frame_id：与此数据相关联的帧 ID</li>
+<li>height：图像尺寸，height 代表高度，（height*width）相机的分辨率，以像素为单位</li>
+<li>width：图像尺寸，width 代表宽度，（height*width）相机分辨率，以像素为单位</li>
+<li>distortion_model：指定了相机畸变模型，对于大多数相机，”plumb_bob”简单的径向和切向畸变模型就足够了</li>
+<li>D：畸变参数，取决于畸变模型，(k1, k2, t1, t2, k3)，（我的这个 usb 相机号称是无畸变相机，但通过标定结果可以看出来还是存在畸变的，是不是被商家坑了，哈哈哈）</li>
+<li>K：相机内参矩阵，使用焦距(fx, fy)和主点坐标(cx, cy)，单位为像素，内参矩阵可以将相机坐标中的 3D 点投影到 2D 像素坐标<br><img src="/images/blog_sdk_apriltag/K.png" alt="Alt text"></li>
+<li>R：旋转矩阵，将相机坐标系统对准理想的立体图像平面，使两张立体图像中的极线平行</li>
+<li>P：投影矩阵<br><img src="/images/blog_sdk_apriltag/P.png" alt="Alt text"><br>左边 3*3 矩阵是相机的内参矩阵，将相机坐标中的 3D 点投影到 2D 像素坐标，可能与相机内参 K 不同。对于单目相机 Tx &#x3D; Ty &#x3D; 0。对于双目相机，Tx 和 Ty 有所不同。</li>
+<li>binning_x：图像下采样参数，水平方向</li>
+<li>binning_y：图像下采样参数，竖直方向</li>
+<li>(width &#x2F; binning_x) x (height &#x2F; binning_y)</li>
+<li>下采样：binning_x &#x3D; binning_y ＞ 1。缩小图像，生成对应图像的缩略图，使得图像符合显示区域的大小。</li>
+<li>roi：感兴趣区域定义，即完整图像上的一个矩形子窗口</li>
 </ul>
-<h2 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h2><p>这是一个很好用的贴图工具，能通过截图的方法将你需要的内容置顶在界面上，方便查看某些教程，或进行图像的参考对比。</p>
-<ul>
-<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./Snipaste-2.10.2-x86_64.AppImage</span><br></pre></td></tr></table></figure></li>
-<li>其实是启动方法。</li>
-<li>配置自启动：  <ul>
-<li>在应用列表中找到 <code>启动应用程序</code>；</li>
-<li>找到 <code>添加</code>；</li>
-<li>自行输入名字，如<code>Snipaste</code>；</li>
-<li>在 <code>命令</code> 处找到 <code>Snipaste-2.10.2-x86_64.AppImage</code> 的路径，添加即可。</li>
-</ul>
-</li>
-</ul>
-<h2 id="Edge"><a href="#Edge" class="headerlink" title="Edge"></a>Edge</h2><p>浏览器，主要是可以同步账号，比较方便。</p>
-<ul>
-<li>安装方法：<ul>
-<li>在官网下载deb包；</li>
-<li>输入：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ./microsoft-edge-stable_131.0.2903.86-1_amd64.deb</span><br></pre></td></tr></table></figure></li>
-<li>安装后在应用列表查找即可。</li>
-</ul>
-</li>
-</ul>
-<h2 id="Raylink"><a href="#Raylink" class="headerlink" title="Raylink"></a>Raylink</h2><p>远程连接工具，免费前提下支持三个可连接设备。值得一提的是有移动端，不占用连接设备数，可以用手机远程PC。</p>
-<ul>
-<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./RayLink_8.0.4.8.deb</span><br></pre></td></tr></table></figure></li>
-<li>安装后在应用列表查找。</li>
-</ul>
-<h2 id="Anaconda3"><a href="#Anaconda3" class="headerlink" title="Anaconda3"></a>Anaconda3</h2><p>参考博客写得很清楚，还附带了YOLOv5的部署方法，部署过很多次，没有问题。</p>
-<ul>
-<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash ./Anaconda3-2024.06-1-Linux-x86_64.sh</span><br></pre></td></tr></table></figure></li>
-<li>后续默认yes即可，在路径选择时根据需要修改。<blockquote>
-<p>参考博客：<a href="https://blog.csdn.net/weixin_70026476/article/details/128184135">https://blog.csdn.net/weixin_70026476/article/details/128184135</a></p>
 </blockquote>
 </li>
+<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：</li>
 </ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 相机信息处理</span></span><br><span class="line"><span class="function">sensor_msgs::CameraInfo <span class="title">getCameraInfo</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;                                     <span class="comment">// extract cameraInfo.</span></span><br><span class="line">    sensor_msgs::CameraInfo cam_info; <span class="comment">// 信息对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相机参数赋值，K矩阵，D畸变参数等都根据宇树提供的相机标定参数计算得出</span></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; D&#123;</span><br><span class="line">        <span class="number">-2.0874507966557976e-01</span>, <span class="number">2.6922545819193944e-02</span>,</span><br><span class="line">        <span class="number">1.4887812678896397e-03</span>, <span class="number">3.5422189471526382e-03</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; K =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">1.9086173551086370e+02</span>, <span class="number">5.6239632677513474e-01</span>, <span class="number">2.2299573347226581e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">1.9608536122280060e+02</span>, <span class="number">1.9553241319375684e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 12&gt; P =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">192.85</span>, <span class="number">0</span>, <span class="number">222.99</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">196.08</span>, <span class="number">195.53</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; r =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">-9.9992248085182622e-01</span>, <span class="number">1.1878079705669157e-02</span>, <span class="number">-3.7341009138761533e-03</span>,</span><br><span class="line">            <span class="number">-1.1878162517594585e-02</span>, <span class="number">-9.9992945213910256e-01</span>, <span class="number">0.</span>,</span><br><span class="line">            <span class="number">-3.7338374810443040e-03</span>, <span class="number">4.4354257512119405e-05</span>, <span class="number">9.9999302822087976e-01</span>&#125;;</span><br><span class="line"></span><br><span class="line">    cam_info.height = <span class="number">480</span>;</span><br><span class="line">    cam_info.width = <span class="number">640</span>;</span><br><span class="line">    cam_info.distortion_model = <span class="string">&quot;plumb_bob&quot;</span>;</span><br><span class="line">    cam_info.D = D;</span><br><span class="line">    cam_info.K = K;</span><br><span class="line">    cam_info.P = P;</span><br><span class="line">    cam_info.R = r;</span><br><span class="line">    cam_info.binning_x = <span class="number">0</span>;</span><br><span class="line">    cam_info.binning_y = <span class="number">0</span>;</span><br><span class="line">    cam_info.header.frame_id = <span class="string">&quot;camera&quot;</span>; <span class="comment">// frame_id为camera，也就是相机名字</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cam_info;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (cam.<span class="built_in">isOpened</span>())</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="comment">// 同时获取左右两个相机画面，但后续只用到左侧</span></span><br><span class="line">       cv::Mat left, right;</span><br><span class="line">       <span class="keyword">if</span> (!cam.<span class="built_in">getRectStereoFrame</span>(left, right)) <span class="comment">///&lt; get rectify left,right frame</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">           <span class="keyword">continue</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       cv::<span class="built_in">flip</span>(left, left, <span class="number">-1</span>);         <span class="comment">// 原图像为翻转图像，使用该函数翻转为正图像</span></span><br><span class="line">       cv::<span class="built_in">imshow</span>(<span class="string">&quot;Longlat_Rect&quot;</span>, left); <span class="comment">// 将图像显示在屏幕上</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// 信息整合发布</span></span><br><span class="line">       <span class="comment">// 图像信息需要信息头header</span></span><br><span class="line">       std_msgs::Header image_header;</span><br><span class="line">       image_header.frame_id = <span class="string">&quot;camera&quot;</span>;</span><br><span class="line">       image_header.stamp = ros::Time::<span class="built_in">now</span>();</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 相机信息赋值，函数见最上方</span></span><br><span class="line">       camera_info_msg = <span class="built_in">getCameraInfo</span>();</span><br><span class="line">       camera_info_msg.header.stamp = image_header.stamp; <span class="comment">// 相机信息和图像信息的时间戳要相同</span></span><br><span class="line"></span><br><span class="line">       sensor_msgs::ImagePtr image_msg = cv_bridge::<span class="built_in">CvImage</span>(image_header, <span class="string">&quot;bgr8&quot;</span>, left).<span class="built_in">toImageMsg</span>(); <span class="comment">// 将图像信息的信息头header和图像left整合</span></span><br><span class="line">       pub_image.<span class="built_in">publish</span>(image_msg);                                                                  <span class="comment">// 图像信息发布</span></span><br><span class="line">       pub_info.<span class="built_in">publish</span>(camera_info_msg);                                                             <span class="comment">// 相机信息发布</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="type">char</span> key = cv::<span class="built_in">waitKey</span>(<span class="number">10</span>);</span><br><span class="line">       <span class="keyword">if</span> (key == <span class="number">27</span>) <span class="comment">// esc键退出</span></span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>完整代码见：</p>
 ]]></content>
       <categories>
-        <category>教程</category>
+        <category>技术</category>
+        <category>机器狗</category>
+        <category>Opencv</category>
       </categories>
       <tags>
-        <tag>ubuntu</tag>
-        <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>云深处机器狗使用记录</title>
-    <url>/2024/12/21/06-blog-ysc/</url>
-    <content><![CDATA[<p>主要围绕 <strong>云深处绝影Lite3</strong> 系列进行开发，随手记录常忘的信息。</p>
-<span id="more"></span>
-
-<h1 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h1><ul>
-<li>WiFi连接：WiFi名一般为 <code>YSC-XXXX-XXXXXX</code> 或 <code>YSC-XXXX-XXXXXX-5G</code></li>
-<li>网线连接：需要手动设置静态ip（IPV4）<blockquote>
-<p>地址：192.168.1.213<br>子网掩码：255.255.255.0</p>
-</blockquote>
-</li>
-</ul>
-<h1 id="板卡登陆："><a href="#板卡登陆：" class="headerlink" title="板卡登陆："></a>板卡登陆：</h1><blockquote>
-<p>可使用ssh（无图形界面）或nomachine（有图形界面）</p>
-</blockquote>
-<p>绝影Lite3的运动主机有三组可能的用户名和密码：</p>
-<table>
-<thead>
-<tr>
-<th align="left">用户名</th>
-<th align="left">密码</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>ysc</code></td>
-<td align="left"><code>&#39;</code>（英文单引号）</td>
-</tr>
-<tr>
-<td align="left"><code>user</code></td>
-<td align="left"><code>123456</code></td>
-</tr>
-<tr>
-<td align="left"><code>firefly</code></td>
-<td align="left"><code>firefly</code></td>
-</tr>
-<tr>
-<td align="left">请分别使用上述三组用户名尝试ssh连接到运动主机，以确定与其匹配的用户名和密码。</td>
-<td align="left"></td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>实测激光版为 ysc ， 基础版为 firefly</p>
-</blockquote>
-<ul>
-<li>运动主机：<ul>
-<li>如果通过WiFi连接，请查看开发主机分配到的IP：<ul>
-<li>如果网段为1，则运动主机地址为<strong>192.168.1.120</strong></li>
-<li>如果网段为2，则运动主机地址为<strong>192.168.2.1</strong></li>
-</ul>
-</li>
-<li>如果通过背部网口连接，则运动主机地址为<strong>192.168.1.120</strong></li>
-</ul>
-</li>
-<li>感知主机：<ul>
-<li>感知主机地址为：<strong>192.168.1.103</strong></li>
-</ul>
-</li>
-</ul>
-<h1 id="建图导航功能"><a href="#建图导航功能" class="headerlink" title="建图导航功能"></a>建图导航功能</h1><blockquote>
-<p>建图后可以通过工具修改<br>包括单目标点定位导航和多目标点定位导航</p>
-</blockquote>
-<p>绝影4目前调用导航出来的Rviz是全黑的<br>绝影3可用</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>hello, world</title>
-    <url>/2024/12/12/hello-world/</url>
-    <content><![CDATA[<blockquote>
-<p>自动生成的，但不想删掉qwq</p>
-</blockquote>
-<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章（其实是我第二次部署了，所以才会插在中间）。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
-<span id="more"></span>
-
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
-<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
-<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
-]]></content>
-      <categories>
-        <category>测试</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>自动控制与物联网控制概述</title>
-    <url>/2023/10/31/04_blog_wlwkz1/</url>
-    <content><![CDATA[<h1 id="【物联网控制】第一章-自动控制与物联网控制概述"><a href="#【物联网控制】第一章-自动控制与物联网控制概述" class="headerlink" title="【物联网控制】第一章_自动控制与物联网控制概述"></a>【物联网控制】第一章_自动控制与物联网控制概述</h1><p>物联网控制第一章复习整理</p>
-<span id="more"></span>
-
-<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h1><blockquote>
-<p><a href="#_toc4775">1.1 自动控制系统 </a></p>
-<p><a href="#_toc11515">1.2 反馈控制的概念 </a></p>
-<p><a href="#_toc23861">1.3 物联网控制系统的概念</a></p>
-<p><a href="#_toc10586">1.4 计算机控制系统的基本组成</a></p>
-<blockquote>
-<p><a href="#_toc24350">1.4.1 计算机控制系统的硬件组成</a></p>
-<p><a href="#_toc7467">1.4.2 计算机控制系统的软件</a></p>
-</blockquote>
-<p><a href="#_toc31531">1.5 计算机控制系统的类型</a></p>
-<p><a href="#_toc13856">1.6 物联网远程控制技术</a></p>
-<p><a href="#_toc28176">1.7 对自动控制系统性能的基本要求</a></p>
-</blockquote>
-<h1 id="自动控制系统"><a href="#自动控制系统" class="headerlink" title="自动控制系统"></a><a name="_toc4775"></a><strong>自动控制系统</strong></h1><ol>
-<li>第一个自动控制系统：1788 年瓦特发明飞球调节器</li>
-</ol>
-<p>——推动社会进步是飞球调节器被公认为第一个自动控制系统的最主要原因</p>
-<ol start="2">
-<li>自动控制理论的开端：麦克斯韦的“论调速器”</li>
-</ol>
-<p>——指出： 不应单独研究飞球调节器，必须从整个系统分析控制的不稳定。</p>
-<p>建立系统微分方程，分析微分方程解的稳定性，从而分析实际系统是否会出现不稳定现象。</p>
-<p>这样，控制系统稳定性的分析，变成了判别微分方程的特征根的实部的正、负号问题。</p>
-<ol start="3">
-<li><strong>自动控制是什么：在没有人参与的情况下，系统的控制器自动地按照人预定的要求控制设备或过程，使之具有一定的状态和性能。</strong></li>
-<li>自动控制系统是什么：自动控制功能的系统称为自动控制系统。</li>
-<li>人在控制过程中起到的作用：</li>
-</ol>
-<p><strong>——观测：</strong> 用眼睛去观测温度计和转速表的指示值；</p>
-<p><strong>——比较与决策：</strong> 人脑把观测得到的数据与要求的数据相比较，进行判断，根据给定的控制规律给出控制量；</p>
-<p><strong>——执行：</strong> 根据控制量用手具体调节，如调节阀门开度、改变触点位置。</p>
-<p><strong>——在自动控制中，则用控制装置代替人来完成上述功能。</strong></p>
-<ol start="6">
-<li>控制系统框图：</li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.001.jpeg" alt="Alt text"></p>
-<h1 id="反馈控制的概念"><a href="#反馈控制的概念" class="headerlink" title="反馈控制的概念"></a><a name="_toc11515"></a><strong>反馈控制的概念</strong></h1><ol>
-<li><strong>开环控制系统：如果控制系统的被控量对系统没有控制作用。</strong></li>
-</ol>
-<p>——优点： 简单，保证系统的稳定性</p>
-<p>——缺点： 控制精度易受扰动影响</p>
-<p>控制精度差（扰动存在时）</p>
-<p>——应用场合：逻辑控制、顺序控制、扰动少的场合</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.002.png" alt="Alt text"></p>
-<ol start="2">
-<li><strong>闭环（负反馈）控制系统：系统的被控量直接或间接地参与控制。</strong></li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.003.png" alt="Alt text"></p>
-<h1 id="物联网控制系统的概念"><a href="#物联网控制系统的概念" class="headerlink" title="物联网控制系统的概念"></a><a name="_toc23861"></a><strong>物联网控制系统的概念</strong></h1><ol>
-<li>物联网是：由各种具备联网能力的设备经由相互连接构成复杂网络结构。</li>
-<li><strong>物联网控制系统是：以物联网为基础的计算机控制系统。</strong></li>
-<li><strong>两种物联网控制系统结构：直接网络控制结构和间接网络控制结构。</strong></li>
-</ol>
-<p>——根据控制策略的生成是否在本地控制回路中<br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.004.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.005.png" alt="Alt text"></p>
-<ol start="4">
-<li>物联网络：作为系统各部分进行<strong>信息传输的介质</strong>，为系统中所有的传感器、执行器和控制器所共享，负责质量信号、控制信号以及状态反馈等信号的传输任务。</li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.006.png" alt="Alt text"></p>
-<h1 id="计算机控制系统的基本组成"><a href="#计算机控制系统的基本组成" class="headerlink" title="计算机控制系统的基本组成"></a><a name="_toc10586"></a><strong>计算机控制系统的基本组成</strong></h1><ol>
-<li><strong>计算机系统：数字计算机及 A&#x2F;D、D&#x2F;A 转换器等统称为计算机系统</strong></li>
-</ol>
-<p><strong>——主要作用：根据接受的被控对象以及外界的有关信息，按选定的算法进行变换处理并产生必要的控制指令输出作用于被控对象</strong></p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.007.png" alt="Alt text"></p>
-<h2 id="计算机控制系统的硬件组成"><a href="#计算机控制系统的硬件组成" class="headerlink" title="计算机控制系统的硬件组成"></a><a name="_toc24350"></a><strong>计算机控制系统的硬件组成</strong></h2><ol>
-<li>包括：计算机、外部设备、测量装置以及执行装置。图中点画线框所包围部分为实时控制所必需的计算机系统的最小配置。</li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.008.png" alt="Alt text"></p>
-<h2 id="计算机控制系统的软件"><a href="#计算机控制系统的软件" class="headerlink" title="计算机控制系统的软件"></a><a name="_toc7467"></a><strong>计算机控制系统的软件</strong></h2><p>——计算机控制系统的软件由系统软件和应用软件两大类组成。</p>
-<ol>
-<li>系统软件：计算机的通用软件，主要包括实时操作系统及一些公共服务系统（如编译程序、诊断程序、调试程序及通信软件等）。系统程序由计算机厂家提供。</li>
-<li>应用软件：计算机在系统软件支持下实现各种应用功能的专用程序。一般包括控制算法程序、输入输出接口程序、监控程序及信息管理程序。一般情况下，应用软件应由计算机控制系统设计人员根据所选用的硬件及软件环境和系统要求开发编写。</li>
-</ol>
-<h1 id="计算机控制系统的类型"><a href="#计算机控制系统的类型" class="headerlink" title="计算机控制系统的类型"></a><a name="_toc31531"></a><strong>计算机控制系统的类型</strong></h1><ol>
-<li>一共五种类型：操作指导控制系统 OIS、直接数字控制系统 DDC、监督控制系统 SCC、集散控制系统 DCS、分级计算机控制系统</li>
-<li>操作指导控制系统：操作指导是指计算机的输入不直接用来控制对象，只是每隔一段时间，计算机进行一次数据采集，将系统的一些参数经 A&#x2F;D 转换后送入计算机进行计算及处理，然后进行报警、打印和显示。</li>
-</ol>
-<p>——起作用的是：操作人员</p>
-<p>——开环 or 闭环控制：开环</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.009.png" alt="Alt text"></p>
-<ol start="2">
-<li><strong>直接数字控制系统（闭环控制）：</strong>计算机首先通过模拟量输入通道（AI）和开关量输入通道（DI）实时采集数据，然后按照一定的控制规律进行计算，最后发出控制信息，并通过模拟量输出通道（AO）和开关量输出通道（DO）直接控制生成过程。</li>
-</ol>
-<p>——要求实时性好、可靠性高和适应性强。</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.010.png" alt="Alt text"></p>
-<ol start="3">
-<li>监督控制系统：计算机根据原始工艺信息和其他参数，按照描述生产过程的数学模型或其他方法，自动地改变模拟&#x2F;数字调节器或以直接数字控制方式工作的计算机中的给定值，从而使生产过程始终处于最优工况（如保持高质量、高效率、低消耗、低成本等等）。</li>
-</ol>
-<p>——提高可靠性可以增加什么环节：DDC 直接数字控制系统</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.011.png" alt="Alt text"></p>
-<ol start="4">
-<li>集散控制系统：采用分散控制、集中操作、分级管理、分而自治和综合协调的设计原则，把系统从上到下分为分散过程控制级、集中操作监控级、综合信息管理级，形成分级分布式控制，其结构如图所示。</li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.012.png" alt="Alt text"></p>
-<ol start="5">
-<li>分级计算机控制系统：特点是将控制任务分散，用多台计算机分别执行不同的任务，既能进行控制又能实现管理。分级计算机控制系统是一个四级系统，如图所示。</li>
-</ol>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.013.png" alt="Alt text"></p>
-<ol start="6">
-<li>物联网是利用无所不在的网络技术建立起来的。网络远程控制是在网络上由主控端去控制远程客户端设备（被控端 Host／服务器端）的技术。这里的远程是指通过网络控制远端的设备或执行结构。</li>
-</ol>
-<h1 id="物联网远程控制技术"><a href="#物联网远程控制技术" class="headerlink" title="物联网远程控制技术"></a><a name="_toc13856"></a><strong>物联网远程控制技术</strong></h1><ol>
-<li><strong>物联网的 3 种控制模式：远程控制模式、本地控制模式、调度控制模式</strong></li>
-</ol>
-<p><strong>——实现了物联网的灵活性与开放性</strong></p>
-<ol start="2">
-<li>移动通信远程控制：指通信的双方中至少有一方是在运动过程中实现信息交换的通信。</li>
-</ol>
-<p><strong>——无线电台：</strong> 是最常用的远距离通信方式之一，电台适合多点通信，点数越多费用越低。但是，用无线电台作为通信手段存在以下问题：</p>
-<ol start="3">
-<li>无线电超短波的局限性，一般台站的天线应远离高大建筑物，但实际情况不能满足这一要求；</li>
-<li>无线电频谱是一种资源，随着国家对无线电频谱资源的管理、限制和对电磁污染的治理，无线超短波通信现在已经不是企业采集数据传输的最佳方案；</li>
-<li>现有的传输系统不仅需要人工巡查维护，费用大，并且由于体积大和发射功率大，对仪表的运行会造成干扰。</li>
-</ol>
-<p><strong>——拨号：</strong> 利用公共电话网络通过 Model 拨号，配合相应的软件来实现监控。其缺点是只有拨号后才能通信，因此不能实现同时“点对多点”通信等，而且无论是上位机还是客户机都必须有专门的电话线设备。</p>
-<p><strong>——数字电路：</strong> 是这四种方法中最为经济的，但是其前期电缆的铺设时间和费用投入比较大，而且铺设中间还要设有中继站，在运行过程中要注意防雷、防干扰、防破损等。因此，数据只能传输到实际线路铺设的地方。</p>
-<p><strong>——GPRS：</strong> 是一种基于 GSM 无线分组交换技术，提供端到端的广域的无线 IP 连接。GPRS 无线通信系统由发射设备、传输介质、接收设备等组成。无线通信原理如下图所示。</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.014.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.015.png" alt="Alt text"></p>
-<p><strong>——网络遥操作：</strong> 虽然是为了处理核原料提出来的，但它的应用范围现在已经扩展到多个领域：</p>
-<blockquote>
-<p>① 人类不能直接到达的场合，比如深海、距离很远的外层太空等；</p>
-<p>② 对人类有害的场合，比如有核辐射的地区；</p>
-<p>③ 延长专业人员的服务范围，比如远程医疗、远程手术等，通过这种方式可以把专家的技术服务范围延伸到全球。</p>
-</blockquote>
-<p>——在物联网领域，遥操作的典型应用之一是远程医疗( tele-medicine)。远程医疗系统可实现的具体业务，主要包括：</p>
-<blockquote>
-<ol>
-<li>远程会诊</li>
-<li>远程医疗教学</li>
-<li>远程医疗会议</li>
-</ol>
-</blockquote>
-<p>——物联网络远程控制的一个经典实例是遥操作系统，操作者在本地进行操作，由远程设备完成远程复杂或危险环境下的任务。</p>
-<p>——在网络环境下，遥操作机器人实验系统的工作原理如下图所示，它由操作者、主机械手、Internet 通信环节、从机械手和环境构成。</p>
-<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.016.png" alt="Alt text"></p>
-<ol start="3">
-<li>对控制系统的<strong>基本要求：</strong></li>
-</ol>
-<p><strong>——稳定性：系统动态过程的振荡倾向及其恢复平衡状态的能力。</strong> 稳定的系统当输出量偏离平衡状态时，其输出能随时间的增长收敛并回到初始平衡状态。稳定性是控制系统正常工作的先决条件。这里讨论的控制系统稳定性由系统结构所决定，与外界因素无关。</p>
-<p><strong>——精确性：</strong> 控制精度，主要以稳态误差来衡量。</p>
-<p>——稳态误差：系统的调整（过渡）过程结束而趋于稳定状态时，系统输出量的实际值与给定量之间的差值<strong>。</strong></p>
-<p><strong>——快速性：</strong> 输出量和输入量产生偏差时，系统消除这种偏差的快慢程度。快速性表征系统的动态性能。</p>
-<ol>
-<li><h1 id="对自动控制系统性能的基本要求："><a href="#对自动控制系统性能的基本要求：" class="headerlink" title="对自动控制系统性能的基本要求："></a><a name="_toc28176"></a><strong>对自动控制系统性能的基本要求：</strong></h1></li>
-<li><strong>基本要求：</strong></li>
-</ol>
-<p><a name="_toc5319"></a><strong>——稳定性：系统正常工作的首要条件——稳</strong></p>
-<p><strong>——稳态性能：控制的准确性——准</strong></p>
-<p><strong>——暂态性能：控制的快速性——快</strong></p>
-]]></content>
-      <categories>
-        <category>课程</category>
-        <category>物联网控制</category>
-      </categories>
-      <tags>
-        <tag>课程</tag>
-        <tag>物联网控制</tag>
+        <tag>Opencv</tag>
+        <tag>机器狗</tag>
       </tags>
   </entry>
   <entry>
@@ -622,53 +358,324 @@ your browser does not support the video tag
       </tags>
   </entry>
   <entry>
-    <title>在宇树机器狗上用相机sdk打开相机并使用Apriltag</title>
-    <url>/2023/10/15/01_blog_sdk_apriltag/</url>
-    <content><![CDATA[<p>解决了如何让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像的问题</p>
-<h1 id="问题发现："><a href="#问题发现：" class="headerlink" title="问题发现："></a>问题发现：</h1><p>在进行实验室实习项目时，需要使用 Apeiltag 功能包，但宇树机器狗只提供了相机 sdk 来让使用者调用相机，传统的 usb_cam 功能包方法需要额外配置参数，这里我选择仍使用 sdk 来打开相机。</p>
+    <title>自动控制与物联网控制概述</title>
+    <url>/2023/10/31/04_blog_wlwkz1/</url>
+    <content><![CDATA[<h1 id="【物联网控制】第一章-自动控制与物联网控制概述"><a href="#【物联网控制】第一章-自动控制与物联网控制概述" class="headerlink" title="【物联网控制】第一章_自动控制与物联网控制概述"></a>【物联网控制】第一章_自动控制与物联网控制概述</h1><p>物联网控制第一章复习整理</p>
 <span id="more"></span>
 
-<h1 id="实现过程："><a href="#实现过程：" class="headerlink" title="实现过程："></a>实现过程：</h1><h2 id="首先研究与-Apriltag-功能包有关的话题"><a href="#首先研究与-Apriltag-功能包有关的话题" class="headerlink" title="首先研究与 Apriltag 功能包有关的话题"></a>首先研究与 Apriltag 功能包有关的话题</h2><p><img src="/images/blog_sdk_apriltag/apriltag_topicshow.png" alt="apriltag话题"></p>
-<ul>
-<li>可以知道 apriltag 功能包需要接收 <strong>&#x2F;camera&#x2F;image_rect</strong> 和 <strong>&#x2F;camera&#x2F;camera_info</strong> 两个话题。</li>
-<li>而调用相机 sdk 之后，得到的图像就可以作为 image_rect 话题的输入，那么问题就到了 camera_info 这个话题上，有两个方面需要解决：这个话题是什么，这个话题怎么给。</li>
-<li>首先，这个话题是关于相机的一些参数信息，根据博客：<a href="https://blog.csdn.net/wangmj_hdu/article/details/115002514">https://blog.csdn.net/wangmj_hdu/article/details/115002514</a> 中的分享，我们可以得知这些参数的含义：<blockquote>
-<ul>
-<li>header：标准消息头</li>
-<li>seq：序列 ID，连续递增的 ID 号</li>
-<li>stamp：两个时间戳</li>
-<li>frame_id：与此数据相关联的帧 ID</li>
-<li>height：图像尺寸，height 代表高度，（height*width）相机的分辨率，以像素为单位</li>
-<li>width：图像尺寸，width 代表宽度，（height*width）相机分辨率，以像素为单位</li>
-<li>distortion_model：指定了相机畸变模型，对于大多数相机，”plumb_bob”简单的径向和切向畸变模型就足够了</li>
-<li>D：畸变参数，取决于畸变模型，(k1, k2, t1, t2, k3)，（我的这个 usb 相机号称是无畸变相机，但通过标定结果可以看出来还是存在畸变的，是不是被商家坑了，哈哈哈）</li>
-<li>K：相机内参矩阵，使用焦距(fx, fy)和主点坐标(cx, cy)，单位为像素，内参矩阵可以将相机坐标中的 3D 点投影到 2D 像素坐标<br><img src="/images/blog_sdk_apriltag/K.png" alt="Alt text"></li>
-<li>R：旋转矩阵，将相机坐标系统对准理想的立体图像平面，使两张立体图像中的极线平行</li>
-<li>P：投影矩阵<br><img src="/images/blog_sdk_apriltag/P.png" alt="Alt text"><br>左边 3*3 矩阵是相机的内参矩阵，将相机坐标中的 3D 点投影到 2D 像素坐标，可能与相机内参 K 不同。对于单目相机 Tx &#x3D; Ty &#x3D; 0。对于双目相机，Tx 和 Ty 有所不同。</li>
-<li>binning_x：图像下采样参数，水平方向</li>
-<li>binning_y：图像下采样参数，竖直方向</li>
-<li>(width &#x2F; binning_x) x (height &#x2F; binning_y)</li>
-<li>下采样：binning_x &#x3D; binning_y ＞ 1。缩小图像，生成对应图像的缩略图，使得图像符合显示区域的大小。</li>
-<li>roi：感兴趣区域定义，即完整图像上的一个矩形子窗口</li>
-</ul>
+<h1 id="目录"><a href="#目录" class="headerlink" title="目录"></a><strong>目录</strong></h1><blockquote>
+<p><a href="#_toc4775">1.1 自动控制系统 </a></p>
+<p><a href="#_toc11515">1.2 反馈控制的概念 </a></p>
+<p><a href="#_toc23861">1.3 物联网控制系统的概念</a></p>
+<p><a href="#_toc10586">1.4 计算机控制系统的基本组成</a></p>
+<blockquote>
+<p><a href="#_toc24350">1.4.1 计算机控制系统的硬件组成</a></p>
+<p><a href="#_toc7467">1.4.2 计算机控制系统的软件</a></p>
 </blockquote>
-</li>
-<li>接下来就是关于这个话题的输入方式，因为宇树有给出相机的标定参数： <img src="/images/blog_sdk_apriltag/biaoding.png" alt="Alt text">因此直接通过这些参数计算出 camera_info 需要的参数即可：</li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 相机信息处理</span></span><br><span class="line"><span class="function">sensor_msgs::CameraInfo <span class="title">getCameraInfo</span><span class="params">(<span class="type">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;                                     <span class="comment">// extract cameraInfo.</span></span><br><span class="line">    sensor_msgs::CameraInfo cam_info; <span class="comment">// 信息对象</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 相机参数赋值，K矩阵，D畸变参数等都根据宇树提供的相机标定参数计算得出</span></span><br><span class="line">    vector&lt;<span class="type">double</span>&gt; D&#123;</span><br><span class="line">        <span class="number">-2.0874507966557976e-01</span>, <span class="number">2.6922545819193944e-02</span>,</span><br><span class="line">        <span class="number">1.4887812678896397e-03</span>, <span class="number">3.5422189471526382e-03</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; K =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">1.9086173551086370e+02</span>, <span class="number">5.6239632677513474e-01</span>, <span class="number">2.2299573347226581e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">1.9608536122280060e+02</span>, <span class="number">1.9553241319375684e+02</span>,</span><br><span class="line">            <span class="number">0.</span>, <span class="number">0.</span>, <span class="number">1.</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 12&gt; P =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">192.85</span>, <span class="number">0</span>, <span class="number">222.99</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">196.08</span>, <span class="number">195.53</span>, <span class="number">0</span>,</span><br><span class="line">            <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">    boost::array&lt;<span class="type">double</span>, 9&gt; r =</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="number">-9.9992248085182622e-01</span>, <span class="number">1.1878079705669157e-02</span>, <span class="number">-3.7341009138761533e-03</span>,</span><br><span class="line">            <span class="number">-1.1878162517594585e-02</span>, <span class="number">-9.9992945213910256e-01</span>, <span class="number">0.</span>,</span><br><span class="line">            <span class="number">-3.7338374810443040e-03</span>, <span class="number">4.4354257512119405e-05</span>, <span class="number">9.9999302822087976e-01</span>&#125;;</span><br><span class="line"></span><br><span class="line">    cam_info.height = <span class="number">480</span>;</span><br><span class="line">    cam_info.width = <span class="number">640</span>;</span><br><span class="line">    cam_info.distortion_model = <span class="string">&quot;plumb_bob&quot;</span>;</span><br><span class="line">    cam_info.D = D;</span><br><span class="line">    cam_info.K = K;</span><br><span class="line">    cam_info.P = P;</span><br><span class="line">    cam_info.R = r;</span><br><span class="line">    cam_info.binning_x = <span class="number">0</span>;</span><br><span class="line">    cam_info.binning_y = <span class="number">0</span>;</span><br><span class="line">    cam_info.header.frame_id = <span class="string">&quot;camera&quot;</span>; <span class="comment">// frame_id为camera，也就是相机名字</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> cam_info;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="正常使用-apriltag"><a href="#正常使用-apriltag" class="headerlink" title="正常使用 apriltag"></a>正常使用 apriltag</h2><p>现在我们提供了 Apriltag 功能包需要的话题，就能够正常使用 apriltag 了，只需要发布话题出去，然后通过 apriltag 功能包给出的使用方法就能够实现让 Apriltag 功能包成功识别宇树机器狗相机 sdk 获得的图像。</p>
-<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> (cam.<span class="built_in">isOpened</span>())</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="comment">// 同时获取左右两个相机画面，但后续只用到左侧</span></span><br><span class="line">       cv::Mat left, right;</span><br><span class="line">       <span class="keyword">if</span> (!cam.<span class="built_in">getRectStereoFrame</span>(left, right)) <span class="comment">///&lt; get rectify left,right frame</span></span><br><span class="line">       &#123;</span><br><span class="line">           <span class="built_in">usleep</span>(<span class="number">1000</span>);</span><br><span class="line">           <span class="keyword">continue</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       cv::<span class="built_in">flip</span>(left, left, <span class="number">-1</span>);         <span class="comment">// 原图像为翻转图像，使用该函数翻转为正图像</span></span><br><span class="line">       cv::<span class="built_in">imshow</span>(<span class="string">&quot;Longlat_Rect&quot;</span>, left); <span class="comment">// 将图像显示在屏幕上</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// 信息整合发布</span></span><br><span class="line">       <span class="comment">// 图像信息需要信息头header</span></span><br><span class="line">       std_msgs::Header image_header;</span><br><span class="line">       image_header.frame_id = <span class="string">&quot;camera&quot;</span>;</span><br><span class="line">       image_header.stamp = ros::Time::<span class="built_in">now</span>();</span><br><span class="line"></span><br><span class="line">       <span class="comment">// 相机信息赋值，函数见最上方</span></span><br><span class="line">       camera_info_msg = <span class="built_in">getCameraInfo</span>();</span><br><span class="line">       camera_info_msg.header.stamp = image_header.stamp; <span class="comment">// 相机信息和图像信息的时间戳要相同</span></span><br><span class="line"></span><br><span class="line">       sensor_msgs::ImagePtr image_msg = cv_bridge::<span class="built_in">CvImage</span>(image_header, <span class="string">&quot;bgr8&quot;</span>, left).<span class="built_in">toImageMsg</span>(); <span class="comment">// 将图像信息的信息头header和图像left整合</span></span><br><span class="line">       pub_image.<span class="built_in">publish</span>(image_msg);                                                                  <span class="comment">// 图像信息发布</span></span><br><span class="line">       pub_info.<span class="built_in">publish</span>(camera_info_msg);                                                             <span class="comment">// 相机信息发布</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">// ---------------------------------------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">       <span class="type">char</span> key = cv::<span class="built_in">waitKey</span>(<span class="number">10</span>);</span><br><span class="line">       <span class="keyword">if</span> (key == <span class="number">27</span>) <span class="comment">// esc键退出</span></span><br><span class="line">           <span class="keyword">break</span>;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>完整代码见：</p>
+<p><a href="#_toc31531">1.5 计算机控制系统的类型</a></p>
+<p><a href="#_toc13856">1.6 物联网远程控制技术</a></p>
+<p><a href="#_toc28176">1.7 对自动控制系统性能的基本要求</a></p>
+</blockquote>
+<h1 id="自动控制系统"><a href="#自动控制系统" class="headerlink" title="自动控制系统"></a><a name="_toc4775"></a><strong>自动控制系统</strong></h1><ol>
+<li>第一个自动控制系统：1788 年瓦特发明飞球调节器</li>
+</ol>
+<p>——推动社会进步是飞球调节器被公认为第一个自动控制系统的最主要原因</p>
+<ol start="2">
+<li>自动控制理论的开端：麦克斯韦的“论调速器”</li>
+</ol>
+<p>——指出： 不应单独研究飞球调节器，必须从整个系统分析控制的不稳定。</p>
+<p>建立系统微分方程，分析微分方程解的稳定性，从而分析实际系统是否会出现不稳定现象。</p>
+<p>这样，控制系统稳定性的分析，变成了判别微分方程的特征根的实部的正、负号问题。</p>
+<ol start="3">
+<li><strong>自动控制是什么：在没有人参与的情况下，系统的控制器自动地按照人预定的要求控制设备或过程，使之具有一定的状态和性能。</strong></li>
+<li>自动控制系统是什么：自动控制功能的系统称为自动控制系统。</li>
+<li>人在控制过程中起到的作用：</li>
+</ol>
+<p><strong>——观测：</strong> 用眼睛去观测温度计和转速表的指示值；</p>
+<p><strong>——比较与决策：</strong> 人脑把观测得到的数据与要求的数据相比较，进行判断，根据给定的控制规律给出控制量；</p>
+<p><strong>——执行：</strong> 根据控制量用手具体调节，如调节阀门开度、改变触点位置。</p>
+<p><strong>——在自动控制中，则用控制装置代替人来完成上述功能。</strong></p>
+<ol start="6">
+<li>控制系统框图：</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.001.jpeg" alt="Alt text"></p>
+<h1 id="反馈控制的概念"><a href="#反馈控制的概念" class="headerlink" title="反馈控制的概念"></a><a name="_toc11515"></a><strong>反馈控制的概念</strong></h1><ol>
+<li><strong>开环控制系统：如果控制系统的被控量对系统没有控制作用。</strong></li>
+</ol>
+<p>——优点： 简单，保证系统的稳定性</p>
+<p>——缺点： 控制精度易受扰动影响</p>
+<p>控制精度差（扰动存在时）</p>
+<p>——应用场合：逻辑控制、顺序控制、扰动少的场合</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.002.png" alt="Alt text"></p>
+<ol start="2">
+<li><strong>闭环（负反馈）控制系统：系统的被控量直接或间接地参与控制。</strong></li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.003.png" alt="Alt text"></p>
+<h1 id="物联网控制系统的概念"><a href="#物联网控制系统的概念" class="headerlink" title="物联网控制系统的概念"></a><a name="_toc23861"></a><strong>物联网控制系统的概念</strong></h1><ol>
+<li>物联网是：由各种具备联网能力的设备经由相互连接构成复杂网络结构。</li>
+<li><strong>物联网控制系统是：以物联网为基础的计算机控制系统。</strong></li>
+<li><strong>两种物联网控制系统结构：直接网络控制结构和间接网络控制结构。</strong></li>
+</ol>
+<p>——根据控制策略的生成是否在本地控制回路中<br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.004.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.005.png" alt="Alt text"></p>
+<ol start="4">
+<li>物联网络：作为系统各部分进行<strong>信息传输的介质</strong>，为系统中所有的传感器、执行器和控制器所共享，负责质量信号、控制信号以及状态反馈等信号的传输任务。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.006.png" alt="Alt text"></p>
+<h1 id="计算机控制系统的基本组成"><a href="#计算机控制系统的基本组成" class="headerlink" title="计算机控制系统的基本组成"></a><a name="_toc10586"></a><strong>计算机控制系统的基本组成</strong></h1><ol>
+<li><strong>计算机系统：数字计算机及 A&#x2F;D、D&#x2F;A 转换器等统称为计算机系统</strong></li>
+</ol>
+<p><strong>——主要作用：根据接受的被控对象以及外界的有关信息，按选定的算法进行变换处理并产生必要的控制指令输出作用于被控对象</strong></p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.007.png" alt="Alt text"></p>
+<h2 id="计算机控制系统的硬件组成"><a href="#计算机控制系统的硬件组成" class="headerlink" title="计算机控制系统的硬件组成"></a><a name="_toc24350"></a><strong>计算机控制系统的硬件组成</strong></h2><ol>
+<li>包括：计算机、外部设备、测量装置以及执行装置。图中点画线框所包围部分为实时控制所必需的计算机系统的最小配置。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.008.png" alt="Alt text"></p>
+<h2 id="计算机控制系统的软件"><a href="#计算机控制系统的软件" class="headerlink" title="计算机控制系统的软件"></a><a name="_toc7467"></a><strong>计算机控制系统的软件</strong></h2><p>——计算机控制系统的软件由系统软件和应用软件两大类组成。</p>
+<ol>
+<li>系统软件：计算机的通用软件，主要包括实时操作系统及一些公共服务系统（如编译程序、诊断程序、调试程序及通信软件等）。系统程序由计算机厂家提供。</li>
+<li>应用软件：计算机在系统软件支持下实现各种应用功能的专用程序。一般包括控制算法程序、输入输出接口程序、监控程序及信息管理程序。一般情况下，应用软件应由计算机控制系统设计人员根据所选用的硬件及软件环境和系统要求开发编写。</li>
+</ol>
+<h1 id="计算机控制系统的类型"><a href="#计算机控制系统的类型" class="headerlink" title="计算机控制系统的类型"></a><a name="_toc31531"></a><strong>计算机控制系统的类型</strong></h1><ol>
+<li>一共五种类型：操作指导控制系统 OIS、直接数字控制系统 DDC、监督控制系统 SCC、集散控制系统 DCS、分级计算机控制系统</li>
+<li>操作指导控制系统：操作指导是指计算机的输入不直接用来控制对象，只是每隔一段时间，计算机进行一次数据采集，将系统的一些参数经 A&#x2F;D 转换后送入计算机进行计算及处理，然后进行报警、打印和显示。</li>
+</ol>
+<p>——起作用的是：操作人员</p>
+<p>——开环 or 闭环控制：开环</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.009.png" alt="Alt text"></p>
+<ol start="2">
+<li><strong>直接数字控制系统（闭环控制）：</strong>计算机首先通过模拟量输入通道（AI）和开关量输入通道（DI）实时采集数据，然后按照一定的控制规律进行计算，最后发出控制信息，并通过模拟量输出通道（AO）和开关量输出通道（DO）直接控制生成过程。</li>
+</ol>
+<p>——要求实时性好、可靠性高和适应性强。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.010.png" alt="Alt text"></p>
+<ol start="3">
+<li>监督控制系统：计算机根据原始工艺信息和其他参数，按照描述生产过程的数学模型或其他方法，自动地改变模拟&#x2F;数字调节器或以直接数字控制方式工作的计算机中的给定值，从而使生产过程始终处于最优工况（如保持高质量、高效率、低消耗、低成本等等）。</li>
+</ol>
+<p>——提高可靠性可以增加什么环节：DDC 直接数字控制系统</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.011.png" alt="Alt text"></p>
+<ol start="4">
+<li>集散控制系统：采用分散控制、集中操作、分级管理、分而自治和综合协调的设计原则，把系统从上到下分为分散过程控制级、集中操作监控级、综合信息管理级，形成分级分布式控制，其结构如图所示。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.012.png" alt="Alt text"></p>
+<ol start="5">
+<li>分级计算机控制系统：特点是将控制任务分散，用多台计算机分别执行不同的任务，既能进行控制又能实现管理。分级计算机控制系统是一个四级系统，如图所示。</li>
+</ol>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.013.png" alt="Alt text"></p>
+<ol start="6">
+<li>物联网是利用无所不在的网络技术建立起来的。网络远程控制是在网络上由主控端去控制远程客户端设备（被控端 Host／服务器端）的技术。这里的远程是指通过网络控制远端的设备或执行结构。</li>
+</ol>
+<h1 id="物联网远程控制技术"><a href="#物联网远程控制技术" class="headerlink" title="物联网远程控制技术"></a><a name="_toc13856"></a><strong>物联网远程控制技术</strong></h1><ol>
+<li><strong>物联网的 3 种控制模式：远程控制模式、本地控制模式、调度控制模式</strong></li>
+</ol>
+<p><strong>——实现了物联网的灵活性与开放性</strong></p>
+<ol start="2">
+<li>移动通信远程控制：指通信的双方中至少有一方是在运动过程中实现信息交换的通信。</li>
+</ol>
+<p><strong>——无线电台：</strong> 是最常用的远距离通信方式之一，电台适合多点通信，点数越多费用越低。但是，用无线电台作为通信手段存在以下问题：</p>
+<ol start="3">
+<li>无线电超短波的局限性，一般台站的天线应远离高大建筑物，但实际情况不能满足这一要求；</li>
+<li>无线电频谱是一种资源，随着国家对无线电频谱资源的管理、限制和对电磁污染的治理，无线超短波通信现在已经不是企业采集数据传输的最佳方案；</li>
+<li>现有的传输系统不仅需要人工巡查维护，费用大，并且由于体积大和发射功率大，对仪表的运行会造成干扰。</li>
+</ol>
+<p><strong>——拨号：</strong> 利用公共电话网络通过 Model 拨号，配合相应的软件来实现监控。其缺点是只有拨号后才能通信，因此不能实现同时“点对多点”通信等，而且无论是上位机还是客户机都必须有专门的电话线设备。</p>
+<p><strong>——数字电路：</strong> 是这四种方法中最为经济的，但是其前期电缆的铺设时间和费用投入比较大，而且铺设中间还要设有中继站，在运行过程中要注意防雷、防干扰、防破损等。因此，数据只能传输到实际线路铺设的地方。</p>
+<p><strong>——GPRS：</strong> 是一种基于 GSM 无线分组交换技术，提供端到端的广域的无线 IP 连接。GPRS 无线通信系统由发射设备、传输介质、接收设备等组成。无线通信原理如下图所示。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.014.png" alt="Alt text"><br><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.015.png" alt="Alt text"></p>
+<p><strong>——网络遥操作：</strong> 虽然是为了处理核原料提出来的，但它的应用范围现在已经扩展到多个领域：</p>
+<blockquote>
+<p>① 人类不能直接到达的场合，比如深海、距离很远的外层太空等；</p>
+<p>② 对人类有害的场合，比如有核辐射的地区；</p>
+<p>③ 延长专业人员的服务范围，比如远程医疗、远程手术等，通过这种方式可以把专家的技术服务范围延伸到全球。</p>
+</blockquote>
+<p>——在物联网领域，遥操作的典型应用之一是远程医疗( tele-medicine)。远程医疗系统可实现的具体业务，主要包括：</p>
+<blockquote>
+<ol>
+<li>远程会诊</li>
+<li>远程医疗教学</li>
+<li>远程医疗会议</li>
+</ol>
+</blockquote>
+<p>——物联网络远程控制的一个经典实例是遥操作系统，操作者在本地进行操作，由远程设备完成远程复杂或危险环境下的任务。</p>
+<p>——在网络环境下，遥操作机器人实验系统的工作原理如下图所示，它由操作者、主机械手、Internet 通信环节、从机械手和环境构成。</p>
+<p><img src="/images/blog_wlwkz1/%E7%AC%AC%E4%B8%80%E7%AB%A0_%E8%87%AA%E5%8A%A8%E6%8E%A7%E5%88%B6%E4%B8%8E%E7%89%A9%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%A6%82%E8%BF%B0.016.png" alt="Alt text"></p>
+<ol start="3">
+<li>对控制系统的<strong>基本要求：</strong></li>
+</ol>
+<p><strong>——稳定性：系统动态过程的振荡倾向及其恢复平衡状态的能力。</strong> 稳定的系统当输出量偏离平衡状态时，其输出能随时间的增长收敛并回到初始平衡状态。稳定性是控制系统正常工作的先决条件。这里讨论的控制系统稳定性由系统结构所决定，与外界因素无关。</p>
+<p><strong>——精确性：</strong> 控制精度，主要以稳态误差来衡量。</p>
+<p>——稳态误差：系统的调整（过渡）过程结束而趋于稳定状态时，系统输出量的实际值与给定量之间的差值<strong>。</strong></p>
+<p><strong>——快速性：</strong> 输出量和输入量产生偏差时，系统消除这种偏差的快慢程度。快速性表征系统的动态性能。</p>
+<ol>
+<li><h1 id="对自动控制系统性能的基本要求："><a href="#对自动控制系统性能的基本要求：" class="headerlink" title="对自动控制系统性能的基本要求："></a><a name="_toc28176"></a><strong>对自动控制系统性能的基本要求：</strong></h1></li>
+<li><strong>基本要求：</strong></li>
+</ol>
+<p><a name="_toc5319"></a><strong>——稳定性：系统正常工作的首要条件——稳</strong></p>
+<p><strong>——稳态性能：控制的准确性——准</strong></p>
+<p><strong>——暂态性能：控制的快速性——快</strong></p>
 ]]></content>
       <categories>
-        <category>技术</category>
-        <category>机器狗</category>
-        <category>Opencv</category>
+        <category>课程</category>
+        <category>物联网控制</category>
       </categories>
       <tags>
-        <tag>Opencv</tag>
+        <tag>课程</tag>
+        <tag>物联网控制</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hello, world</title>
+    <url>/2024/12/12/hello-world/</url>
+    <content><![CDATA[<blockquote>
+<p>自动生成的，但不想删掉qwq</p>
+</blockquote>
+<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是你的第一篇文章（其实是我第二次部署了，所以才会插在中间）。请查阅 <a href="https://hexo.io/docs/">文档</a> 获取更多信息。如果在使用 Hexo 时遇到问题，你可以在 <a href="https://hexo.io/docs/troubleshooting.html">故障排除</a> 页面找到答案，或者在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 提出问题。</p>
+<span id="more"></span>
+
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><h3 id="创建一篇新文章"><a href="#创建一篇新文章" class="headerlink" title="创建一篇新文章"></a>创建一篇新文章</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;my new page&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/writing.html">写作</a></p>
+<h3 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/server.html">服务器</a></p>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/generating.html">生成</a></p>
+<h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>更多信息：<a href="https://hexo.io/docs/one-command-deployment.html">部署</a></p>
+]]></content>
+      <categories>
+        <category>测试</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ubuntu20.04常见工具下载安装</title>
+    <url>/2024/12/12/05_blog_ubuntuTools/</url>
+    <content><![CDATA[<h1 id="可能有用的工具"><a href="#可能有用的工具" class="headerlink" title="可能有用的工具"></a>可能有用的工具</h1><blockquote>
+<p>本篇文章记录了实测在 ubuntu20.04 可用的工具安装方法，注意主要为安装方法，下载链接随缘放出。<br>推荐下载文章中指定的版本，也许你下载的其他更新或更老的版本就是我踩过的坑 T T</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="Clash-verge"><a href="#Clash-verge" class="headerlink" title="Clash-verge"></a>Clash-verge</h2><p>更新的版本实测无法使用，最好下载下面指定的版本。有其他更多可用版本欢迎补充。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./clash-verge_1.7.7_amd64.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找即可，订阅链接需自行获取。</li>
+</ul>
+<h2 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h2><p>文字编辑工具，不多说。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mv</span> microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main&quot;</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/sources.list.d/vscode.list</span><br><span class="line"><span class="built_in">sudo</span> apt-get update</span><br><span class="line"><span class="built_in">sudo</span> apt-get install code</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Snipaste"><a href="#Snipaste" class="headerlink" title="Snipaste"></a>Snipaste</h2><p>这是一个很好用的贴图工具，能通过截图的方法将你需要的内容置顶在界面上，方便查看某些教程，或进行图像的参考对比。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./Snipaste-2.10.2-x86_64.AppImage</span><br></pre></td></tr></table></figure></li>
+<li>其实是启动方法。</li>
+<li>配置自启动：  <ul>
+<li>在应用列表中找到 <code>启动应用程序</code>；</li>
+<li>找到 <code>添加</code>；</li>
+<li>自行输入名字，如<code>Snipaste</code>；</li>
+<li>在 <code>命令</code> 处找到 <code>Snipaste-2.10.2-x86_64.AppImage</code> 的路径，添加即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Edge"><a href="#Edge" class="headerlink" title="Edge"></a>Edge</h2><p>浏览器，主要是可以同步账号，比较方便。</p>
+<ul>
+<li>安装方法：<ul>
+<li>在官网下载deb包；</li>
+<li>输入：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install ./microsoft-edge-stable_131.0.2903.86-1_amd64.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找即可。</li>
+</ul>
+</li>
+</ul>
+<h2 id="Raylink"><a href="#Raylink" class="headerlink" title="Raylink"></a>Raylink</h2><p>远程连接工具，免费前提下支持三个可连接设备。值得一提的是有移动端，不占用连接设备数，可以用手机远程PC。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y ./RayLink_8.0.4.8.deb</span><br></pre></td></tr></table></figure></li>
+<li>安装后在应用列表查找。</li>
+</ul>
+<h2 id="Anaconda3"><a href="#Anaconda3" class="headerlink" title="Anaconda3"></a>Anaconda3</h2><p>参考博客写得很清楚，还附带了YOLOv5的部署方法，部署过很多次，没有问题。</p>
+<ul>
+<li>安装方法：  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash ./Anaconda3-2024.06-1-Linux-x86_64.sh</span><br></pre></td></tr></table></figure></li>
+<li>后续默认yes即可，在路径选择时根据需要修改。<blockquote>
+<p>参考博客：<a href="https://blog.csdn.net/weixin_70026476/article/details/128184135">https://blog.csdn.net/weixin_70026476/article/details/128184135</a></p>
+</blockquote>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>云深处机器狗使用记录</title>
+    <url>/2024/12/21/06-blog-ysc/</url>
+    <content><![CDATA[<p>主要围绕 <strong>云深处绝影Lite3</strong> 系列进行开发，随手记录常忘的信息。</p>
+<span id="more"></span>
+
+<h1 id="网络连接"><a href="#网络连接" class="headerlink" title="网络连接"></a>网络连接</h1><ul>
+<li>WiFi连接：WiFi名一般为 <code>YSC-XXXX-XXXXXX</code> 或 <code>YSC-XXXX-XXXXXX-5G</code></li>
+<li>网线连接：需要手动设置静态ip（IPV4）<blockquote>
+<p>地址：192.168.1.213<br>子网掩码：255.255.255.0</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="板卡登陆："><a href="#板卡登陆：" class="headerlink" title="板卡登陆："></a>板卡登陆：</h1><blockquote>
+<p>可使用ssh（无图形界面）或nomachine（有图形界面）</p>
+</blockquote>
+<p>绝影Lite3的运动主机有三组可能的用户名和密码：</p>
+<table>
+<thead>
+<tr>
+<th align="left">用户名</th>
+<th align="left">密码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ysc</code></td>
+<td align="left"><code>&#39;</code>（英文单引号）</td>
+</tr>
+<tr>
+<td align="left"><code>user</code></td>
+<td align="left"><code>123456</code></td>
+</tr>
+<tr>
+<td align="left"><code>firefly</code></td>
+<td align="left"><code>firefly</code></td>
+</tr>
+<tr>
+<td align="left">请分别使用上述三组用户名尝试ssh连接到运动主机，以确定与其匹配的用户名和密码。</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>实测激光版为 ysc ， 基础版为 firefly</p>
+</blockquote>
+<ul>
+<li>运动主机：<ul>
+<li>如果通过WiFi连接，请查看开发主机分配到的IP：<ul>
+<li>如果网段为1，则运动主机地址为<strong>192.168.1.120</strong></li>
+<li>如果网段为2，则运动主机地址为<strong>192.168.2.1</strong></li>
+</ul>
+</li>
+<li>如果通过背部网口连接，则运动主机地址为<strong>192.168.1.120</strong></li>
+</ul>
+</li>
+<li>感知主机：<ul>
+<li>感知主机地址为：<strong>192.168.1.103</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="建图导航功能"><a href="#建图导航功能" class="headerlink" title="建图导航功能"></a>建图导航功能</h1><blockquote>
+<p>建图后可以通过工具修改<br>包括单目标点定位导航和多目标点定位导航</p>
+</blockquote>
+<p>绝影4目前调用导航出来的Rviz是全黑的<br>绝影3可用</p>
+]]></content>
+      <categories>
+        <category>记录</category>
+        <category>机器狗</category>
+      </categories>
+      <tags>
         <tag>机器狗</tag>
       </tags>
   </entry>
